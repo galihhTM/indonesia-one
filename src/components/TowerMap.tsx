@@ -14,17 +14,14 @@ type Zone = {
   points: string | null; 
   imageUrl: string | null; 
   facilities: Facility[]; 
-  tower?: { name: string } // <--- HANYA INI YANG BOLEH ADA (Hapus 'Tower: string;')
+  tower?: { name: string } 
 };
-
 type Tower = { id: string; name: string; slug: string; zones: Zone[] };
 
 export default function TowerMap({ towers }: { towers: Tower[] }) {
   const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
-  
-  // Tambahkan <HTMLDivElement> agar TS tidak protes
-  const container = useRef<HTMLDivElement>(null); 
+  const container = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const allZones = towers.flatMap((tower) => tower.zones);
@@ -39,11 +36,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
 
   const handleZoneClick = (zone: Zone) => {
     setSelectedZone(zone);
-    try {
-      window.history.pushState({ modalOpen: true }, "");
-    } catch (error) {
-      console.warn("pushState error:", error);
-    }
+    window.history.pushState({ modalOpen: true }, "");
   };
 
   const handleClose = () => {
@@ -52,16 +45,16 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
 
   useGSAP(
     () => {
-      if (selectedZone && cardRef.current) { // Tambahkan cardRef.current pengecekan
+      if (selectedZone && cardRef.current) {
         gsap.fromTo(
           cardRef.current,
-          { opacity: 0, scale: 0.95, y: 20 }, 
+          { opacity: 0, scale: 0.95, y: 20 },
           { 
             opacity: 1, 
             scale: 1, 
             y: 0, 
             duration: 0.6, 
-            ease: "expo.out", 
+            ease: "expo.out",
             clearProps: "transform" 
           }
         );
@@ -92,9 +85,11 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
   return (
     <div
       ref={container}
-      className="w-full min-h-dvh bg-[#1a1c3b] flex justify-center items-start relative overflow-hidden"
+      className="w-full min-h-dvh bg-[#1a1c3b] flex justify-center items-start lg:py-12 relative overflow-hidden"
     >
+      {/* Wadah Gambar */}
       <div className="relative w-full h-dvh bg-gray-800 lg:h-auto lg:max-w-175 lg:aspect-2729/3859 lg:rounded-3xl lg:overflow-hidden lg:shadow-2xl">
+        
         {/* LOGO */}
         <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50 w-25 md:w-35 lg:w-45 pointer-events-none">
           <Image
@@ -115,8 +110,9 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
           priority
         />
 
+        {/* SVG OVERLAY */}
         <svg
-          className="absolute inset-0 w-full h-full z-20 pointer-events-auto touch-none"
+          className="absolute inset-0 w-full h-full z-20"
           viewBox="0 0 2729 3859"
           preserveAspectRatio="xMidYMid slice"
         >
@@ -129,13 +125,13 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
                 key={zone.id}
                 d={zone.points || ""}
                 pointerEvents="all"
-                fill={isActive ? "rgba(59, 130, 246, 0.6)" : "rgba(255, 255, 255, 0.01)"}
-                stroke={isActive ? "#3b82f6" : "rgba(255, 255, 255, 0.01)"}
-                strokeWidth={isActive ? "5" : "15"}
-                className="cursor-pointer transition-all duration-300"
-                onPointerDown={() => handleZoneClick(zone)}
+                fill={isActive ? "rgba(59, 130, 246, 0.6)" : "transparent"}
+                stroke={isActive ? "#3b82f6" : "transparent"}
+                strokeWidth="5"
+                className="clickable-zone cursor-pointer transition-all duration-500 ease-out hover:fill-blue-500/40 hover:stroke-blue-500 touch-manipulation"
                 onMouseEnter={() => setHoveredZone(zone.id)}
                 onMouseLeave={() => setHoveredZone(null)}
+                onClick={() => handleZoneClick(zone)}
               />
             );
           })}
@@ -144,15 +140,16 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
 
       {selectedZone && (
         <div
-          className="fixed inset-0 bg-black/30 z-40 animate-backdrop"
+          className="fixed inset-0 bg-black/30 z-40 animate-backdrop lg:hidden"
           onClick={handleClose} 
         />
       )}
 
+      {/* FLOATING CARD */}
       {selectedZone && (
         <div
           ref={cardRef}
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-115 lg:max-w-100"
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-100 lg:absolute lg:top-20 lg:-left-16 lg:translate-x-0 lg:translate-y-0 lg:w-auto lg:max-w-[320px]"
         >
           <ZoneCard zone={selectedZone} onClose={handleClose} />
         </div>
