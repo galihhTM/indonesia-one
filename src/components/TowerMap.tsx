@@ -7,16 +7,9 @@ import ZoneCard from "./ZoneCard";
 import Image from "next/image";
 
 type Facility = { id: string; title: string; category: string };
-type Zone = { 
-  id: string; 
-  categoryName: string; 
-  floorsRange: string; 
-  points: string | null; 
-  imageUrl: string | null; 
-  facilities: Facility[]; 
-  tower?: { name: string } 
+type Zone = { id: string; categoryName: string; floorsRange: string; Tower: string; points: string | null; imageUrl: string | null; facilities: Facility[]; tower?: {name: string}
 };
-type Tower = { id: string; name: string; slug: string; zones: Zone[] };
+type Tower = { id: string; name: string; slug: string;  zones: Zone[] };
 
 export default function TowerMap({ towers }: { towers: Tower[] }) {
   const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
@@ -28,6 +21,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
 
   useEffect(() => {
     const handlePopState = () => {
+      // Jika menekan tombol back bawaan, tutup card
       if (selectedZone) setSelectedZone(null);
     };
     window.addEventListener("popstate", handlePopState);
@@ -36,42 +30,62 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
 
   const handleZoneClick = (zone: Zone) => {
     setSelectedZone(zone);
-    try {
-      window.history.pushState({ modalOpen: true }, "");
-    } catch (error) {}
+    // Tambahkan state ke history browser agar tombol back berfungsi
+    window.history.pushState({ modalOpen: true }, "");
   };
 
   const handleClose = () => {
+    // Jika tombol X diklik, kita panggil history.back() agar history browser bersih
     window.history.back();
   };
 
-  useGSAP(
+   useGSAP(
     () => {
       if (selectedZone) {
         gsap.fromTo(
           cardRef.current,
-          { opacity: 0, scale: 0.95, y: 20 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "expo.out" }
+          { opacity: 0, scale: 0.95, y: 20 }, 
+          { 
+            opacity: 1, 
+            scale: 1, 
+            y: 0, 
+            duration: 0.6, 
+            ease: "expo.out", 
+            clearProps: "transform" 
+          }
         );
       }
     },
     { dependencies: [selectedZone], scope: container },
   );
 
+  useGSAP(
+    () => {
+      const isDesktop = window.matchMedia("(hover: hover)").matches;
+      if (!selectedZone) {
+        gsap.to(".clickable-zone", {
+          fill: "rgba(59, 130, 246, 0.3)",
+          repeat: -1,
+          yoyo: true,
+          duration: 1.5,
+          stagger: 0.2,
+          ease: "sine.inOut",
+        });
+      } else {
+        gsap.killTweensOf(".clickable-zone");
+      }
+    },
+    { dependencies: [selectedZone] },
+  );
+
   return (
     <div
       ref={container}
-      className="w-full min-h-[100dvh] bg-[#1a1c3b] flex justify-center items-center relative overflow-hidden py-4 md:py-8"
+      className="w-full min-h-dvh bg-[#1a1c3b] flex justify-center items-start relative overflow-hidden"
     >
-      {/* 
-        KUNCI PERBAIKAN: 
-        Kita gunakan max-w-full dan max-h-[100dvh] dengan aspect-ratio yang tepat.
-        Ini memastikan gambar dan SVG punya ukuran yang SAMA PERSIS, sehingga klik presisi.
-      */}
-      <div className="relative w-full max-w-[700px] md:max-w-[800px] aspect-[2729/3859] bg-gray-800 lg:rounded-3xl overflow-hidden shadow-2xl mx-4 md:mx-auto">
-        
+      <div className="relative w-full h-dvh bg-gray-800 lg:h-auto lg:max-w-175 lg:aspect-2729/3859 lg:rounded-3xl lg:overflow-hidden lg:shadow-2xl">
         {/* LOGO */}
-        <div className="absolute top-4 left-4 md:top-6 md:left-6 z-50 w-24 md:w-32 pointer-events-none">
+        <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50 w-25 md:w-35 lg:w-45 pointer-events-none">
           <Image
             src="/images/logo.png"
             alt="Logo"
@@ -81,7 +95,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
           />
         </div>
 
-        {/* GAMBAR UTAMA (Gunakan object-cover agar pas dengan wadah aspect-ratio) */}
+        {/* BACKGROUND HOME */}
         <Image
           src="/images/towers/tower.jpg"
           alt="Twin Towers"
@@ -90,9 +104,8 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
           priority
         />
 
-        {/* SVG OVERLAY */}
         <svg
-          className="absolute inset-0 w-full h-full z-20"
+          className="absolute inset-0 w-full h-full z-20 pointer-events-auto touch-none"
           viewBox="0 0 2729 3859"
           preserveAspectRatio="xMidYMid slice"
         >
@@ -105,33 +118,30 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
                 key={zone.id}
                 d={zone.points || ""}
                 pointerEvents="all"
-                // Beri warna putih transparan 1% agar iOS Safari mendeteksi sentuhan
                 fill={isActive ? "rgba(59, 130, 246, 0.6)" : "rgba(255, 255, 255, 0.01)"}
                 stroke={isActive ? "#3b82f6" : "rgba(255, 255, 255, 0.01)"}
-                strokeWidth="5"
-                className="cursor-pointer transition-all duration-300 touch-manipulation"
+                strokeWidth={isActive ? "5" : "15"}
+                className="cursor-pointer transition-all duration-300"
+                onPointerDown={() => handleZoneClick(zone)}
                 onMouseEnter={() => setHoveredZone(zone.id)}
                 onMouseLeave={() => setHoveredZone(null)}
-                onClick={() => handleZoneClick(zone)}
               />
             );
           })}
         </svg>
       </div>
 
-      {/* BACKDROP GELAP */}
       {selectedZone && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 animate-backdrop"
-          onClick={handleClose} 
+          className="fixed inset-0 bg-black/30 z-40 animate-backdrop"
+          onClick={handleClose} // Klik area luar juga menutup card
         />
       )}
 
-      {/* FLOATING CARD */}
       {selectedZone && (
         <div
           ref={cardRef}
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-[400px]"
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-115 lg:max-w-100"
         >
           <ZoneCard zone={selectedZone} onClose={handleClose} />
         </div>
