@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(MANAGER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tower {
+  id    String @id @default(cuid())
+  name  String 
+  slug  String @unique
+  zones Zone[]
+}
+
+model Zone {
+  id           String       @id @default(cuid())
+  towerId      String
+  tower        Tower        @relation(fields: [towerId], references: [id])
+  categoryName String
+  floorsRange  String
+  points       String?
+  imageUrl     String?
+  
+  facilities   Facility[]
+  floorPlans   FloorPlan[]
+}
+
+model Facility {
+  id          String   @id @default(cuid())
+  zoneId      String
+  zone        Zone     @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  title       String
+  category    String
+  description String?
+  images      FacilityImage[]
+}
+
+model FacilityImage {
+  id         String   @id @default(cuid())
+  facilityId String
+  facility   Facility @relation(fields: [facilityId], references: [id])
+  imageUrl   String
+  isPrimary  Boolean  @default(false)
+  sortOrder  Int      @default(0)
+}
+
+model FloorPlan {
+  id          String   @id @default(cuid())
+  zoneId      String
+  zone        Zone     @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  title       String
+  imageUrl    String
+  description String?
+  roomPoints  RoomPoint[]
+}
+
+model RoomPoint {
+  id          String    @id @default(cuid())
+  floorPlanId String
+  floorPlan   FloorPlan @relation(fields: [floorPlanId], references: [id])
+  number      Int
+  label       String
+  coordinates String?
+}

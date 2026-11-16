@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(MANAGER) // Fokus ke admin dulu untuk mengelola konten
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tower {
+  id    String @id @default(cuid())
+  name  String // "South Tower", "North Tower"
+  slug  String @unique
+  zones Zone[]
+}
+
+model Zone {
+  id           String  @id @default(cuid())
+  towerId      String
+  tower        Tower   @relation(fields: [towerId], references: [id])
+  categoryName String // "High-Zone", "Mid-Zone", dll
+  floorsRange  String // "Lantai 36 - 50"
+  points       String? // Koordinat area di gambar utama (bisa disimpan sebagai JSON string)
+  imageUrl     String? // Gambar interior untuk card melayang
+
+  facilities Facility[] // Zona ini punya fasilitas apa saja
+  floorPlans FloorPlan[] // Zona ini punya tipe unit/denah apa saja
+}
+
+model Facility {
+  id          String          @id @default(cuid())
+  zoneId      String
+  zone        Zone            @relation(fields: [zoneId], references: [id])
+  title       String // "Infinity Pool Access", "Luxury Suites"
+  category    String // "Wellness", "Residential", "F&B", "Hotel"
+  description String? // Penjelasan detail saat di-klik
+  images      FacilityImage[]
+}
+
+model FacilityImage {
+  id         String   @id @default(cuid())
+  facilityId String
+  facility   Facility @relation(fields: [facilityId], references: [id])
+  imageUrl   String
+  isPrimary  Boolean  @default(false)
+  sortOrder  Int      @default(0)
+}
+
+// ==========================================
+// TABEL BARU UNTUK GAMBAR DENAH (SUITE/RESIDENCE)
+// ==========================================
+
+model FloorPlan {
+  id          String      @id @default(cuid())
+  zoneId      String
+  zone        Zone        @relation(fields: [zoneId], references: [id])
+  title       String // "Luxury Residences Show Unit - Suite Type"
+  imageUrl    String // URL gambar denah besar yang kamu kirim
+  description String?
+  roomPoints  RoomPoint[] // Titik-titik angka 1-11/12 di denah
+}
+
+model RoomPoint {
+  id          String    @id @default(cuid())
+  floorPlanId String
+  floorPlan   FloorPlan @relation(fields: [floorPlanId], references: [id])
+  number      Int // Angka 1, 2, 3, dst
+  label       String // "MAIN ENTRANCE FOYER", "FORMAL LIVING", dll
+  coordinates String? // Posisi titik (x,y) di gambar denah (jika ingin interaktif)
+}
