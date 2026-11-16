@@ -7,7 +7,7 @@ type ZoneCardProps = {
   onClose: () => void;
 };
 
-export default function ZoneCard({ zone, towerName, onClose }: ZoneCardProps) {
+export default function ZoneCard({ zone, onClose }: ZoneCardProps) {
   return (
     <div className="w-full bg-[#3b2f2a]/85 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/20">
       

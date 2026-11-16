@@ -4,9 +4,10 @@ import { cookies } from "next/headers";
 
 export async function middleware(request: Request) {
   const cookie = (await cookies()).get("session")?.value;
-  const session = cookie ? await decrypt(cookie).catch(() => null) : null;
+  
+  // PASTIKAN BARIS INI PERSIS SEPERTI INI (ada 'as string')
+  const session = cookie ? await decrypt(cookie as string).catch(() => null) : null;
 
-  // Jika tidak ada session dan mencoba akses /admin, redirect ke /login
   if (request.url.includes("/admin") && !session?.userId) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
