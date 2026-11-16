@@ -7,21 +7,30 @@ import ZoneCard from "./ZoneCard";
 import Image from "next/image";
 
 type Facility = { id: string; title: string; category: string };
-type Zone = { id: string; categoryName: string; floorsRange: string; Tower: string; points: string | null; imageUrl: string | null; facilities: Facility[]; tower?: {name: string}
+type Zone = { 
+  id: string; 
+  categoryName: string; 
+  floorsRange: string; 
+  points: string | null; 
+  imageUrl: string | null; 
+  facilities: Facility[]; 
+  tower?: { name: string } // <--- HANYA INI YANG BOLEH ADA (Hapus 'Tower: string;')
 };
-type Tower = { id: string; name: string; slug: string;  zones: Zone[] };
+
+type Tower = { id: string; name: string; slug: string; zones: Zone[] };
 
 export default function TowerMap({ towers }: { towers: Tower[] }) {
   const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
-  const container = useRef(null);
-  const cardRef = useRef(null);
+  
+  // Tambahkan <HTMLDivElement> agar TS tidak protes
+  const container = useRef<HTMLDivElement>(null); 
+  const cardRef = useRef<HTMLDivElement>(null);
 
   const allZones = towers.flatMap((tower) => tower.zones);
 
   useEffect(() => {
     const handlePopState = () => {
-      // Jika menekan tombol back bawaan, tutup card
       if (selectedZone) setSelectedZone(null);
     };
     window.addEventListener("popstate", handlePopState);
@@ -30,18 +39,20 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
 
   const handleZoneClick = (zone: Zone) => {
     setSelectedZone(zone);
-    // Tambahkan state ke history browser agar tombol back berfungsi
-    window.history.pushState({ modalOpen: true }, "");
+    try {
+      window.history.pushState({ modalOpen: true }, "");
+    } catch (error) {
+      console.warn("pushState error:", error);
+    }
   };
 
   const handleClose = () => {
-    // Jika tombol X diklik, kita panggil history.back() agar history browser bersih
     window.history.back();
   };
 
-   useGSAP(
+  useGSAP(
     () => {
-      if (selectedZone) {
+      if (selectedZone && cardRef.current) { // Tambahkan cardRef.current pengecekan
         gsap.fromTo(
           cardRef.current,
           { opacity: 0, scale: 0.95, y: 20 }, 
@@ -62,7 +73,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
   useGSAP(
     () => {
       const isDesktop = window.matchMedia("(hover: hover)").matches;
-      if (!selectedZone) {
+      if (!selectedZone && isDesktop) {
         gsap.to(".clickable-zone", {
           fill: "rgba(59, 130, 246, 0.3)",
           repeat: -1,
@@ -134,7 +145,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
       {selectedZone && (
         <div
           className="fixed inset-0 bg-black/30 z-40 animate-backdrop"
-          onClick={handleClose} // Klik area luar juga menutup card
+          onClick={handleClose} 
         />
       )}
 
