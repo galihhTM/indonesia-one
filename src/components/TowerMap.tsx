@@ -14,17 +14,30 @@ type Zone = {
   points: string | null; 
   imageUrl: string | null; 
   facilities: Facility[]; 
-  tower?: { name: string } 
+  tower?: { name: string; slug: string } 
 };
 type Tower = { id: string; name: string; slug: string; zones: Zone[] };
 
 export default function TowerMap({ towers }: { towers: Tower[] }) {
+  // State untuk klik (mengunci card)
   const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
-  const [hoveredZone, setHoveredZone] = useState<string | null>(null);
+  // State untuk hover (muncul sementara)
+  const [hoveredZone, setHoveredZone] = useState<Zone | null>(null);
+  
   const container = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const allZones = towers.flatMap((tower) => tower.zones);
+
+  // Menentukan zona mana yang sedang aktif (prioritas: yang diklik)
+  const activeZone = selectedZone || hoveredZone;
+
+  // Menentukan apakah card harus muncul di kiri atau kanan
+  const isNorthTower = activeZone?.tower?.name.toLowerCase().includes("north");
+  
+  const desktopCardPosition = isNorthTower 
+    ? "lg:right-90 lg:mr-10 lg:left-auto" 
+    : "lg:left-90 lg:ml-10 lg:right-auto";
 
   useEffect(() => {
     const handlePopState = () => {
@@ -35,60 +48,48 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
   }, [selectedZone]);
 
   const handleZoneClick = (zone: Zone) => {
-    setSelectedZone(zone);
-    window.history.pushState({ modalOpen: true }, "");
+    // Jika zona yang sama diklik lagi, maka batalkan pilihan (toggle)
+    if (selectedZone?.id === zone.id) {
+      setSelectedZone(null);
+    } else {
+      setSelectedZone(zone);
+      window.history.pushState({ modalOpen: true }, "");
+    }
   };
 
   const handleClose = () => {
-    window.history.back();
+    setSelectedZone(null);
+    if (window.history.state?.modalOpen) {
+      window.history.back();
+    }
   };
 
   useGSAP(
     () => {
-      if (selectedZone && cardRef.current) {
+      if (activeZone && cardRef.current) {
         gsap.fromTo(
           cardRef.current,
-          { opacity: 0, scale: 0.95, y: 20 },
+          { opacity: 0, scale: 0.95, x: isNorthTower ? 20 : -20 }, // Efek geser dari arah gedung
           { 
             opacity: 1, 
             scale: 1, 
-            y: 0, 
-            duration: 0.6, 
-            ease: "expo.out",
+            x: 0, 
+            duration: 0.4, 
+            ease: "power2.out", 
             clearProps: "transform" 
           }
         );
       }
     },
-    { dependencies: [selectedZone], scope: container },
-  );
-
-  useGSAP(
-    () => {
-      const isDesktop = window.matchMedia("(hover: hover)").matches;
-      if (!selectedZone && isDesktop) {
-        gsap.to(".clickable-zone", {
-          fill: "rgba(59, 130, 246, 0.3)",
-          repeat: -1,
-          yoyo: true,
-          duration: 1.5,
-          stagger: 0.2,
-          ease: "sine.inOut",
-        });
-      } else {
-        gsap.killTweensOf(".clickable-zone");
-      }
-    },
-    { dependencies: [selectedZone] },
+    { dependencies: [activeZone?.id], scope: container },
   );
 
   return (
     <div
       ref={container}
-      className="w-full min-h-dvh bg-[#1a1c3b] flex justify-center items-start lg:py-12 relative overflow-hidden"
+      className="w-full min-h-dvh bg-[#1a1c3b] flex justify-center items-center relative overflow-hidden"
     >
-      {/* Wadah Gambar */}
-      <div className="relative w-full h-dvh bg-gray-800 lg:h-auto lg:max-w-175 lg:aspect-2729/3859 lg:rounded-3xl lg:overflow-hidden lg:shadow-2xl">
+      <div className="relative w-full h-dvh lg:h-dvh lg:w-auto lg:aspect-2729/3859 bg-gray-800">
         
         {/* LOGO */}
         <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50 w-25 md:w-35 lg:w-45 pointer-events-none">
@@ -117,8 +118,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
           preserveAspectRatio="xMidYMid slice"
         >
           {allZones.map((zone) => {
-            const isActive =
-              hoveredZone === zone.id || selectedZone?.id === zone.id;
+            const isActive = activeZone?.id === zone.id;
 
             return (
               <path
@@ -128,14 +128,25 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
                 fill={isActive ? "rgba(59, 130, 246, 0.6)" : "transparent"}
                 stroke={isActive ? "#3b82f6" : "transparent"}
                 strokeWidth="5"
-                className="clickable-zone cursor-pointer transition-all duration-500 ease-out hover:fill-blue-500/40 hover:stroke-blue-500 touch-manipulation"
-                onMouseEnter={() => setHoveredZone(zone.id)}
+                className="cursor-pointer transition-all duration-300 hover:fill-blue-500/40 hover:stroke-blue-500"
+                onMouseEnter={() => setHoveredZone(zone)}
                 onMouseLeave={() => setHoveredZone(null)}
                 onClick={() => handleZoneClick(zone)}
               />
             );
           })}
         </svg>
+
+        {/* FLOATING CARD */}
+        {activeZone && (
+          <div
+            ref={cardRef}
+            className={`fixed lg:absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-100 lg:w-95 lg:max-w-none
+                        lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 ${desktopCardPosition}`}
+          >
+            <ZoneCard zone={activeZone} onClose={handleClose} />
+          </div>
+        )}
       </div>
 
       {selectedZone && (
@@ -143,16 +154,6 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
           className="fixed inset-0 bg-black/30 z-40 animate-backdrop lg:hidden"
           onClick={handleClose} 
         />
-      )}
-
-      {/* FLOATING CARD */}
-      {selectedZone && (
-        <div
-          ref={cardRef}
-          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-100 lg:absolute lg:top-20 lg:-left-16 lg:translate-x-0 lg:translate-y-0 lg:w-auto lg:max-w-[320px]"
-        >
-          <ZoneCard zone={selectedZone} onClose={handleClose} />
-        </div>
       )}
     </div>
   );
