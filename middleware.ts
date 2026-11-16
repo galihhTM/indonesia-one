@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 export async function middleware(request: Request) {
   const cookie = (await cookies()).get("session")?.value;
-  const session = await decrypt(cookie).catch(() => null);
+  const session = cookie ? await decrypt(cookie).catch(() => null) : null;
 
   // Jika tidak ada session dan mencoba akses /admin, redirect ke /login
   if (request.url.includes("/admin") && !session?.userId) {

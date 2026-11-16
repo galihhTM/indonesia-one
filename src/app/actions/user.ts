@@ -28,7 +28,7 @@ export async function createUser(data: UserFormData) {
         name: validatedData.name,
         email: validatedData.email,
         password: hashedPassword,
-        role: "USER", // Default role
+        role: "MANAGER", // Default role
       },
     });
 
