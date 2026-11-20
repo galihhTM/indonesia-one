@@ -30,7 +30,7 @@ export default function ZoneCard({ zone, onClose }: ZoneCardProps) {
       {/* Header Info */}
       <div className="p-6">
         <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
-          <h3 className="text-white font-serif text-xl tracking-wider">
+          <h3 className="text-black font-bold font-serif text-2xl tracking-wider">
             {zone.floorsRange || "Lantai 36 - 50"}
           </h3>
           <span className="text-[10px] text-gray-300 font-bold tracking-widest uppercase">
@@ -38,7 +38,7 @@ export default function ZoneCard({ zone, onClose }: ZoneCardProps) {
           </span>
         </div>
 
-        <h4 className="text-white/90 font-serif text-lg mb-4">
+        <h4 className="text-white/90 font-sans text-lg mb-4">
           {zone.categoryName}
         </h4>
 
@@ -55,7 +55,7 @@ export default function ZoneCard({ zone, onClose }: ZoneCardProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-sm text-gray-200 hover:text-blue-500 transition-all duration-300 group-hover:translate-x-1"
               >
-                <AlignLeft className="w-4 h-4 text-blue-500" />
+                <AlignLeft className="w-4 h-4 text-[#fad06c]" />
                 {facility.title}
               </Link>
             </li>

@@ -30,7 +30,7 @@ export default function FacilityHeroImage({
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
             
             <div className="absolute bottom-8 left-6 md:left-8 right-6 md:right-8">
-            <span className="inline-block bg-[#3b2f2a] text-white text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
+            <span className="inline-block bg-[#fad06c] text-[#293241] text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">
                 {category}
             </span>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold mb-2">{title}</h1>

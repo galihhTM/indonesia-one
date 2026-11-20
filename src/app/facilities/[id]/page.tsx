@@ -58,10 +58,10 @@ export default async function DetailPage({ params }: { params: Promise<{ id: str
                     <Link 
                       key={unit.id}
                       href={`/facilities/${unit.id}`} // Mengarah ke detail unit
-                      className="group block bg-[#3b2f2a] border border-white/10 rounded-xl p-3 hover:bg-[#3b2f2a]/70 hover:border-[#3b2f2a] transition-all duration-300"
+                      className="group block bg-[#fad06c] border border-white/10 rounded-xl p-3 hover:bg-[#fad06c]/70 hover:border-[#3b2f2a] transition-all duration-300"
                     >
                       <div className="flex justify-center items-center mb-2">
-                        <h3 className="text-xl font-serif text-[#f3f3f3] group-hover:text-[#3b2f2a]-400">{unit.name}</h3>
+                        <h3 className="text-xl font-serif text-[#293241] font-bold group-hover:text-[#3b2f2a]-400">{unit.name}</h3>
                       </div>
                     </Link>
                   ))}
@@ -86,16 +86,16 @@ export default async function DetailPage({ params }: { params: Promise<{ id: str
 
           {/* KANAN: Info Fasilitas */}
           <div className="lg:col-span-1">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm space-y-6 sticky top-8">
+            <div className="bg-[#3b2f2a] text-white border border-white/10 rounded-2xl p-6 backdrop-blur-sm space-y-6 sticky top-8">
               <h3 className="text-xl font-semibold mb-4">Information</h3>
               <div className="flex items-start gap-4">
-                <Building2 className="w-6 h-6 text-[#3b82f6] shrink-0" />
+                <Building2 className="w-6 h-6 text-[#fad06c] shrink-0" />
                 <div>
                   <p className="font-medium">{facility.zone.tower.name}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-[#3b82f6] shrink-0" />
+                <MapPin className="w-6 h-6 text-[#fad06c] shrink-0" />
                 <div>
                   <p className="font-medium">{facility.zone.categoryName} ({facility.zone.floorsRange})</p>
                 </div>
@@ -140,16 +140,16 @@ export default async function DetailPage({ params }: { params: Promise<{ id: str
           {/* TAB NAVIGASI PINDAH UNIT */}
           <div className="mt-12 mb-8">
             <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-2">
-                <p className="text-sm text-gray-400 uppercase tracking-widest">Pilih Tipe Unit:</p>
+                <p className="text-sm text-white uppercase tracking-widest">Type Unit</p>
             </div>
             <div className="flex flex-wrap gap-3">
               {siblingUnits.map((u) => (
                 <Link
                   key={u.id}
                   href={`/facilities/${u.id}`}
-                  className={`px-6 py-3 rounded-xl font-serif uppercase tracking-widest text-sm transition-all duration-300 ${
+                  className={`px-6 py-3 rounded-xl font-sans uppercase tracking-widest text-sm transition-all duration-300 ${
                     u.id === unit.id
-                      ? "bg-[#3b2f2a] text-white scale-105 font-bold"
+                      ? "bg-[#fad06c] text-[#293241] scale-105 font-bold"
                       : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white border border-white/10"
                   }`}
                 >
@@ -172,29 +172,29 @@ export default async function DetailPage({ params }: { params: Promise<{ id: str
             </div>
 
             <div className="lg:col-span-1">
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm space-y-5 sticky top-8">
+              <div className="bg-[#3b2f2a] border border-white/10 rounded-2xl p-6 backdrop-blur-sm space-y-5 sticky top-8">
                 <h3 className="text-xl font-semibold mb-4 border-b border-white/10 pb-3">Information</h3>
                 
                 <div className="flex items-center gap-4 text-gray-300">
-                  <Building2 className="w-5 h-5 text-[#3b82f6] shrink-0" />
+                  <Building2 className="w-5 h-5 text-[#fad06c] shrink-0" />
                   <span>{unit.facility.zone.tower.name}</span>
                 </div>
 
                 <div className="flex items-center gap-4 text-gray-300">
-                  <MapPin className="w-5 h-5 text-[#3b82f6] shrink-0" />
+                  <MapPin className="w-5 h-5 text-[#fad06c] shrink-0" />
                   <span>{unit.facility.zone.categoryName} ({unit.facility.zone.floorsRange})</span>
                 </div>
 
                 {unit.totalUnits && (
                   <div className="flex items-center gap-4 text-gray-300">
-                    <LayoutGrid className="w-5 h-5 text-[#3b82f6] shrink-0" />
+                    <LayoutGrid className="w-5 h-5 text-[#fad06c] shrink-0" />
                     <span>{unit.totalUnits} Units</span>
                   </div>
                 )}
                 
                 {unit.areaSGA && (
                   <div className="flex items-center gap-4 text-gray-300">
-                    <Maximize className="w-5 h-5 text-[#3b82f6] shrink-0" />
+                    <Maximize className="w-5 h-5 text-[#fad06c] shrink-0" />
                     <span>SGA {unit.areaSGA} M²</span>
                   </div>
                 )}
