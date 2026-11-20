@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { unitTypeSchema, UnitTypeFormData } from "@/lib/schemas/unitType";
 import { createUnitType } from "@/app/actions/unitType";
 import { useState } from "react";
@@ -10,6 +11,8 @@ import Image from "next/image";
 import { useUploadThing } from "@/lib/uploadthing";
 import { toast } from "sonner";
 
+type UnitTypeFormInput = z.input<typeof unitTypeSchema>;
+
 export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
   const [isLoading, setIsLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -17,7 +20,11 @@ export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
   // Menggunakan route "zoneImage" yang sudah kita buat sebelumnya
   const { startUpload, isUploading } = useUploadThing("zoneImage");
 
-  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<UnitTypeFormData>({
+  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<
+    UnitTypeFormInput,
+    unknown,
+    UnitTypeFormData
+  >({
     resolver: zodResolver(unitTypeSchema),
   });
 
@@ -65,8 +72,6 @@ export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
         </div>
       </div>
 
-      
-
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-xs font-medium text-gray-600 mb-1">Total Unit</label>
@@ -76,7 +81,6 @@ export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
           <label className="block text-xs font-medium text-gray-600 mb-1">Luas SGA (m²)</label>
           <input type="number" step="0.1" {...register("areaSGA")} placeholder="Cth: 428" className="w-full p-2.5 rounded-lg border border-gray-300 text-sm text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
         </div>
-        
       </div>
 
       <div>
