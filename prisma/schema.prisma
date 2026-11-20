@@ -5,7 +5,6 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  
 }
 
 enum Role {
@@ -40,43 +39,41 @@ model Zone {
   imageUrl     String?
   
   facilities   Facility[]
-  floorPlans   FloorPlan[]
 }
 
 model Facility {
   id          String   @id @default(cuid())
   zoneId      String
   zone        Zone     @relation(fields: [zoneId], references: [id], onDelete: Cascade)
-  title       String
-  category    String
+  title       String   // Contoh: "Topaz Suite", "Emerald Residence"
+  category    String   // Contoh: "Suite", "Residence"
   description String?
   images      FacilityImage[]
+  
+  // Relasi ke UnitType
+  unitTypes   UnitType[]
 }
 
 model FacilityImage {
   id         String   @id @default(cuid())
   facilityId String
-  facility   Facility @relation(fields: [facilityId], references: [id])
+  facility   Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
   imageUrl   String
   isPrimary  Boolean  @default(false)
   sortOrder  Int      @default(0)
 }
 
-model FloorPlan {
-  id          String   @id @default(cuid())
-  zoneId      String
-  zone        Zone     @relation(fields: [zoneId], references: [id], onDelete: Cascade)
-  title       String
-  imageUrl    String
-  description String?
-  roomPoints  RoomPoint[]
-}
-
-model RoomPoint {
-  id          String    @id @default(cuid())
-  floorPlanId String
-  floorPlan   FloorPlan @relation(fields: [floorPlanId], references: [id])
-  number      Int
-  label       String
-  coordinates String?
+model UnitType {
+  id            String   @id @default(cuid())
+  facilityId    String
+  facility      Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+  
+  name          String   // Contoh: "Suite A", "Residence A"
+  category      String   // Contoh: "Suite", "Residence"
+  
+  totalUnits    Int?     
+  areaSGA       Float?   
+  
+  description   String?  
+  imageUrl      String?  
 }

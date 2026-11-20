@@ -1,6 +1,6 @@
 import { logoutAction } from "@/app/actions/auth";
 import { getSession } from "@/lib/session";
-import { LayoutDashboard, Map, Building2, LogOut, Sparkles, Users } from "lucide-react";
+import { LayoutDashboard, LayoutGrid, Map, Building2, LogOut, Sparkles, Users } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -40,6 +40,9 @@ export default async function AdminLayout({ children,}: {
             className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition"
           >
             <Map className="w-5 h-5" /> Kelola Zona
+          </Link>
+          <Link href="/admin/units" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition">
+            <LayoutGrid className="w-5 h-5" /> Kelola Unit
           </Link>
           {session?.role === "ADMIN" && (
             <Link href="/admin/users" className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/10 transition border-t border-white/10 mt-2 pt-4">

@@ -39,15 +39,10 @@ export type Facility = $Result.DefaultSelection<Prisma.$FacilityPayload>
  */
 export type FacilityImage = $Result.DefaultSelection<Prisma.$FacilityImagePayload>
 /**
- * Model FloorPlan
+ * Model UnitType
  * 
  */
-export type FloorPlan = $Result.DefaultSelection<Prisma.$FloorPlanPayload>
-/**
- * Model RoomPoint
- * 
- */
-export type RoomPoint = $Result.DefaultSelection<Prisma.$RoomPointPayload>
+export type UnitType = $Result.DefaultSelection<Prisma.$UnitTypePayload>
 
 /**
  * Enums
@@ -238,24 +233,14 @@ export class PrismaClient<
   get facilityImage(): Prisma.FacilityImageDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.floorPlan`: Exposes CRUD operations for the **FloorPlan** model.
+   * `prisma.unitType`: Exposes CRUD operations for the **UnitType** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more FloorPlans
-    * const floorPlans = await prisma.floorPlan.findMany()
+    * // Fetch zero or more UnitTypes
+    * const unitTypes = await prisma.unitType.findMany()
     * ```
     */
-  get floorPlan(): Prisma.FloorPlanDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.roomPoint`: Exposes CRUD operations for the **RoomPoint** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more RoomPoints
-    * const roomPoints = await prisma.roomPoint.findMany()
-    * ```
-    */
-  get roomPoint(): Prisma.RoomPointDelegate<ExtArgs, ClientOptions>;
+  get unitType(): Prisma.UnitTypeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -708,8 +693,7 @@ export namespace Prisma {
     Zone: 'Zone',
     Facility: 'Facility',
     FacilityImage: 'FacilityImage',
-    FloorPlan: 'FloorPlan',
-    RoomPoint: 'RoomPoint'
+    UnitType: 'UnitType'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -725,7 +709,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "tower" | "zone" | "facility" | "facilityImage" | "floorPlan" | "roomPoint"
+      modelProps: "user" | "tower" | "zone" | "facility" | "facilityImage" | "unitType"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1099,151 +1083,77 @@ export namespace Prisma {
           }
         }
       }
-      FloorPlan: {
-        payload: Prisma.$FloorPlanPayload<ExtArgs>
-        fields: Prisma.FloorPlanFieldRefs
+      UnitType: {
+        payload: Prisma.$UnitTypePayload<ExtArgs>
+        fields: Prisma.UnitTypeFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.FloorPlanFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload> | null
+            args: Prisma.UnitTypeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.FloorPlanFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>
+            args: Prisma.UnitTypeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>
           }
           findFirst: {
-            args: Prisma.FloorPlanFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload> | null
+            args: Prisma.UnitTypeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.FloorPlanFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>
+            args: Prisma.UnitTypeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>
           }
           findMany: {
-            args: Prisma.FloorPlanFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>[]
+            args: Prisma.UnitTypeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>[]
           }
           create: {
-            args: Prisma.FloorPlanCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>
+            args: Prisma.UnitTypeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>
           }
           createMany: {
-            args: Prisma.FloorPlanCreateManyArgs<ExtArgs>
+            args: Prisma.UnitTypeCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.FloorPlanCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>[]
+            args: Prisma.UnitTypeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>[]
           }
           delete: {
-            args: Prisma.FloorPlanDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>
+            args: Prisma.UnitTypeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>
           }
           update: {
-            args: Prisma.FloorPlanUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>
+            args: Prisma.UnitTypeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>
           }
           deleteMany: {
-            args: Prisma.FloorPlanDeleteManyArgs<ExtArgs>
+            args: Prisma.UnitTypeDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.FloorPlanUpdateManyArgs<ExtArgs>
+            args: Prisma.UnitTypeUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.FloorPlanUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>[]
+            args: Prisma.UnitTypeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>[]
           }
           upsert: {
-            args: Prisma.FloorPlanUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FloorPlanPayload>
+            args: Prisma.UnitTypeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UnitTypePayload>
           }
           aggregate: {
-            args: Prisma.FloorPlanAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFloorPlan>
+            args: Prisma.UnitTypeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUnitType>
           }
           groupBy: {
-            args: Prisma.FloorPlanGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FloorPlanGroupByOutputType>[]
+            args: Prisma.UnitTypeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UnitTypeGroupByOutputType>[]
           }
           count: {
-            args: Prisma.FloorPlanCountArgs<ExtArgs>
-            result: $Utils.Optional<FloorPlanCountAggregateOutputType> | number
-          }
-        }
-      }
-      RoomPoint: {
-        payload: Prisma.$RoomPointPayload<ExtArgs>
-        fields: Prisma.RoomPointFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.RoomPointFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.RoomPointFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>
-          }
-          findFirst: {
-            args: Prisma.RoomPointFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.RoomPointFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>
-          }
-          findMany: {
-            args: Prisma.RoomPointFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>[]
-          }
-          create: {
-            args: Prisma.RoomPointCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>
-          }
-          createMany: {
-            args: Prisma.RoomPointCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.RoomPointCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>[]
-          }
-          delete: {
-            args: Prisma.RoomPointDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>
-          }
-          update: {
-            args: Prisma.RoomPointUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>
-          }
-          deleteMany: {
-            args: Prisma.RoomPointDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.RoomPointUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.RoomPointUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>[]
-          }
-          upsert: {
-            args: Prisma.RoomPointUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$RoomPointPayload>
-          }
-          aggregate: {
-            args: Prisma.RoomPointAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateRoomPoint>
-          }
-          groupBy: {
-            args: Prisma.RoomPointGroupByArgs<ExtArgs>
-            result: $Utils.Optional<RoomPointGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.RoomPointCountArgs<ExtArgs>
-            result: $Utils.Optional<RoomPointCountAggregateOutputType> | number
+            args: Prisma.UnitTypeCountArgs<ExtArgs>
+            result: $Utils.Optional<UnitTypeCountAggregateOutputType> | number
           }
         }
       }
@@ -1375,8 +1285,7 @@ export namespace Prisma {
     zone?: ZoneOmit
     facility?: FacilityOmit
     facilityImage?: FacilityImageOmit
-    floorPlan?: FloorPlanOmit
-    roomPoint?: RoomPointOmit
+    unitType?: UnitTypeOmit
   }
 
   /* Types for Logging */
@@ -1489,12 +1398,10 @@ export namespace Prisma {
 
   export type ZoneCountOutputType = {
     facilities: number
-    floorPlans: number
   }
 
   export type ZoneCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     facilities?: boolean | ZoneCountOutputTypeCountFacilitiesArgs
-    floorPlans?: boolean | ZoneCountOutputTypeCountFloorPlansArgs
   }
 
   // Custom InputTypes
@@ -1515,13 +1422,6 @@ export namespace Prisma {
     where?: FacilityWhereInput
   }
 
-  /**
-   * ZoneCountOutputType without action
-   */
-  export type ZoneCountOutputTypeCountFloorPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FloorPlanWhereInput
-  }
-
 
   /**
    * Count Type FacilityCountOutputType
@@ -1529,10 +1429,12 @@ export namespace Prisma {
 
   export type FacilityCountOutputType = {
     images: number
+    unitTypes: number
   }
 
   export type FacilityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     images?: boolean | FacilityCountOutputTypeCountImagesArgs
+    unitTypes?: boolean | FacilityCountOutputTypeCountUnitTypesArgs
   }
 
   // Custom InputTypes
@@ -1553,35 +1455,11 @@ export namespace Prisma {
     where?: FacilityImageWhereInput
   }
 
-
   /**
-   * Count Type FloorPlanCountOutputType
+   * FacilityCountOutputType without action
    */
-
-  export type FloorPlanCountOutputType = {
-    roomPoints: number
-  }
-
-  export type FloorPlanCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    roomPoints?: boolean | FloorPlanCountOutputTypeCountRoomPointsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * FloorPlanCountOutputType without action
-   */
-  export type FloorPlanCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlanCountOutputType
-     */
-    select?: FloorPlanCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * FloorPlanCountOutputType without action
-   */
-  export type FloorPlanCountOutputTypeCountRoomPointsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RoomPointWhereInput
+  export type FacilityCountOutputTypeCountUnitTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UnitTypeWhereInput
   }
 
 
@@ -3838,7 +3716,6 @@ export namespace Prisma {
     imageUrl?: boolean
     tower?: boolean | TowerDefaultArgs<ExtArgs>
     facilities?: boolean | Zone$facilitiesArgs<ExtArgs>
-    floorPlans?: boolean | Zone$floorPlansArgs<ExtArgs>
     _count?: boolean | ZoneCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["zone"]>
 
@@ -3875,7 +3752,6 @@ export namespace Prisma {
   export type ZoneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tower?: boolean | TowerDefaultArgs<ExtArgs>
     facilities?: boolean | Zone$facilitiesArgs<ExtArgs>
-    floorPlans?: boolean | Zone$floorPlansArgs<ExtArgs>
     _count?: boolean | ZoneCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ZoneIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3890,7 +3766,6 @@ export namespace Prisma {
     objects: {
       tower: Prisma.$TowerPayload<ExtArgs>
       facilities: Prisma.$FacilityPayload<ExtArgs>[]
-      floorPlans: Prisma.$FloorPlanPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4295,7 +4170,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tower<T extends TowerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TowerDefaultArgs<ExtArgs>>): Prisma__TowerClient<$Result.GetResult<Prisma.$TowerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     facilities<T extends Zone$facilitiesArgs<ExtArgs> = {}>(args?: Subset<T, Zone$facilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    floorPlans<T extends Zone$floorPlansArgs<ExtArgs> = {}>(args?: Subset<T, Zone$floorPlansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4756,30 +4630,6 @@ export namespace Prisma {
   }
 
   /**
-   * Zone.floorPlans
-   */
-  export type Zone$floorPlansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    where?: FloorPlanWhereInput
-    orderBy?: FloorPlanOrderByWithRelationInput | FloorPlanOrderByWithRelationInput[]
-    cursor?: FloorPlanWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FloorPlanScalarFieldEnum | FloorPlanScalarFieldEnum[]
-  }
-
-  /**
    * Zone without action
    */
   export type ZoneDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4964,6 +4814,7 @@ export namespace Prisma {
     description?: boolean
     zone?: boolean | ZoneDefaultArgs<ExtArgs>
     images?: boolean | Facility$imagesArgs<ExtArgs>
+    unitTypes?: boolean | Facility$unitTypesArgs<ExtArgs>
     _count?: boolean | FacilityCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["facility"]>
 
@@ -4997,6 +4848,7 @@ export namespace Prisma {
   export type FacilityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     zone?: boolean | ZoneDefaultArgs<ExtArgs>
     images?: boolean | Facility$imagesArgs<ExtArgs>
+    unitTypes?: boolean | Facility$unitTypesArgs<ExtArgs>
     _count?: boolean | FacilityCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FacilityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5011,6 +4863,7 @@ export namespace Prisma {
     objects: {
       zone: Prisma.$ZonePayload<ExtArgs>
       images: Prisma.$FacilityImagePayload<ExtArgs>[]
+      unitTypes: Prisma.$UnitTypePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5414,6 +5267,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     zone<T extends ZoneDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ZoneDefaultArgs<ExtArgs>>): Prisma__ZoneClient<$Result.GetResult<Prisma.$ZonePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     images<T extends Facility$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Facility$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacilityImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    unitTypes<T extends Facility$unitTypesArgs<ExtArgs> = {}>(args?: Subset<T, Facility$unitTypesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5870,6 +5724,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FacilityImageScalarFieldEnum | FacilityImageScalarFieldEnum[]
+  }
+
+  /**
+   * Facility.unitTypes
+   */
+  export type Facility$unitTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UnitType
+     */
+    select?: UnitTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UnitType
+     */
+    omit?: UnitTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UnitTypeInclude<ExtArgs> | null
+    where?: UnitTypeWhereInput
+    orderBy?: UnitTypeOrderByWithRelationInput | UnitTypeOrderByWithRelationInput[]
+    cursor?: UnitTypeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UnitTypeScalarFieldEnum | UnitTypeScalarFieldEnum[]
   }
 
   /**
@@ -6989,1477 +6867,424 @@ export namespace Prisma {
 
 
   /**
-   * Model FloorPlan
+   * Model UnitType
    */
 
-  export type AggregateFloorPlan = {
-    _count: FloorPlanCountAggregateOutputType | null
-    _min: FloorPlanMinAggregateOutputType | null
-    _max: FloorPlanMaxAggregateOutputType | null
+  export type AggregateUnitType = {
+    _count: UnitTypeCountAggregateOutputType | null
+    _avg: UnitTypeAvgAggregateOutputType | null
+    _sum: UnitTypeSumAggregateOutputType | null
+    _min: UnitTypeMinAggregateOutputType | null
+    _max: UnitTypeMaxAggregateOutputType | null
   }
 
-  export type FloorPlanMinAggregateOutputType = {
+  export type UnitTypeAvgAggregateOutputType = {
+    totalUnits: number | null
+    areaSGA: number | null
+  }
+
+  export type UnitTypeSumAggregateOutputType = {
+    totalUnits: number | null
+    areaSGA: number | null
+  }
+
+  export type UnitTypeMinAggregateOutputType = {
     id: string | null
-    zoneId: string | null
-    title: string | null
-    imageUrl: string | null
+    facilityId: string | null
+    name: string | null
+    category: string | null
+    totalUnits: number | null
+    areaSGA: number | null
     description: string | null
+    imageUrl: string | null
   }
 
-  export type FloorPlanMaxAggregateOutputType = {
+  export type UnitTypeMaxAggregateOutputType = {
     id: string | null
-    zoneId: string | null
-    title: string | null
-    imageUrl: string | null
+    facilityId: string | null
+    name: string | null
+    category: string | null
+    totalUnits: number | null
+    areaSGA: number | null
     description: string | null
+    imageUrl: string | null
   }
 
-  export type FloorPlanCountAggregateOutputType = {
+  export type UnitTypeCountAggregateOutputType = {
     id: number
-    zoneId: number
-    title: number
-    imageUrl: number
+    facilityId: number
+    name: number
+    category: number
+    totalUnits: number
+    areaSGA: number
     description: number
+    imageUrl: number
     _all: number
   }
 
 
-  export type FloorPlanMinAggregateInputType = {
-    id?: true
-    zoneId?: true
-    title?: true
-    imageUrl?: true
-    description?: true
+  export type UnitTypeAvgAggregateInputType = {
+    totalUnits?: true
+    areaSGA?: true
   }
 
-  export type FloorPlanMaxAggregateInputType = {
-    id?: true
-    zoneId?: true
-    title?: true
-    imageUrl?: true
-    description?: true
+  export type UnitTypeSumAggregateInputType = {
+    totalUnits?: true
+    areaSGA?: true
   }
 
-  export type FloorPlanCountAggregateInputType = {
+  export type UnitTypeMinAggregateInputType = {
     id?: true
-    zoneId?: true
-    title?: true
-    imageUrl?: true
+    facilityId?: true
+    name?: true
+    category?: true
+    totalUnits?: true
+    areaSGA?: true
     description?: true
+    imageUrl?: true
+  }
+
+  export type UnitTypeMaxAggregateInputType = {
+    id?: true
+    facilityId?: true
+    name?: true
+    category?: true
+    totalUnits?: true
+    areaSGA?: true
+    description?: true
+    imageUrl?: true
+  }
+
+  export type UnitTypeCountAggregateInputType = {
+    id?: true
+    facilityId?: true
+    name?: true
+    category?: true
+    totalUnits?: true
+    areaSGA?: true
+    description?: true
+    imageUrl?: true
     _all?: true
   }
 
-  export type FloorPlanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which FloorPlan to aggregate.
+     * Filter which UnitType to aggregate.
      */
-    where?: FloorPlanWhereInput
+    where?: UnitTypeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FloorPlans to fetch.
+     * Determine the order of UnitTypes to fetch.
      */
-    orderBy?: FloorPlanOrderByWithRelationInput | FloorPlanOrderByWithRelationInput[]
+    orderBy?: UnitTypeOrderByWithRelationInput | UnitTypeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FloorPlanWhereUniqueInput
+    cursor?: UnitTypeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FloorPlans from the position of the cursor.
+     * Take `±n` UnitTypes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FloorPlans.
+     * Skip the first `n` UnitTypes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned FloorPlans
+     * Count returned UnitTypes
     **/
-    _count?: true | FloorPlanCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: FloorPlanMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: FloorPlanMaxAggregateInputType
-  }
-
-  export type GetFloorPlanAggregateType<T extends FloorPlanAggregateArgs> = {
-        [P in keyof T & keyof AggregateFloorPlan]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateFloorPlan[P]>
-      : GetScalarType<T[P], AggregateFloorPlan[P]>
-  }
-
-
-
-
-  export type FloorPlanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FloorPlanWhereInput
-    orderBy?: FloorPlanOrderByWithAggregationInput | FloorPlanOrderByWithAggregationInput[]
-    by: FloorPlanScalarFieldEnum[] | FloorPlanScalarFieldEnum
-    having?: FloorPlanScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: FloorPlanCountAggregateInputType | true
-    _min?: FloorPlanMinAggregateInputType
-    _max?: FloorPlanMaxAggregateInputType
-  }
-
-  export type FloorPlanGroupByOutputType = {
-    id: string
-    zoneId: string
-    title: string
-    imageUrl: string
-    description: string | null
-    _count: FloorPlanCountAggregateOutputType | null
-    _min: FloorPlanMinAggregateOutputType | null
-    _max: FloorPlanMaxAggregateOutputType | null
-  }
-
-  type GetFloorPlanGroupByPayload<T extends FloorPlanGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<FloorPlanGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof FloorPlanGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], FloorPlanGroupByOutputType[P]>
-            : GetScalarType<T[P], FloorPlanGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type FloorPlanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    zoneId?: boolean
-    title?: boolean
-    imageUrl?: boolean
-    description?: boolean
-    zone?: boolean | ZoneDefaultArgs<ExtArgs>
-    roomPoints?: boolean | FloorPlan$roomPointsArgs<ExtArgs>
-    _count?: boolean | FloorPlanCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["floorPlan"]>
-
-  export type FloorPlanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    zoneId?: boolean
-    title?: boolean
-    imageUrl?: boolean
-    description?: boolean
-    zone?: boolean | ZoneDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["floorPlan"]>
-
-  export type FloorPlanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    zoneId?: boolean
-    title?: boolean
-    imageUrl?: boolean
-    description?: boolean
-    zone?: boolean | ZoneDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["floorPlan"]>
-
-  export type FloorPlanSelectScalar = {
-    id?: boolean
-    zoneId?: boolean
-    title?: boolean
-    imageUrl?: boolean
-    description?: boolean
-  }
-
-  export type FloorPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "zoneId" | "title" | "imageUrl" | "description", ExtArgs["result"]["floorPlan"]>
-  export type FloorPlanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    zone?: boolean | ZoneDefaultArgs<ExtArgs>
-    roomPoints?: boolean | FloorPlan$roomPointsArgs<ExtArgs>
-    _count?: boolean | FloorPlanCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type FloorPlanIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    zone?: boolean | ZoneDefaultArgs<ExtArgs>
-  }
-  export type FloorPlanIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    zone?: boolean | ZoneDefaultArgs<ExtArgs>
-  }
-
-  export type $FloorPlanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "FloorPlan"
-    objects: {
-      zone: Prisma.$ZonePayload<ExtArgs>
-      roomPoints: Prisma.$RoomPointPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      zoneId: string
-      title: string
-      imageUrl: string
-      description: string | null
-    }, ExtArgs["result"]["floorPlan"]>
-    composites: {}
-  }
-
-  type FloorPlanGetPayload<S extends boolean | null | undefined | FloorPlanDefaultArgs> = $Result.GetResult<Prisma.$FloorPlanPayload, S>
-
-  type FloorPlanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FloorPlanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FloorPlanCountAggregateInputType | true
-    }
-
-  export interface FloorPlanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FloorPlan'], meta: { name: 'FloorPlan' } }
-    /**
-     * Find zero or one FloorPlan that matches the filter.
-     * @param {FloorPlanFindUniqueArgs} args - Arguments to find a FloorPlan
-     * @example
-     * // Get one FloorPlan
-     * const floorPlan = await prisma.floorPlan.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends FloorPlanFindUniqueArgs>(args: SelectSubset<T, FloorPlanFindUniqueArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one FloorPlan that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {FloorPlanFindUniqueOrThrowArgs} args - Arguments to find a FloorPlan
-     * @example
-     * // Get one FloorPlan
-     * const floorPlan = await prisma.floorPlan.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends FloorPlanFindUniqueOrThrowArgs>(args: SelectSubset<T, FloorPlanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first FloorPlan that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FloorPlanFindFirstArgs} args - Arguments to find a FloorPlan
-     * @example
-     * // Get one FloorPlan
-     * const floorPlan = await prisma.floorPlan.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends FloorPlanFindFirstArgs>(args?: SelectSubset<T, FloorPlanFindFirstArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first FloorPlan that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FloorPlanFindFirstOrThrowArgs} args - Arguments to find a FloorPlan
-     * @example
-     * // Get one FloorPlan
-     * const floorPlan = await prisma.floorPlan.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends FloorPlanFindFirstOrThrowArgs>(args?: SelectSubset<T, FloorPlanFindFirstOrThrowArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more FloorPlans that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FloorPlanFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all FloorPlans
-     * const floorPlans = await prisma.floorPlan.findMany()
-     * 
-     * // Get first 10 FloorPlans
-     * const floorPlans = await prisma.floorPlan.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const floorPlanWithIdOnly = await prisma.floorPlan.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends FloorPlanFindManyArgs>(args?: SelectSubset<T, FloorPlanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a FloorPlan.
-     * @param {FloorPlanCreateArgs} args - Arguments to create a FloorPlan.
-     * @example
-     * // Create one FloorPlan
-     * const FloorPlan = await prisma.floorPlan.create({
-     *   data: {
-     *     // ... data to create a FloorPlan
-     *   }
-     * })
-     * 
-     */
-    create<T extends FloorPlanCreateArgs>(args: SelectSubset<T, FloorPlanCreateArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many FloorPlans.
-     * @param {FloorPlanCreateManyArgs} args - Arguments to create many FloorPlans.
-     * @example
-     * // Create many FloorPlans
-     * const floorPlan = await prisma.floorPlan.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends FloorPlanCreateManyArgs>(args?: SelectSubset<T, FloorPlanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many FloorPlans and returns the data saved in the database.
-     * @param {FloorPlanCreateManyAndReturnArgs} args - Arguments to create many FloorPlans.
-     * @example
-     * // Create many FloorPlans
-     * const floorPlan = await prisma.floorPlan.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many FloorPlans and only return the `id`
-     * const floorPlanWithIdOnly = await prisma.floorPlan.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends FloorPlanCreateManyAndReturnArgs>(args?: SelectSubset<T, FloorPlanCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a FloorPlan.
-     * @param {FloorPlanDeleteArgs} args - Arguments to delete one FloorPlan.
-     * @example
-     * // Delete one FloorPlan
-     * const FloorPlan = await prisma.floorPlan.delete({
-     *   where: {
-     *     // ... filter to delete one FloorPlan
-     *   }
-     * })
-     * 
-     */
-    delete<T extends FloorPlanDeleteArgs>(args: SelectSubset<T, FloorPlanDeleteArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one FloorPlan.
-     * @param {FloorPlanUpdateArgs} args - Arguments to update one FloorPlan.
-     * @example
-     * // Update one FloorPlan
-     * const floorPlan = await prisma.floorPlan.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends FloorPlanUpdateArgs>(args: SelectSubset<T, FloorPlanUpdateArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more FloorPlans.
-     * @param {FloorPlanDeleteManyArgs} args - Arguments to filter FloorPlans to delete.
-     * @example
-     * // Delete a few FloorPlans
-     * const { count } = await prisma.floorPlan.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends FloorPlanDeleteManyArgs>(args?: SelectSubset<T, FloorPlanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more FloorPlans.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FloorPlanUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many FloorPlans
-     * const floorPlan = await prisma.floorPlan.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends FloorPlanUpdateManyArgs>(args: SelectSubset<T, FloorPlanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more FloorPlans and returns the data updated in the database.
-     * @param {FloorPlanUpdateManyAndReturnArgs} args - Arguments to update many FloorPlans.
-     * @example
-     * // Update many FloorPlans
-     * const floorPlan = await prisma.floorPlan.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more FloorPlans and only return the `id`
-     * const floorPlanWithIdOnly = await prisma.floorPlan.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends FloorPlanUpdateManyAndReturnArgs>(args: SelectSubset<T, FloorPlanUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one FloorPlan.
-     * @param {FloorPlanUpsertArgs} args - Arguments to update or create a FloorPlan.
-     * @example
-     * // Update or create a FloorPlan
-     * const floorPlan = await prisma.floorPlan.upsert({
-     *   create: {
-     *     // ... data to create a FloorPlan
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the FloorPlan we want to update
-     *   }
-     * })
-     */
-    upsert<T extends FloorPlanUpsertArgs>(args: SelectSubset<T, FloorPlanUpsertArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of FloorPlans.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FloorPlanCountArgs} args - Arguments to filter FloorPlans to count.
-     * @example
-     * // Count the number of FloorPlans
-     * const count = await prisma.floorPlan.count({
-     *   where: {
-     *     // ... the filter for the FloorPlans we want to count
-     *   }
-     * })
-    **/
-    count<T extends FloorPlanCountArgs>(
-      args?: Subset<T, FloorPlanCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], FloorPlanCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a FloorPlan.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FloorPlanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends FloorPlanAggregateArgs>(args: Subset<T, FloorPlanAggregateArgs>): Prisma.PrismaPromise<GetFloorPlanAggregateType<T>>
-
-    /**
-     * Group by FloorPlan.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {FloorPlanGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends FloorPlanGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FloorPlanGroupByArgs['orderBy'] }
-        : { orderBy?: FloorPlanGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, FloorPlanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFloorPlanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the FloorPlan model
-   */
-  readonly fields: FloorPlanFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for FloorPlan.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__FloorPlanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    zone<T extends ZoneDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ZoneDefaultArgs<ExtArgs>>): Prisma__ZoneClient<$Result.GetResult<Prisma.$ZonePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    roomPoints<T extends FloorPlan$roomPointsArgs<ExtArgs> = {}>(args?: Subset<T, FloorPlan$roomPointsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the FloorPlan model
-   */
-  interface FloorPlanFieldRefs {
-    readonly id: FieldRef<"FloorPlan", 'String'>
-    readonly zoneId: FieldRef<"FloorPlan", 'String'>
-    readonly title: FieldRef<"FloorPlan", 'String'>
-    readonly imageUrl: FieldRef<"FloorPlan", 'String'>
-    readonly description: FieldRef<"FloorPlan", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * FloorPlan findUnique
-   */
-  export type FloorPlanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * Filter, which FloorPlan to fetch.
-     */
-    where: FloorPlanWhereUniqueInput
-  }
-
-  /**
-   * FloorPlan findUniqueOrThrow
-   */
-  export type FloorPlanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * Filter, which FloorPlan to fetch.
-     */
-    where: FloorPlanWhereUniqueInput
-  }
-
-  /**
-   * FloorPlan findFirst
-   */
-  export type FloorPlanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * Filter, which FloorPlan to fetch.
-     */
-    where?: FloorPlanWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of FloorPlans to fetch.
-     */
-    orderBy?: FloorPlanOrderByWithRelationInput | FloorPlanOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for FloorPlans.
-     */
-    cursor?: FloorPlanWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` FloorPlans from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` FloorPlans.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of FloorPlans.
-     */
-    distinct?: FloorPlanScalarFieldEnum | FloorPlanScalarFieldEnum[]
-  }
-
-  /**
-   * FloorPlan findFirstOrThrow
-   */
-  export type FloorPlanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * Filter, which FloorPlan to fetch.
-     */
-    where?: FloorPlanWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of FloorPlans to fetch.
-     */
-    orderBy?: FloorPlanOrderByWithRelationInput | FloorPlanOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for FloorPlans.
-     */
-    cursor?: FloorPlanWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` FloorPlans from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` FloorPlans.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of FloorPlans.
-     */
-    distinct?: FloorPlanScalarFieldEnum | FloorPlanScalarFieldEnum[]
-  }
-
-  /**
-   * FloorPlan findMany
-   */
-  export type FloorPlanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * Filter, which FloorPlans to fetch.
-     */
-    where?: FloorPlanWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of FloorPlans to fetch.
-     */
-    orderBy?: FloorPlanOrderByWithRelationInput | FloorPlanOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing FloorPlans.
-     */
-    cursor?: FloorPlanWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` FloorPlans from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` FloorPlans.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of FloorPlans.
-     */
-    distinct?: FloorPlanScalarFieldEnum | FloorPlanScalarFieldEnum[]
-  }
-
-  /**
-   * FloorPlan create
-   */
-  export type FloorPlanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * The data needed to create a FloorPlan.
-     */
-    data: XOR<FloorPlanCreateInput, FloorPlanUncheckedCreateInput>
-  }
-
-  /**
-   * FloorPlan createMany
-   */
-  export type FloorPlanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many FloorPlans.
-     */
-    data: FloorPlanCreateManyInput | FloorPlanCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * FloorPlan createManyAndReturn
-   */
-  export type FloorPlanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * The data used to create many FloorPlans.
-     */
-    data: FloorPlanCreateManyInput | FloorPlanCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * FloorPlan update
-   */
-  export type FloorPlanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * The data needed to update a FloorPlan.
-     */
-    data: XOR<FloorPlanUpdateInput, FloorPlanUncheckedUpdateInput>
-    /**
-     * Choose, which FloorPlan to update.
-     */
-    where: FloorPlanWhereUniqueInput
-  }
-
-  /**
-   * FloorPlan updateMany
-   */
-  export type FloorPlanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update FloorPlans.
-     */
-    data: XOR<FloorPlanUpdateManyMutationInput, FloorPlanUncheckedUpdateManyInput>
-    /**
-     * Filter which FloorPlans to update
-     */
-    where?: FloorPlanWhereInput
-    /**
-     * Limit how many FloorPlans to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * FloorPlan updateManyAndReturn
-   */
-  export type FloorPlanUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * The data used to update FloorPlans.
-     */
-    data: XOR<FloorPlanUpdateManyMutationInput, FloorPlanUncheckedUpdateManyInput>
-    /**
-     * Filter which FloorPlans to update
-     */
-    where?: FloorPlanWhereInput
-    /**
-     * Limit how many FloorPlans to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * FloorPlan upsert
-   */
-  export type FloorPlanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * The filter to search for the FloorPlan to update in case it exists.
-     */
-    where: FloorPlanWhereUniqueInput
-    /**
-     * In case the FloorPlan found by the `where` argument doesn't exist, create a new FloorPlan with this data.
-     */
-    create: XOR<FloorPlanCreateInput, FloorPlanUncheckedCreateInput>
-    /**
-     * In case the FloorPlan was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<FloorPlanUpdateInput, FloorPlanUncheckedUpdateInput>
-  }
-
-  /**
-   * FloorPlan delete
-   */
-  export type FloorPlanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-    /**
-     * Filter which FloorPlan to delete.
-     */
-    where: FloorPlanWhereUniqueInput
-  }
-
-  /**
-   * FloorPlan deleteMany
-   */
-  export type FloorPlanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which FloorPlans to delete
-     */
-    where?: FloorPlanWhereInput
-    /**
-     * Limit how many FloorPlans to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * FloorPlan.roomPoints
-   */
-  export type FloorPlan$roomPointsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the RoomPoint
-     */
-    select?: RoomPointSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the RoomPoint
-     */
-    omit?: RoomPointOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RoomPointInclude<ExtArgs> | null
-    where?: RoomPointWhereInput
-    orderBy?: RoomPointOrderByWithRelationInput | RoomPointOrderByWithRelationInput[]
-    cursor?: RoomPointWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RoomPointScalarFieldEnum | RoomPointScalarFieldEnum[]
-  }
-
-  /**
-   * FloorPlan without action
-   */
-  export type FloorPlanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the FloorPlan
-     */
-    select?: FloorPlanSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the FloorPlan
-     */
-    omit?: FloorPlanOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FloorPlanInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model RoomPoint
-   */
-
-  export type AggregateRoomPoint = {
-    _count: RoomPointCountAggregateOutputType | null
-    _avg: RoomPointAvgAggregateOutputType | null
-    _sum: RoomPointSumAggregateOutputType | null
-    _min: RoomPointMinAggregateOutputType | null
-    _max: RoomPointMaxAggregateOutputType | null
-  }
-
-  export type RoomPointAvgAggregateOutputType = {
-    number: number | null
-  }
-
-  export type RoomPointSumAggregateOutputType = {
-    number: number | null
-  }
-
-  export type RoomPointMinAggregateOutputType = {
-    id: string | null
-    floorPlanId: string | null
-    number: number | null
-    label: string | null
-    coordinates: string | null
-  }
-
-  export type RoomPointMaxAggregateOutputType = {
-    id: string | null
-    floorPlanId: string | null
-    number: number | null
-    label: string | null
-    coordinates: string | null
-  }
-
-  export type RoomPointCountAggregateOutputType = {
-    id: number
-    floorPlanId: number
-    number: number
-    label: number
-    coordinates: number
-    _all: number
-  }
-
-
-  export type RoomPointAvgAggregateInputType = {
-    number?: true
-  }
-
-  export type RoomPointSumAggregateInputType = {
-    number?: true
-  }
-
-  export type RoomPointMinAggregateInputType = {
-    id?: true
-    floorPlanId?: true
-    number?: true
-    label?: true
-    coordinates?: true
-  }
-
-  export type RoomPointMaxAggregateInputType = {
-    id?: true
-    floorPlanId?: true
-    number?: true
-    label?: true
-    coordinates?: true
-  }
-
-  export type RoomPointCountAggregateInputType = {
-    id?: true
-    floorPlanId?: true
-    number?: true
-    label?: true
-    coordinates?: true
-    _all?: true
-  }
-
-  export type RoomPointAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which RoomPoint to aggregate.
-     */
-    where?: RoomPointWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of RoomPoints to fetch.
-     */
-    orderBy?: RoomPointOrderByWithRelationInput | RoomPointOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: RoomPointWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` RoomPoints from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` RoomPoints.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned RoomPoints
-    **/
-    _count?: true | RoomPointCountAggregateInputType
+    _count?: true | UnitTypeCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: RoomPointAvgAggregateInputType
+    _avg?: UnitTypeAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: RoomPointSumAggregateInputType
+    _sum?: UnitTypeSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: RoomPointMinAggregateInputType
+    _min?: UnitTypeMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: RoomPointMaxAggregateInputType
+    _max?: UnitTypeMaxAggregateInputType
   }
 
-  export type GetRoomPointAggregateType<T extends RoomPointAggregateArgs> = {
-        [P in keyof T & keyof AggregateRoomPoint]: P extends '_count' | 'count'
+  export type GetUnitTypeAggregateType<T extends UnitTypeAggregateArgs> = {
+        [P in keyof T & keyof AggregateUnitType]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateRoomPoint[P]>
-      : GetScalarType<T[P], AggregateRoomPoint[P]>
+        : GetScalarType<T[P], AggregateUnitType[P]>
+      : GetScalarType<T[P], AggregateUnitType[P]>
   }
 
 
 
 
-  export type RoomPointGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RoomPointWhereInput
-    orderBy?: RoomPointOrderByWithAggregationInput | RoomPointOrderByWithAggregationInput[]
-    by: RoomPointScalarFieldEnum[] | RoomPointScalarFieldEnum
-    having?: RoomPointScalarWhereWithAggregatesInput
+  export type UnitTypeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UnitTypeWhereInput
+    orderBy?: UnitTypeOrderByWithAggregationInput | UnitTypeOrderByWithAggregationInput[]
+    by: UnitTypeScalarFieldEnum[] | UnitTypeScalarFieldEnum
+    having?: UnitTypeScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: RoomPointCountAggregateInputType | true
-    _avg?: RoomPointAvgAggregateInputType
-    _sum?: RoomPointSumAggregateInputType
-    _min?: RoomPointMinAggregateInputType
-    _max?: RoomPointMaxAggregateInputType
+    _count?: UnitTypeCountAggregateInputType | true
+    _avg?: UnitTypeAvgAggregateInputType
+    _sum?: UnitTypeSumAggregateInputType
+    _min?: UnitTypeMinAggregateInputType
+    _max?: UnitTypeMaxAggregateInputType
   }
 
-  export type RoomPointGroupByOutputType = {
+  export type UnitTypeGroupByOutputType = {
     id: string
-    floorPlanId: string
-    number: number
-    label: string
-    coordinates: string | null
-    _count: RoomPointCountAggregateOutputType | null
-    _avg: RoomPointAvgAggregateOutputType | null
-    _sum: RoomPointSumAggregateOutputType | null
-    _min: RoomPointMinAggregateOutputType | null
-    _max: RoomPointMaxAggregateOutputType | null
+    facilityId: string
+    name: string
+    category: string
+    totalUnits: number | null
+    areaSGA: number | null
+    description: string | null
+    imageUrl: string | null
+    _count: UnitTypeCountAggregateOutputType | null
+    _avg: UnitTypeAvgAggregateOutputType | null
+    _sum: UnitTypeSumAggregateOutputType | null
+    _min: UnitTypeMinAggregateOutputType | null
+    _max: UnitTypeMaxAggregateOutputType | null
   }
 
-  type GetRoomPointGroupByPayload<T extends RoomPointGroupByArgs> = Prisma.PrismaPromise<
+  type GetUnitTypeGroupByPayload<T extends UnitTypeGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<RoomPointGroupByOutputType, T['by']> &
+      PickEnumerable<UnitTypeGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof RoomPointGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof UnitTypeGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], RoomPointGroupByOutputType[P]>
-            : GetScalarType<T[P], RoomPointGroupByOutputType[P]>
+              : GetScalarType<T[P], UnitTypeGroupByOutputType[P]>
+            : GetScalarType<T[P], UnitTypeGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type RoomPointSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UnitTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    floorPlanId?: boolean
-    number?: boolean
-    label?: boolean
-    coordinates?: boolean
-    floorPlan?: boolean | FloorPlanDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["roomPoint"]>
+    facilityId?: boolean
+    name?: boolean
+    category?: boolean
+    totalUnits?: boolean
+    areaSGA?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    facility?: boolean | FacilityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["unitType"]>
 
-  export type RoomPointSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UnitTypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    floorPlanId?: boolean
-    number?: boolean
-    label?: boolean
-    coordinates?: boolean
-    floorPlan?: boolean | FloorPlanDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["roomPoint"]>
+    facilityId?: boolean
+    name?: boolean
+    category?: boolean
+    totalUnits?: boolean
+    areaSGA?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    facility?: boolean | FacilityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["unitType"]>
 
-  export type RoomPointSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type UnitTypeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    floorPlanId?: boolean
-    number?: boolean
-    label?: boolean
-    coordinates?: boolean
-    floorPlan?: boolean | FloorPlanDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["roomPoint"]>
+    facilityId?: boolean
+    name?: boolean
+    category?: boolean
+    totalUnits?: boolean
+    areaSGA?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    facility?: boolean | FacilityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["unitType"]>
 
-  export type RoomPointSelectScalar = {
+  export type UnitTypeSelectScalar = {
     id?: boolean
-    floorPlanId?: boolean
-    number?: boolean
-    label?: boolean
-    coordinates?: boolean
+    facilityId?: boolean
+    name?: boolean
+    category?: boolean
+    totalUnits?: boolean
+    areaSGA?: boolean
+    description?: boolean
+    imageUrl?: boolean
   }
 
-  export type RoomPointOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "floorPlanId" | "number" | "label" | "coordinates", ExtArgs["result"]["roomPoint"]>
-  export type RoomPointInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    floorPlan?: boolean | FloorPlanDefaultArgs<ExtArgs>
+  export type UnitTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "facilityId" | "name" | "category" | "totalUnits" | "areaSGA" | "description" | "imageUrl", ExtArgs["result"]["unitType"]>
+  export type UnitTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | FacilityDefaultArgs<ExtArgs>
   }
-  export type RoomPointIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    floorPlan?: boolean | FloorPlanDefaultArgs<ExtArgs>
+  export type UnitTypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | FacilityDefaultArgs<ExtArgs>
   }
-  export type RoomPointIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    floorPlan?: boolean | FloorPlanDefaultArgs<ExtArgs>
+  export type UnitTypeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | FacilityDefaultArgs<ExtArgs>
   }
 
-  export type $RoomPointPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "RoomPoint"
+  export type $UnitTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UnitType"
     objects: {
-      floorPlan: Prisma.$FloorPlanPayload<ExtArgs>
+      facility: Prisma.$FacilityPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      floorPlanId: string
-      number: number
-      label: string
-      coordinates: string | null
-    }, ExtArgs["result"]["roomPoint"]>
+      facilityId: string
+      name: string
+      category: string
+      totalUnits: number | null
+      areaSGA: number | null
+      description: string | null
+      imageUrl: string | null
+    }, ExtArgs["result"]["unitType"]>
     composites: {}
   }
 
-  type RoomPointGetPayload<S extends boolean | null | undefined | RoomPointDefaultArgs> = $Result.GetResult<Prisma.$RoomPointPayload, S>
+  type UnitTypeGetPayload<S extends boolean | null | undefined | UnitTypeDefaultArgs> = $Result.GetResult<Prisma.$UnitTypePayload, S>
 
-  type RoomPointCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<RoomPointFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: RoomPointCountAggregateInputType | true
+  type UnitTypeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UnitTypeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UnitTypeCountAggregateInputType | true
     }
 
-  export interface RoomPointDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RoomPoint'], meta: { name: 'RoomPoint' } }
+  export interface UnitTypeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UnitType'], meta: { name: 'UnitType' } }
     /**
-     * Find zero or one RoomPoint that matches the filter.
-     * @param {RoomPointFindUniqueArgs} args - Arguments to find a RoomPoint
+     * Find zero or one UnitType that matches the filter.
+     * @param {UnitTypeFindUniqueArgs} args - Arguments to find a UnitType
      * @example
-     * // Get one RoomPoint
-     * const roomPoint = await prisma.roomPoint.findUnique({
+     * // Get one UnitType
+     * const unitType = await prisma.unitType.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends RoomPointFindUniqueArgs>(args: SelectSubset<T, RoomPointFindUniqueArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends UnitTypeFindUniqueArgs>(args: SelectSubset<T, UnitTypeFindUniqueArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one RoomPoint that matches the filter or throw an error with `error.code='P2025'`
+     * Find one UnitType that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {RoomPointFindUniqueOrThrowArgs} args - Arguments to find a RoomPoint
+     * @param {UnitTypeFindUniqueOrThrowArgs} args - Arguments to find a UnitType
      * @example
-     * // Get one RoomPoint
-     * const roomPoint = await prisma.roomPoint.findUniqueOrThrow({
+     * // Get one UnitType
+     * const unitType = await prisma.unitType.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends RoomPointFindUniqueOrThrowArgs>(args: SelectSubset<T, RoomPointFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends UnitTypeFindUniqueOrThrowArgs>(args: SelectSubset<T, UnitTypeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first RoomPoint that matches the filter.
+     * Find the first UnitType that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomPointFindFirstArgs} args - Arguments to find a RoomPoint
+     * @param {UnitTypeFindFirstArgs} args - Arguments to find a UnitType
      * @example
-     * // Get one RoomPoint
-     * const roomPoint = await prisma.roomPoint.findFirst({
+     * // Get one UnitType
+     * const unitType = await prisma.unitType.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends RoomPointFindFirstArgs>(args?: SelectSubset<T, RoomPointFindFirstArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends UnitTypeFindFirstArgs>(args?: SelectSubset<T, UnitTypeFindFirstArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first RoomPoint that matches the filter or
+     * Find the first UnitType that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomPointFindFirstOrThrowArgs} args - Arguments to find a RoomPoint
+     * @param {UnitTypeFindFirstOrThrowArgs} args - Arguments to find a UnitType
      * @example
-     * // Get one RoomPoint
-     * const roomPoint = await prisma.roomPoint.findFirstOrThrow({
+     * // Get one UnitType
+     * const unitType = await prisma.unitType.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends RoomPointFindFirstOrThrowArgs>(args?: SelectSubset<T, RoomPointFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends UnitTypeFindFirstOrThrowArgs>(args?: SelectSubset<T, UnitTypeFindFirstOrThrowArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more RoomPoints that matches the filter.
+     * Find zero or more UnitTypes that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomPointFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {UnitTypeFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all RoomPoints
-     * const roomPoints = await prisma.roomPoint.findMany()
+     * // Get all UnitTypes
+     * const unitTypes = await prisma.unitType.findMany()
      * 
-     * // Get first 10 RoomPoints
-     * const roomPoints = await prisma.roomPoint.findMany({ take: 10 })
+     * // Get first 10 UnitTypes
+     * const unitTypes = await prisma.unitType.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const roomPointWithIdOnly = await prisma.roomPoint.findMany({ select: { id: true } })
+     * const unitTypeWithIdOnly = await prisma.unitType.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends RoomPointFindManyArgs>(args?: SelectSubset<T, RoomPointFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends UnitTypeFindManyArgs>(args?: SelectSubset<T, UnitTypeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a RoomPoint.
-     * @param {RoomPointCreateArgs} args - Arguments to create a RoomPoint.
+     * Create a UnitType.
+     * @param {UnitTypeCreateArgs} args - Arguments to create a UnitType.
      * @example
-     * // Create one RoomPoint
-     * const RoomPoint = await prisma.roomPoint.create({
+     * // Create one UnitType
+     * const UnitType = await prisma.unitType.create({
      *   data: {
-     *     // ... data to create a RoomPoint
+     *     // ... data to create a UnitType
      *   }
      * })
      * 
      */
-    create<T extends RoomPointCreateArgs>(args: SelectSubset<T, RoomPointCreateArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends UnitTypeCreateArgs>(args: SelectSubset<T, UnitTypeCreateArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many RoomPoints.
-     * @param {RoomPointCreateManyArgs} args - Arguments to create many RoomPoints.
+     * Create many UnitTypes.
+     * @param {UnitTypeCreateManyArgs} args - Arguments to create many UnitTypes.
      * @example
-     * // Create many RoomPoints
-     * const roomPoint = await prisma.roomPoint.createMany({
+     * // Create many UnitTypes
+     * const unitType = await prisma.unitType.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends RoomPointCreateManyArgs>(args?: SelectSubset<T, RoomPointCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends UnitTypeCreateManyArgs>(args?: SelectSubset<T, UnitTypeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many RoomPoints and returns the data saved in the database.
-     * @param {RoomPointCreateManyAndReturnArgs} args - Arguments to create many RoomPoints.
+     * Create many UnitTypes and returns the data saved in the database.
+     * @param {UnitTypeCreateManyAndReturnArgs} args - Arguments to create many UnitTypes.
      * @example
-     * // Create many RoomPoints
-     * const roomPoint = await prisma.roomPoint.createManyAndReturn({
+     * // Create many UnitTypes
+     * const unitType = await prisma.unitType.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many RoomPoints and only return the `id`
-     * const roomPointWithIdOnly = await prisma.roomPoint.createManyAndReturn({
+     * // Create many UnitTypes and only return the `id`
+     * const unitTypeWithIdOnly = await prisma.unitType.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -8469,28 +7294,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends RoomPointCreateManyAndReturnArgs>(args?: SelectSubset<T, RoomPointCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends UnitTypeCreateManyAndReturnArgs>(args?: SelectSubset<T, UnitTypeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a RoomPoint.
-     * @param {RoomPointDeleteArgs} args - Arguments to delete one RoomPoint.
+     * Delete a UnitType.
+     * @param {UnitTypeDeleteArgs} args - Arguments to delete one UnitType.
      * @example
-     * // Delete one RoomPoint
-     * const RoomPoint = await prisma.roomPoint.delete({
+     * // Delete one UnitType
+     * const UnitType = await prisma.unitType.delete({
      *   where: {
-     *     // ... filter to delete one RoomPoint
+     *     // ... filter to delete one UnitType
      *   }
      * })
      * 
      */
-    delete<T extends RoomPointDeleteArgs>(args: SelectSubset<T, RoomPointDeleteArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends UnitTypeDeleteArgs>(args: SelectSubset<T, UnitTypeDeleteArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one RoomPoint.
-     * @param {RoomPointUpdateArgs} args - Arguments to update one RoomPoint.
+     * Update one UnitType.
+     * @param {UnitTypeUpdateArgs} args - Arguments to update one UnitType.
      * @example
-     * // Update one RoomPoint
-     * const roomPoint = await prisma.roomPoint.update({
+     * // Update one UnitType
+     * const unitType = await prisma.unitType.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -8500,30 +7325,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends RoomPointUpdateArgs>(args: SelectSubset<T, RoomPointUpdateArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends UnitTypeUpdateArgs>(args: SelectSubset<T, UnitTypeUpdateArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more RoomPoints.
-     * @param {RoomPointDeleteManyArgs} args - Arguments to filter RoomPoints to delete.
+     * Delete zero or more UnitTypes.
+     * @param {UnitTypeDeleteManyArgs} args - Arguments to filter UnitTypes to delete.
      * @example
-     * // Delete a few RoomPoints
-     * const { count } = await prisma.roomPoint.deleteMany({
+     * // Delete a few UnitTypes
+     * const { count } = await prisma.unitType.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends RoomPointDeleteManyArgs>(args?: SelectSubset<T, RoomPointDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends UnitTypeDeleteManyArgs>(args?: SelectSubset<T, UnitTypeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more RoomPoints.
+     * Update zero or more UnitTypes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomPointUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {UnitTypeUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many RoomPoints
-     * const roomPoint = await prisma.roomPoint.updateMany({
+     * // Update many UnitTypes
+     * const unitType = await prisma.unitType.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -8533,14 +7358,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends RoomPointUpdateManyArgs>(args: SelectSubset<T, RoomPointUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends UnitTypeUpdateManyArgs>(args: SelectSubset<T, UnitTypeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more RoomPoints and returns the data updated in the database.
-     * @param {RoomPointUpdateManyAndReturnArgs} args - Arguments to update many RoomPoints.
+     * Update zero or more UnitTypes and returns the data updated in the database.
+     * @param {UnitTypeUpdateManyAndReturnArgs} args - Arguments to update many UnitTypes.
      * @example
-     * // Update many RoomPoints
-     * const roomPoint = await prisma.roomPoint.updateManyAndReturn({
+     * // Update many UnitTypes
+     * const unitType = await prisma.unitType.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -8549,8 +7374,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more RoomPoints and only return the `id`
-     * const roomPointWithIdOnly = await prisma.roomPoint.updateManyAndReturn({
+     * // Update zero or more UnitTypes and only return the `id`
+     * const unitTypeWithIdOnly = await prisma.unitType.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -8563,56 +7388,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends RoomPointUpdateManyAndReturnArgs>(args: SelectSubset<T, RoomPointUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends UnitTypeUpdateManyAndReturnArgs>(args: SelectSubset<T, UnitTypeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one RoomPoint.
-     * @param {RoomPointUpsertArgs} args - Arguments to update or create a RoomPoint.
+     * Create or update one UnitType.
+     * @param {UnitTypeUpsertArgs} args - Arguments to update or create a UnitType.
      * @example
-     * // Update or create a RoomPoint
-     * const roomPoint = await prisma.roomPoint.upsert({
+     * // Update or create a UnitType
+     * const unitType = await prisma.unitType.upsert({
      *   create: {
-     *     // ... data to create a RoomPoint
+     *     // ... data to create a UnitType
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the RoomPoint we want to update
+     *     // ... the filter for the UnitType we want to update
      *   }
      * })
      */
-    upsert<T extends RoomPointUpsertArgs>(args: SelectSubset<T, RoomPointUpsertArgs<ExtArgs>>): Prisma__RoomPointClient<$Result.GetResult<Prisma.$RoomPointPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends UnitTypeUpsertArgs>(args: SelectSubset<T, UnitTypeUpsertArgs<ExtArgs>>): Prisma__UnitTypeClient<$Result.GetResult<Prisma.$UnitTypePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of RoomPoints.
+     * Count the number of UnitTypes.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomPointCountArgs} args - Arguments to filter RoomPoints to count.
+     * @param {UnitTypeCountArgs} args - Arguments to filter UnitTypes to count.
      * @example
-     * // Count the number of RoomPoints
-     * const count = await prisma.roomPoint.count({
+     * // Count the number of UnitTypes
+     * const count = await prisma.unitType.count({
      *   where: {
-     *     // ... the filter for the RoomPoints we want to count
+     *     // ... the filter for the UnitTypes we want to count
      *   }
      * })
     **/
-    count<T extends RoomPointCountArgs>(
-      args?: Subset<T, RoomPointCountArgs>,
+    count<T extends UnitTypeCountArgs>(
+      args?: Subset<T, UnitTypeCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], RoomPointCountAggregateOutputType>
+          : GetScalarType<T['select'], UnitTypeCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a RoomPoint.
+     * Allows you to perform aggregations operations on a UnitType.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomPointAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {UnitTypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -8632,13 +7457,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends RoomPointAggregateArgs>(args: Subset<T, RoomPointAggregateArgs>): Prisma.PrismaPromise<GetRoomPointAggregateType<T>>
+    aggregate<T extends UnitTypeAggregateArgs>(args: Subset<T, UnitTypeAggregateArgs>): Prisma.PrismaPromise<GetUnitTypeAggregateType<T>>
 
     /**
-     * Group by RoomPoint.
+     * Group by UnitType.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {RoomPointGroupByArgs} args - Group by arguments.
+     * @param {UnitTypeGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -8653,14 +7478,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends RoomPointGroupByArgs,
+      T extends UnitTypeGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: RoomPointGroupByArgs['orderBy'] }
-        : { orderBy?: RoomPointGroupByArgs['orderBy'] },
+        ? { orderBy: UnitTypeGroupByArgs['orderBy'] }
+        : { orderBy?: UnitTypeGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -8709,22 +7534,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, RoomPointGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoomPointGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, UnitTypeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUnitTypeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the RoomPoint model
+   * Fields of the UnitType model
    */
-  readonly fields: RoomPointFieldRefs;
+  readonly fields: UnitTypeFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for RoomPoint.
+   * The delegate class that acts as a "Promise-like" for UnitType.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__RoomPointClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__UnitTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    floorPlan<T extends FloorPlanDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FloorPlanDefaultArgs<ExtArgs>>): Prisma__FloorPlanClient<$Result.GetResult<Prisma.$FloorPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    facility<T extends FacilityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FacilityDefaultArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8751,430 +7576,433 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the RoomPoint model
+   * Fields of the UnitType model
    */
-  interface RoomPointFieldRefs {
-    readonly id: FieldRef<"RoomPoint", 'String'>
-    readonly floorPlanId: FieldRef<"RoomPoint", 'String'>
-    readonly number: FieldRef<"RoomPoint", 'Int'>
-    readonly label: FieldRef<"RoomPoint", 'String'>
-    readonly coordinates: FieldRef<"RoomPoint", 'String'>
+  interface UnitTypeFieldRefs {
+    readonly id: FieldRef<"UnitType", 'String'>
+    readonly facilityId: FieldRef<"UnitType", 'String'>
+    readonly name: FieldRef<"UnitType", 'String'>
+    readonly category: FieldRef<"UnitType", 'String'>
+    readonly totalUnits: FieldRef<"UnitType", 'Int'>
+    readonly areaSGA: FieldRef<"UnitType", 'Float'>
+    readonly description: FieldRef<"UnitType", 'String'>
+    readonly imageUrl: FieldRef<"UnitType", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * RoomPoint findUnique
+   * UnitType findUnique
    */
-  export type RoomPointFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * Filter, which RoomPoint to fetch.
+     * Filter, which UnitType to fetch.
      */
-    where: RoomPointWhereUniqueInput
+    where: UnitTypeWhereUniqueInput
   }
 
   /**
-   * RoomPoint findUniqueOrThrow
+   * UnitType findUniqueOrThrow
    */
-  export type RoomPointFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * Filter, which RoomPoint to fetch.
+     * Filter, which UnitType to fetch.
      */
-    where: RoomPointWhereUniqueInput
+    where: UnitTypeWhereUniqueInput
   }
 
   /**
-   * RoomPoint findFirst
+   * UnitType findFirst
    */
-  export type RoomPointFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * Filter, which RoomPoint to fetch.
+     * Filter, which UnitType to fetch.
      */
-    where?: RoomPointWhereInput
+    where?: UnitTypeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of RoomPoints to fetch.
+     * Determine the order of UnitTypes to fetch.
      */
-    orderBy?: RoomPointOrderByWithRelationInput | RoomPointOrderByWithRelationInput[]
+    orderBy?: UnitTypeOrderByWithRelationInput | UnitTypeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for RoomPoints.
+     * Sets the position for searching for UnitTypes.
      */
-    cursor?: RoomPointWhereUniqueInput
+    cursor?: UnitTypeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` RoomPoints from the position of the cursor.
+     * Take `±n` UnitTypes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` RoomPoints.
+     * Skip the first `n` UnitTypes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of RoomPoints.
+     * Filter by unique combinations of UnitTypes.
      */
-    distinct?: RoomPointScalarFieldEnum | RoomPointScalarFieldEnum[]
+    distinct?: UnitTypeScalarFieldEnum | UnitTypeScalarFieldEnum[]
   }
 
   /**
-   * RoomPoint findFirstOrThrow
+   * UnitType findFirstOrThrow
    */
-  export type RoomPointFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * Filter, which RoomPoint to fetch.
+     * Filter, which UnitType to fetch.
      */
-    where?: RoomPointWhereInput
+    where?: UnitTypeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of RoomPoints to fetch.
+     * Determine the order of UnitTypes to fetch.
      */
-    orderBy?: RoomPointOrderByWithRelationInput | RoomPointOrderByWithRelationInput[]
+    orderBy?: UnitTypeOrderByWithRelationInput | UnitTypeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for RoomPoints.
+     * Sets the position for searching for UnitTypes.
      */
-    cursor?: RoomPointWhereUniqueInput
+    cursor?: UnitTypeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` RoomPoints from the position of the cursor.
+     * Take `±n` UnitTypes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` RoomPoints.
+     * Skip the first `n` UnitTypes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of RoomPoints.
+     * Filter by unique combinations of UnitTypes.
      */
-    distinct?: RoomPointScalarFieldEnum | RoomPointScalarFieldEnum[]
+    distinct?: UnitTypeScalarFieldEnum | UnitTypeScalarFieldEnum[]
   }
 
   /**
-   * RoomPoint findMany
+   * UnitType findMany
    */
-  export type RoomPointFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * Filter, which RoomPoints to fetch.
+     * Filter, which UnitTypes to fetch.
      */
-    where?: RoomPointWhereInput
+    where?: UnitTypeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of RoomPoints to fetch.
+     * Determine the order of UnitTypes to fetch.
      */
-    orderBy?: RoomPointOrderByWithRelationInput | RoomPointOrderByWithRelationInput[]
+    orderBy?: UnitTypeOrderByWithRelationInput | UnitTypeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing RoomPoints.
+     * Sets the position for listing UnitTypes.
      */
-    cursor?: RoomPointWhereUniqueInput
+    cursor?: UnitTypeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` RoomPoints from the position of the cursor.
+     * Take `±n` UnitTypes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` RoomPoints.
+     * Skip the first `n` UnitTypes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of RoomPoints.
+     * Filter by unique combinations of UnitTypes.
      */
-    distinct?: RoomPointScalarFieldEnum | RoomPointScalarFieldEnum[]
+    distinct?: UnitTypeScalarFieldEnum | UnitTypeScalarFieldEnum[]
   }
 
   /**
-   * RoomPoint create
+   * UnitType create
    */
-  export type RoomPointCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * The data needed to create a RoomPoint.
+     * The data needed to create a UnitType.
      */
-    data: XOR<RoomPointCreateInput, RoomPointUncheckedCreateInput>
+    data: XOR<UnitTypeCreateInput, UnitTypeUncheckedCreateInput>
   }
 
   /**
-   * RoomPoint createMany
+   * UnitType createMany
    */
-  export type RoomPointCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many RoomPoints.
+     * The data used to create many UnitTypes.
      */
-    data: RoomPointCreateManyInput | RoomPointCreateManyInput[]
+    data: UnitTypeCreateManyInput | UnitTypeCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * RoomPoint createManyAndReturn
+   * UnitType createManyAndReturn
    */
-  export type RoomPointCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelectCreateManyAndReturn<ExtArgs> | null
+    select?: UnitTypeSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
-     * The data used to create many RoomPoints.
+     * The data used to create many UnitTypes.
      */
-    data: RoomPointCreateManyInput | RoomPointCreateManyInput[]
+    data: UnitTypeCreateManyInput | UnitTypeCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: UnitTypeIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * RoomPoint update
+   * UnitType update
    */
-  export type RoomPointUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * The data needed to update a RoomPoint.
+     * The data needed to update a UnitType.
      */
-    data: XOR<RoomPointUpdateInput, RoomPointUncheckedUpdateInput>
+    data: XOR<UnitTypeUpdateInput, UnitTypeUncheckedUpdateInput>
     /**
-     * Choose, which RoomPoint to update.
+     * Choose, which UnitType to update.
      */
-    where: RoomPointWhereUniqueInput
+    where: UnitTypeWhereUniqueInput
   }
 
   /**
-   * RoomPoint updateMany
+   * UnitType updateMany
    */
-  export type RoomPointUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update RoomPoints.
+     * The data used to update UnitTypes.
      */
-    data: XOR<RoomPointUpdateManyMutationInput, RoomPointUncheckedUpdateManyInput>
+    data: XOR<UnitTypeUpdateManyMutationInput, UnitTypeUncheckedUpdateManyInput>
     /**
-     * Filter which RoomPoints to update
+     * Filter which UnitTypes to update
      */
-    where?: RoomPointWhereInput
+    where?: UnitTypeWhereInput
     /**
-     * Limit how many RoomPoints to update.
+     * Limit how many UnitTypes to update.
      */
     limit?: number
   }
 
   /**
-   * RoomPoint updateManyAndReturn
+   * UnitType updateManyAndReturn
    */
-  export type RoomPointUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: UnitTypeSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
-     * The data used to update RoomPoints.
+     * The data used to update UnitTypes.
      */
-    data: XOR<RoomPointUpdateManyMutationInput, RoomPointUncheckedUpdateManyInput>
+    data: XOR<UnitTypeUpdateManyMutationInput, UnitTypeUncheckedUpdateManyInput>
     /**
-     * Filter which RoomPoints to update
+     * Filter which UnitTypes to update
      */
-    where?: RoomPointWhereInput
+    where?: UnitTypeWhereInput
     /**
-     * Limit how many RoomPoints to update.
+     * Limit how many UnitTypes to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: UnitTypeIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * RoomPoint upsert
+   * UnitType upsert
    */
-  export type RoomPointUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * The filter to search for the RoomPoint to update in case it exists.
+     * The filter to search for the UnitType to update in case it exists.
      */
-    where: RoomPointWhereUniqueInput
+    where: UnitTypeWhereUniqueInput
     /**
-     * In case the RoomPoint found by the `where` argument doesn't exist, create a new RoomPoint with this data.
+     * In case the UnitType found by the `where` argument doesn't exist, create a new UnitType with this data.
      */
-    create: XOR<RoomPointCreateInput, RoomPointUncheckedCreateInput>
+    create: XOR<UnitTypeCreateInput, UnitTypeUncheckedCreateInput>
     /**
-     * In case the RoomPoint was found with the provided `where` argument, update it with this data.
+     * In case the UnitType was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<RoomPointUpdateInput, RoomPointUncheckedUpdateInput>
+    update: XOR<UnitTypeUpdateInput, UnitTypeUncheckedUpdateInput>
   }
 
   /**
-   * RoomPoint delete
+   * UnitType delete
    */
-  export type RoomPointDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
     /**
-     * Filter which RoomPoint to delete.
+     * Filter which UnitType to delete.
      */
-    where: RoomPointWhereUniqueInput
+    where: UnitTypeWhereUniqueInput
   }
 
   /**
-   * RoomPoint deleteMany
+   * UnitType deleteMany
    */
-  export type RoomPointDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which RoomPoints to delete
+     * Filter which UnitTypes to delete
      */
-    where?: RoomPointWhereInput
+    where?: UnitTypeWhereInput
     /**
-     * Limit how many RoomPoints to delete.
+     * Limit how many UnitTypes to delete.
      */
     limit?: number
   }
 
   /**
-   * RoomPoint without action
+   * UnitType without action
    */
-  export type RoomPointDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UnitTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the RoomPoint
+     * Select specific fields to fetch from the UnitType
      */
-    select?: RoomPointSelect<ExtArgs> | null
+    select?: UnitTypeSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the RoomPoint
+     * Omit specific fields from the UnitType
      */
-    omit?: RoomPointOmit<ExtArgs> | null
+    omit?: UnitTypeOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: RoomPointInclude<ExtArgs> | null
+    include?: UnitTypeInclude<ExtArgs> | null
   }
 
 
@@ -9248,26 +8076,18 @@ export namespace Prisma {
   export type FacilityImageScalarFieldEnum = (typeof FacilityImageScalarFieldEnum)[keyof typeof FacilityImageScalarFieldEnum]
 
 
-  export const FloorPlanScalarFieldEnum: {
+  export const UnitTypeScalarFieldEnum: {
     id: 'id',
-    zoneId: 'zoneId',
-    title: 'title',
-    imageUrl: 'imageUrl',
-    description: 'description'
+    facilityId: 'facilityId',
+    name: 'name',
+    category: 'category',
+    totalUnits: 'totalUnits',
+    areaSGA: 'areaSGA',
+    description: 'description',
+    imageUrl: 'imageUrl'
   };
 
-  export type FloorPlanScalarFieldEnum = (typeof FloorPlanScalarFieldEnum)[keyof typeof FloorPlanScalarFieldEnum]
-
-
-  export const RoomPointScalarFieldEnum: {
-    id: 'id',
-    floorPlanId: 'floorPlanId',
-    number: 'number',
-    label: 'label',
-    coordinates: 'coordinates'
-  };
-
-  export type RoomPointScalarFieldEnum = (typeof RoomPointScalarFieldEnum)[keyof typeof RoomPointScalarFieldEnum]
+  export type UnitTypeScalarFieldEnum = (typeof UnitTypeScalarFieldEnum)[keyof typeof UnitTypeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -9498,7 +8318,6 @@ export namespace Prisma {
     imageUrl?: StringNullableFilter<"Zone"> | string | null
     tower?: XOR<TowerScalarRelationFilter, TowerWhereInput>
     facilities?: FacilityListRelationFilter
-    floorPlans?: FloorPlanListRelationFilter
   }
 
   export type ZoneOrderByWithRelationInput = {
@@ -9510,7 +8329,6 @@ export namespace Prisma {
     imageUrl?: SortOrderInput | SortOrder
     tower?: TowerOrderByWithRelationInput
     facilities?: FacilityOrderByRelationAggregateInput
-    floorPlans?: FloorPlanOrderByRelationAggregateInput
   }
 
   export type ZoneWhereUniqueInput = Prisma.AtLeast<{
@@ -9525,7 +8343,6 @@ export namespace Prisma {
     imageUrl?: StringNullableFilter<"Zone"> | string | null
     tower?: XOR<TowerScalarRelationFilter, TowerWhereInput>
     facilities?: FacilityListRelationFilter
-    floorPlans?: FloorPlanListRelationFilter
   }, "id">
 
   export type ZoneOrderByWithAggregationInput = {
@@ -9563,6 +8380,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Facility"> | string | null
     zone?: XOR<ZoneScalarRelationFilter, ZoneWhereInput>
     images?: FacilityImageListRelationFilter
+    unitTypes?: UnitTypeListRelationFilter
   }
 
   export type FacilityOrderByWithRelationInput = {
@@ -9573,6 +8391,7 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     zone?: ZoneOrderByWithRelationInput
     images?: FacilityImageOrderByRelationAggregateInput
+    unitTypes?: UnitTypeOrderByRelationAggregateInput
   }
 
   export type FacilityWhereUniqueInput = Prisma.AtLeast<{
@@ -9586,6 +8405,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Facility"> | string | null
     zone?: XOR<ZoneScalarRelationFilter, ZoneWhereInput>
     images?: FacilityImageListRelationFilter
+    unitTypes?: UnitTypeListRelationFilter
   }, "id">
 
   export type FacilityOrderByWithAggregationInput = {
@@ -9667,119 +8487,76 @@ export namespace Prisma {
     sortOrder?: IntWithAggregatesFilter<"FacilityImage"> | number
   }
 
-  export type FloorPlanWhereInput = {
-    AND?: FloorPlanWhereInput | FloorPlanWhereInput[]
-    OR?: FloorPlanWhereInput[]
-    NOT?: FloorPlanWhereInput | FloorPlanWhereInput[]
-    id?: StringFilter<"FloorPlan"> | string
-    zoneId?: StringFilter<"FloorPlan"> | string
-    title?: StringFilter<"FloorPlan"> | string
-    imageUrl?: StringFilter<"FloorPlan"> | string
-    description?: StringNullableFilter<"FloorPlan"> | string | null
-    zone?: XOR<ZoneScalarRelationFilter, ZoneWhereInput>
-    roomPoints?: RoomPointListRelationFilter
+  export type UnitTypeWhereInput = {
+    AND?: UnitTypeWhereInput | UnitTypeWhereInput[]
+    OR?: UnitTypeWhereInput[]
+    NOT?: UnitTypeWhereInput | UnitTypeWhereInput[]
+    id?: StringFilter<"UnitType"> | string
+    facilityId?: StringFilter<"UnitType"> | string
+    name?: StringFilter<"UnitType"> | string
+    category?: StringFilter<"UnitType"> | string
+    totalUnits?: IntNullableFilter<"UnitType"> | number | null
+    areaSGA?: FloatNullableFilter<"UnitType"> | number | null
+    description?: StringNullableFilter<"UnitType"> | string | null
+    imageUrl?: StringNullableFilter<"UnitType"> | string | null
+    facility?: XOR<FacilityScalarRelationFilter, FacilityWhereInput>
   }
 
-  export type FloorPlanOrderByWithRelationInput = {
+  export type UnitTypeOrderByWithRelationInput = {
     id?: SortOrder
-    zoneId?: SortOrder
-    title?: SortOrder
-    imageUrl?: SortOrder
+    facilityId?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    totalUnits?: SortOrderInput | SortOrder
+    areaSGA?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    zone?: ZoneOrderByWithRelationInput
-    roomPoints?: RoomPointOrderByRelationAggregateInput
+    imageUrl?: SortOrderInput | SortOrder
+    facility?: FacilityOrderByWithRelationInput
   }
 
-  export type FloorPlanWhereUniqueInput = Prisma.AtLeast<{
+  export type UnitTypeWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: FloorPlanWhereInput | FloorPlanWhereInput[]
-    OR?: FloorPlanWhereInput[]
-    NOT?: FloorPlanWhereInput | FloorPlanWhereInput[]
-    zoneId?: StringFilter<"FloorPlan"> | string
-    title?: StringFilter<"FloorPlan"> | string
-    imageUrl?: StringFilter<"FloorPlan"> | string
-    description?: StringNullableFilter<"FloorPlan"> | string | null
-    zone?: XOR<ZoneScalarRelationFilter, ZoneWhereInput>
-    roomPoints?: RoomPointListRelationFilter
+    AND?: UnitTypeWhereInput | UnitTypeWhereInput[]
+    OR?: UnitTypeWhereInput[]
+    NOT?: UnitTypeWhereInput | UnitTypeWhereInput[]
+    facilityId?: StringFilter<"UnitType"> | string
+    name?: StringFilter<"UnitType"> | string
+    category?: StringFilter<"UnitType"> | string
+    totalUnits?: IntNullableFilter<"UnitType"> | number | null
+    areaSGA?: FloatNullableFilter<"UnitType"> | number | null
+    description?: StringNullableFilter<"UnitType"> | string | null
+    imageUrl?: StringNullableFilter<"UnitType"> | string | null
+    facility?: XOR<FacilityScalarRelationFilter, FacilityWhereInput>
   }, "id">
 
-  export type FloorPlanOrderByWithAggregationInput = {
+  export type UnitTypeOrderByWithAggregationInput = {
     id?: SortOrder
-    zoneId?: SortOrder
-    title?: SortOrder
-    imageUrl?: SortOrder
+    facilityId?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    totalUnits?: SortOrderInput | SortOrder
+    areaSGA?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    _count?: FloorPlanCountOrderByAggregateInput
-    _max?: FloorPlanMaxOrderByAggregateInput
-    _min?: FloorPlanMinOrderByAggregateInput
+    imageUrl?: SortOrderInput | SortOrder
+    _count?: UnitTypeCountOrderByAggregateInput
+    _avg?: UnitTypeAvgOrderByAggregateInput
+    _max?: UnitTypeMaxOrderByAggregateInput
+    _min?: UnitTypeMinOrderByAggregateInput
+    _sum?: UnitTypeSumOrderByAggregateInput
   }
 
-  export type FloorPlanScalarWhereWithAggregatesInput = {
-    AND?: FloorPlanScalarWhereWithAggregatesInput | FloorPlanScalarWhereWithAggregatesInput[]
-    OR?: FloorPlanScalarWhereWithAggregatesInput[]
-    NOT?: FloorPlanScalarWhereWithAggregatesInput | FloorPlanScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"FloorPlan"> | string
-    zoneId?: StringWithAggregatesFilter<"FloorPlan"> | string
-    title?: StringWithAggregatesFilter<"FloorPlan"> | string
-    imageUrl?: StringWithAggregatesFilter<"FloorPlan"> | string
-    description?: StringNullableWithAggregatesFilter<"FloorPlan"> | string | null
-  }
-
-  export type RoomPointWhereInput = {
-    AND?: RoomPointWhereInput | RoomPointWhereInput[]
-    OR?: RoomPointWhereInput[]
-    NOT?: RoomPointWhereInput | RoomPointWhereInput[]
-    id?: StringFilter<"RoomPoint"> | string
-    floorPlanId?: StringFilter<"RoomPoint"> | string
-    number?: IntFilter<"RoomPoint"> | number
-    label?: StringFilter<"RoomPoint"> | string
-    coordinates?: StringNullableFilter<"RoomPoint"> | string | null
-    floorPlan?: XOR<FloorPlanScalarRelationFilter, FloorPlanWhereInput>
-  }
-
-  export type RoomPointOrderByWithRelationInput = {
-    id?: SortOrder
-    floorPlanId?: SortOrder
-    number?: SortOrder
-    label?: SortOrder
-    coordinates?: SortOrderInput | SortOrder
-    floorPlan?: FloorPlanOrderByWithRelationInput
-  }
-
-  export type RoomPointWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: RoomPointWhereInput | RoomPointWhereInput[]
-    OR?: RoomPointWhereInput[]
-    NOT?: RoomPointWhereInput | RoomPointWhereInput[]
-    floorPlanId?: StringFilter<"RoomPoint"> | string
-    number?: IntFilter<"RoomPoint"> | number
-    label?: StringFilter<"RoomPoint"> | string
-    coordinates?: StringNullableFilter<"RoomPoint"> | string | null
-    floorPlan?: XOR<FloorPlanScalarRelationFilter, FloorPlanWhereInput>
-  }, "id">
-
-  export type RoomPointOrderByWithAggregationInput = {
-    id?: SortOrder
-    floorPlanId?: SortOrder
-    number?: SortOrder
-    label?: SortOrder
-    coordinates?: SortOrderInput | SortOrder
-    _count?: RoomPointCountOrderByAggregateInput
-    _avg?: RoomPointAvgOrderByAggregateInput
-    _max?: RoomPointMaxOrderByAggregateInput
-    _min?: RoomPointMinOrderByAggregateInput
-    _sum?: RoomPointSumOrderByAggregateInput
-  }
-
-  export type RoomPointScalarWhereWithAggregatesInput = {
-    AND?: RoomPointScalarWhereWithAggregatesInput | RoomPointScalarWhereWithAggregatesInput[]
-    OR?: RoomPointScalarWhereWithAggregatesInput[]
-    NOT?: RoomPointScalarWhereWithAggregatesInput | RoomPointScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"RoomPoint"> | string
-    floorPlanId?: StringWithAggregatesFilter<"RoomPoint"> | string
-    number?: IntWithAggregatesFilter<"RoomPoint"> | number
-    label?: StringWithAggregatesFilter<"RoomPoint"> | string
-    coordinates?: StringNullableWithAggregatesFilter<"RoomPoint"> | string | null
+  export type UnitTypeScalarWhereWithAggregatesInput = {
+    AND?: UnitTypeScalarWhereWithAggregatesInput | UnitTypeScalarWhereWithAggregatesInput[]
+    OR?: UnitTypeScalarWhereWithAggregatesInput[]
+    NOT?: UnitTypeScalarWhereWithAggregatesInput | UnitTypeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UnitType"> | string
+    facilityId?: StringWithAggregatesFilter<"UnitType"> | string
+    name?: StringWithAggregatesFilter<"UnitType"> | string
+    category?: StringWithAggregatesFilter<"UnitType"> | string
+    totalUnits?: IntNullableWithAggregatesFilter<"UnitType"> | number | null
+    areaSGA?: FloatNullableWithAggregatesFilter<"UnitType"> | number | null
+    description?: StringNullableWithAggregatesFilter<"UnitType"> | string | null
+    imageUrl?: StringNullableWithAggregatesFilter<"UnitType"> | string | null
   }
 
   export type UserCreateInput = {
@@ -9906,7 +8683,6 @@ export namespace Prisma {
     imageUrl?: string | null
     tower: TowerCreateNestedOneWithoutZonesInput
     facilities?: FacilityCreateNestedManyWithoutZoneInput
-    floorPlans?: FloorPlanCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUncheckedCreateInput = {
@@ -9917,7 +8693,6 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     facilities?: FacilityUncheckedCreateNestedManyWithoutZoneInput
-    floorPlans?: FloorPlanUncheckedCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUpdateInput = {
@@ -9928,7 +8703,6 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tower?: TowerUpdateOneRequiredWithoutZonesNestedInput
     facilities?: FacilityUpdateManyWithoutZoneNestedInput
-    floorPlans?: FloorPlanUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateInput = {
@@ -9939,7 +8713,6 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     facilities?: FacilityUncheckedUpdateManyWithoutZoneNestedInput
-    floorPlans?: FloorPlanUncheckedUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneCreateManyInput = {
@@ -9975,6 +8748,7 @@ export namespace Prisma {
     description?: string | null
     zone: ZoneCreateNestedOneWithoutFacilitiesInput
     images?: FacilityImageCreateNestedManyWithoutFacilityInput
+    unitTypes?: UnitTypeCreateNestedManyWithoutFacilityInput
   }
 
   export type FacilityUncheckedCreateInput = {
@@ -9984,6 +8758,7 @@ export namespace Prisma {
     category: string
     description?: string | null
     images?: FacilityImageUncheckedCreateNestedManyWithoutFacilityInput
+    unitTypes?: UnitTypeUncheckedCreateNestedManyWithoutFacilityInput
   }
 
   export type FacilityUpdateInput = {
@@ -9993,6 +8768,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     zone?: ZoneUpdateOneRequiredWithoutFacilitiesNestedInput
     images?: FacilityImageUpdateManyWithoutFacilityNestedInput
+    unitTypes?: UnitTypeUpdateManyWithoutFacilityNestedInput
   }
 
   export type FacilityUncheckedUpdateInput = {
@@ -10002,6 +8778,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     images?: FacilityImageUncheckedUpdateManyWithoutFacilityNestedInput
+    unitTypes?: UnitTypeUncheckedUpdateManyWithoutFacilityNestedInput
   }
 
   export type FacilityCreateManyInput = {
@@ -10082,118 +8859,80 @@ export namespace Prisma {
     sortOrder?: IntFieldUpdateOperationsInput | number
   }
 
-  export type FloorPlanCreateInput = {
+  export type UnitTypeCreateInput = {
     id?: string
-    title: string
-    imageUrl: string
+    name: string
+    category: string
+    totalUnits?: number | null
+    areaSGA?: number | null
     description?: string | null
-    zone: ZoneCreateNestedOneWithoutFloorPlansInput
-    roomPoints?: RoomPointCreateNestedManyWithoutFloorPlanInput
+    imageUrl?: string | null
+    facility: FacilityCreateNestedOneWithoutUnitTypesInput
   }
 
-  export type FloorPlanUncheckedCreateInput = {
+  export type UnitTypeUncheckedCreateInput = {
     id?: string
-    zoneId: string
-    title: string
-    imageUrl: string
+    facilityId: string
+    name: string
+    category: string
+    totalUnits?: number | null
+    areaSGA?: number | null
     description?: string | null
-    roomPoints?: RoomPointUncheckedCreateNestedManyWithoutFloorPlanInput
+    imageUrl?: string | null
   }
 
-  export type FloorPlanUpdateInput = {
+  export type UnitTypeUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    zone?: ZoneUpdateOneRequiredWithoutFloorPlansNestedInput
-    roomPoints?: RoomPointUpdateManyWithoutFloorPlanNestedInput
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneRequiredWithoutUnitTypesNestedInput
   }
 
-  export type FloorPlanUncheckedUpdateInput = {
+  export type UnitTypeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    zoneId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    facilityId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    roomPoints?: RoomPointUncheckedUpdateManyWithoutFloorPlanNestedInput
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type FloorPlanCreateManyInput = {
+  export type UnitTypeCreateManyInput = {
     id?: string
-    zoneId: string
-    title: string
-    imageUrl: string
+    facilityId: string
+    name: string
+    category: string
+    totalUnits?: number | null
+    areaSGA?: number | null
     description?: string | null
+    imageUrl?: string | null
   }
 
-  export type FloorPlanUpdateManyMutationInput = {
+  export type UnitTypeUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type FloorPlanUncheckedUpdateManyInput = {
+  export type UnitTypeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    zoneId?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    facilityId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type RoomPointCreateInput = {
-    id?: string
-    number: number
-    label: string
-    coordinates?: string | null
-    floorPlan: FloorPlanCreateNestedOneWithoutRoomPointsInput
-  }
-
-  export type RoomPointUncheckedCreateInput = {
-    id?: string
-    floorPlanId: string
-    number: number
-    label: string
-    coordinates?: string | null
-  }
-
-  export type RoomPointUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
-    floorPlan?: FloorPlanUpdateOneRequiredWithoutRoomPointsNestedInput
-  }
-
-  export type RoomPointUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    floorPlanId?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type RoomPointCreateManyInput = {
-    id?: string
-    floorPlanId: string
-    number: number
-    label: string
-    coordinates?: string | null
-  }
-
-  export type RoomPointUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type RoomPointUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    floorPlanId?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -10355,22 +9094,12 @@ export namespace Prisma {
     none?: FacilityWhereInput
   }
 
-  export type FloorPlanListRelationFilter = {
-    every?: FloorPlanWhereInput
-    some?: FloorPlanWhereInput
-    none?: FloorPlanWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type FacilityOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FloorPlanOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10430,7 +9159,17 @@ export namespace Prisma {
     none?: FacilityImageWhereInput
   }
 
+  export type UnitTypeListRelationFilter = {
+    every?: UnitTypeWhereInput
+    some?: UnitTypeWhereInput
+    none?: UnitTypeWhereInput
+  }
+
   export type FacilityImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UnitTypeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10535,75 +9274,101 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type RoomPointListRelationFilter = {
-    every?: RoomPointWhereInput
-    some?: RoomPointWhereInput
-    none?: RoomPointWhereInput
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type RoomPointOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type FloorPlanCountOrderByAggregateInput = {
+  export type UnitTypeCountOrderByAggregateInput = {
     id?: SortOrder
-    zoneId?: SortOrder
-    title?: SortOrder
-    imageUrl?: SortOrder
+    facilityId?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    totalUnits?: SortOrder
+    areaSGA?: SortOrder
     description?: SortOrder
-  }
-
-  export type FloorPlanMaxOrderByAggregateInput = {
-    id?: SortOrder
-    zoneId?: SortOrder
-    title?: SortOrder
     imageUrl?: SortOrder
-    description?: SortOrder
   }
 
-  export type FloorPlanMinOrderByAggregateInput = {
+  export type UnitTypeAvgOrderByAggregateInput = {
+    totalUnits?: SortOrder
+    areaSGA?: SortOrder
+  }
+
+  export type UnitTypeMaxOrderByAggregateInput = {
     id?: SortOrder
-    zoneId?: SortOrder
-    title?: SortOrder
+    facilityId?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    totalUnits?: SortOrder
+    areaSGA?: SortOrder
+    description?: SortOrder
     imageUrl?: SortOrder
+  }
+
+  export type UnitTypeMinOrderByAggregateInput = {
+    id?: SortOrder
+    facilityId?: SortOrder
+    name?: SortOrder
+    category?: SortOrder
+    totalUnits?: SortOrder
+    areaSGA?: SortOrder
     description?: SortOrder
+    imageUrl?: SortOrder
   }
 
-  export type FloorPlanScalarRelationFilter = {
-    is?: FloorPlanWhereInput
-    isNot?: FloorPlanWhereInput
+  export type UnitTypeSumOrderByAggregateInput = {
+    totalUnits?: SortOrder
+    areaSGA?: SortOrder
   }
 
-  export type RoomPointCountOrderByAggregateInput = {
-    id?: SortOrder
-    floorPlanId?: SortOrder
-    number?: SortOrder
-    label?: SortOrder
-    coordinates?: SortOrder
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type RoomPointAvgOrderByAggregateInput = {
-    number?: SortOrder
-  }
-
-  export type RoomPointMaxOrderByAggregateInput = {
-    id?: SortOrder
-    floorPlanId?: SortOrder
-    number?: SortOrder
-    label?: SortOrder
-    coordinates?: SortOrder
-  }
-
-  export type RoomPointMinOrderByAggregateInput = {
-    id?: SortOrder
-    floorPlanId?: SortOrder
-    number?: SortOrder
-    label?: SortOrder
-    coordinates?: SortOrder
-  }
-
-  export type RoomPointSumOrderByAggregateInput = {
-    number?: SortOrder
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -10673,25 +9438,11 @@ export namespace Prisma {
     connect?: FacilityWhereUniqueInput | FacilityWhereUniqueInput[]
   }
 
-  export type FloorPlanCreateNestedManyWithoutZoneInput = {
-    create?: XOR<FloorPlanCreateWithoutZoneInput, FloorPlanUncheckedCreateWithoutZoneInput> | FloorPlanCreateWithoutZoneInput[] | FloorPlanUncheckedCreateWithoutZoneInput[]
-    connectOrCreate?: FloorPlanCreateOrConnectWithoutZoneInput | FloorPlanCreateOrConnectWithoutZoneInput[]
-    createMany?: FloorPlanCreateManyZoneInputEnvelope
-    connect?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-  }
-
   export type FacilityUncheckedCreateNestedManyWithoutZoneInput = {
     create?: XOR<FacilityCreateWithoutZoneInput, FacilityUncheckedCreateWithoutZoneInput> | FacilityCreateWithoutZoneInput[] | FacilityUncheckedCreateWithoutZoneInput[]
     connectOrCreate?: FacilityCreateOrConnectWithoutZoneInput | FacilityCreateOrConnectWithoutZoneInput[]
     createMany?: FacilityCreateManyZoneInputEnvelope
     connect?: FacilityWhereUniqueInput | FacilityWhereUniqueInput[]
-  }
-
-  export type FloorPlanUncheckedCreateNestedManyWithoutZoneInput = {
-    create?: XOR<FloorPlanCreateWithoutZoneInput, FloorPlanUncheckedCreateWithoutZoneInput> | FloorPlanCreateWithoutZoneInput[] | FloorPlanUncheckedCreateWithoutZoneInput[]
-    connectOrCreate?: FloorPlanCreateOrConnectWithoutZoneInput | FloorPlanCreateOrConnectWithoutZoneInput[]
-    createMany?: FloorPlanCreateManyZoneInputEnvelope
-    connect?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -10720,20 +9471,6 @@ export namespace Prisma {
     deleteMany?: FacilityScalarWhereInput | FacilityScalarWhereInput[]
   }
 
-  export type FloorPlanUpdateManyWithoutZoneNestedInput = {
-    create?: XOR<FloorPlanCreateWithoutZoneInput, FloorPlanUncheckedCreateWithoutZoneInput> | FloorPlanCreateWithoutZoneInput[] | FloorPlanUncheckedCreateWithoutZoneInput[]
-    connectOrCreate?: FloorPlanCreateOrConnectWithoutZoneInput | FloorPlanCreateOrConnectWithoutZoneInput[]
-    upsert?: FloorPlanUpsertWithWhereUniqueWithoutZoneInput | FloorPlanUpsertWithWhereUniqueWithoutZoneInput[]
-    createMany?: FloorPlanCreateManyZoneInputEnvelope
-    set?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    disconnect?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    delete?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    connect?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    update?: FloorPlanUpdateWithWhereUniqueWithoutZoneInput | FloorPlanUpdateWithWhereUniqueWithoutZoneInput[]
-    updateMany?: FloorPlanUpdateManyWithWhereWithoutZoneInput | FloorPlanUpdateManyWithWhereWithoutZoneInput[]
-    deleteMany?: FloorPlanScalarWhereInput | FloorPlanScalarWhereInput[]
-  }
-
   export type FacilityUncheckedUpdateManyWithoutZoneNestedInput = {
     create?: XOR<FacilityCreateWithoutZoneInput, FacilityUncheckedCreateWithoutZoneInput> | FacilityCreateWithoutZoneInput[] | FacilityUncheckedCreateWithoutZoneInput[]
     connectOrCreate?: FacilityCreateOrConnectWithoutZoneInput | FacilityCreateOrConnectWithoutZoneInput[]
@@ -10746,20 +9483,6 @@ export namespace Prisma {
     update?: FacilityUpdateWithWhereUniqueWithoutZoneInput | FacilityUpdateWithWhereUniqueWithoutZoneInput[]
     updateMany?: FacilityUpdateManyWithWhereWithoutZoneInput | FacilityUpdateManyWithWhereWithoutZoneInput[]
     deleteMany?: FacilityScalarWhereInput | FacilityScalarWhereInput[]
-  }
-
-  export type FloorPlanUncheckedUpdateManyWithoutZoneNestedInput = {
-    create?: XOR<FloorPlanCreateWithoutZoneInput, FloorPlanUncheckedCreateWithoutZoneInput> | FloorPlanCreateWithoutZoneInput[] | FloorPlanUncheckedCreateWithoutZoneInput[]
-    connectOrCreate?: FloorPlanCreateOrConnectWithoutZoneInput | FloorPlanCreateOrConnectWithoutZoneInput[]
-    upsert?: FloorPlanUpsertWithWhereUniqueWithoutZoneInput | FloorPlanUpsertWithWhereUniqueWithoutZoneInput[]
-    createMany?: FloorPlanCreateManyZoneInputEnvelope
-    set?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    disconnect?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    delete?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    connect?: FloorPlanWhereUniqueInput | FloorPlanWhereUniqueInput[]
-    update?: FloorPlanUpdateWithWhereUniqueWithoutZoneInput | FloorPlanUpdateWithWhereUniqueWithoutZoneInput[]
-    updateMany?: FloorPlanUpdateManyWithWhereWithoutZoneInput | FloorPlanUpdateManyWithWhereWithoutZoneInput[]
-    deleteMany?: FloorPlanScalarWhereInput | FloorPlanScalarWhereInput[]
   }
 
   export type ZoneCreateNestedOneWithoutFacilitiesInput = {
@@ -10775,11 +9498,25 @@ export namespace Prisma {
     connect?: FacilityImageWhereUniqueInput | FacilityImageWhereUniqueInput[]
   }
 
+  export type UnitTypeCreateNestedManyWithoutFacilityInput = {
+    create?: XOR<UnitTypeCreateWithoutFacilityInput, UnitTypeUncheckedCreateWithoutFacilityInput> | UnitTypeCreateWithoutFacilityInput[] | UnitTypeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: UnitTypeCreateOrConnectWithoutFacilityInput | UnitTypeCreateOrConnectWithoutFacilityInput[]
+    createMany?: UnitTypeCreateManyFacilityInputEnvelope
+    connect?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+  }
+
   export type FacilityImageUncheckedCreateNestedManyWithoutFacilityInput = {
     create?: XOR<FacilityImageCreateWithoutFacilityInput, FacilityImageUncheckedCreateWithoutFacilityInput> | FacilityImageCreateWithoutFacilityInput[] | FacilityImageUncheckedCreateWithoutFacilityInput[]
     connectOrCreate?: FacilityImageCreateOrConnectWithoutFacilityInput | FacilityImageCreateOrConnectWithoutFacilityInput[]
     createMany?: FacilityImageCreateManyFacilityInputEnvelope
     connect?: FacilityImageWhereUniqueInput | FacilityImageWhereUniqueInput[]
+  }
+
+  export type UnitTypeUncheckedCreateNestedManyWithoutFacilityInput = {
+    create?: XOR<UnitTypeCreateWithoutFacilityInput, UnitTypeUncheckedCreateWithoutFacilityInput> | UnitTypeCreateWithoutFacilityInput[] | UnitTypeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: UnitTypeCreateOrConnectWithoutFacilityInput | UnitTypeCreateOrConnectWithoutFacilityInput[]
+    createMany?: UnitTypeCreateManyFacilityInputEnvelope
+    connect?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
   }
 
   export type ZoneUpdateOneRequiredWithoutFacilitiesNestedInput = {
@@ -10804,6 +9541,20 @@ export namespace Prisma {
     deleteMany?: FacilityImageScalarWhereInput | FacilityImageScalarWhereInput[]
   }
 
+  export type UnitTypeUpdateManyWithoutFacilityNestedInput = {
+    create?: XOR<UnitTypeCreateWithoutFacilityInput, UnitTypeUncheckedCreateWithoutFacilityInput> | UnitTypeCreateWithoutFacilityInput[] | UnitTypeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: UnitTypeCreateOrConnectWithoutFacilityInput | UnitTypeCreateOrConnectWithoutFacilityInput[]
+    upsert?: UnitTypeUpsertWithWhereUniqueWithoutFacilityInput | UnitTypeUpsertWithWhereUniqueWithoutFacilityInput[]
+    createMany?: UnitTypeCreateManyFacilityInputEnvelope
+    set?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    disconnect?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    delete?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    connect?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    update?: UnitTypeUpdateWithWhereUniqueWithoutFacilityInput | UnitTypeUpdateWithWhereUniqueWithoutFacilityInput[]
+    updateMany?: UnitTypeUpdateManyWithWhereWithoutFacilityInput | UnitTypeUpdateManyWithWhereWithoutFacilityInput[]
+    deleteMany?: UnitTypeScalarWhereInput | UnitTypeScalarWhereInput[]
+  }
+
   export type FacilityImageUncheckedUpdateManyWithoutFacilityNestedInput = {
     create?: XOR<FacilityImageCreateWithoutFacilityInput, FacilityImageUncheckedCreateWithoutFacilityInput> | FacilityImageCreateWithoutFacilityInput[] | FacilityImageUncheckedCreateWithoutFacilityInput[]
     connectOrCreate?: FacilityImageCreateOrConnectWithoutFacilityInput | FacilityImageCreateOrConnectWithoutFacilityInput[]
@@ -10816,6 +9567,20 @@ export namespace Prisma {
     update?: FacilityImageUpdateWithWhereUniqueWithoutFacilityInput | FacilityImageUpdateWithWhereUniqueWithoutFacilityInput[]
     updateMany?: FacilityImageUpdateManyWithWhereWithoutFacilityInput | FacilityImageUpdateManyWithWhereWithoutFacilityInput[]
     deleteMany?: FacilityImageScalarWhereInput | FacilityImageScalarWhereInput[]
+  }
+
+  export type UnitTypeUncheckedUpdateManyWithoutFacilityNestedInput = {
+    create?: XOR<UnitTypeCreateWithoutFacilityInput, UnitTypeUncheckedCreateWithoutFacilityInput> | UnitTypeCreateWithoutFacilityInput[] | UnitTypeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: UnitTypeCreateOrConnectWithoutFacilityInput | UnitTypeCreateOrConnectWithoutFacilityInput[]
+    upsert?: UnitTypeUpsertWithWhereUniqueWithoutFacilityInput | UnitTypeUpsertWithWhereUniqueWithoutFacilityInput[]
+    createMany?: UnitTypeCreateManyFacilityInputEnvelope
+    set?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    disconnect?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    delete?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    connect?: UnitTypeWhereUniqueInput | UnitTypeWhereUniqueInput[]
+    update?: UnitTypeUpdateWithWhereUniqueWithoutFacilityInput | UnitTypeUpdateWithWhereUniqueWithoutFacilityInput[]
+    updateMany?: UnitTypeUpdateManyWithWhereWithoutFacilityInput | UnitTypeUpdateManyWithWhereWithoutFacilityInput[]
+    deleteMany?: UnitTypeScalarWhereInput | UnitTypeScalarWhereInput[]
   }
 
   export type FacilityCreateNestedOneWithoutImagesInput = {
@@ -10844,74 +9609,34 @@ export namespace Prisma {
     update?: XOR<XOR<FacilityUpdateToOneWithWhereWithoutImagesInput, FacilityUpdateWithoutImagesInput>, FacilityUncheckedUpdateWithoutImagesInput>
   }
 
-  export type ZoneCreateNestedOneWithoutFloorPlansInput = {
-    create?: XOR<ZoneCreateWithoutFloorPlansInput, ZoneUncheckedCreateWithoutFloorPlansInput>
-    connectOrCreate?: ZoneCreateOrConnectWithoutFloorPlansInput
-    connect?: ZoneWhereUniqueInput
+  export type FacilityCreateNestedOneWithoutUnitTypesInput = {
+    create?: XOR<FacilityCreateWithoutUnitTypesInput, FacilityUncheckedCreateWithoutUnitTypesInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutUnitTypesInput
+    connect?: FacilityWhereUniqueInput
   }
 
-  export type RoomPointCreateNestedManyWithoutFloorPlanInput = {
-    create?: XOR<RoomPointCreateWithoutFloorPlanInput, RoomPointUncheckedCreateWithoutFloorPlanInput> | RoomPointCreateWithoutFloorPlanInput[] | RoomPointUncheckedCreateWithoutFloorPlanInput[]
-    connectOrCreate?: RoomPointCreateOrConnectWithoutFloorPlanInput | RoomPointCreateOrConnectWithoutFloorPlanInput[]
-    createMany?: RoomPointCreateManyFloorPlanInputEnvelope
-    connect?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type RoomPointUncheckedCreateNestedManyWithoutFloorPlanInput = {
-    create?: XOR<RoomPointCreateWithoutFloorPlanInput, RoomPointUncheckedCreateWithoutFloorPlanInput> | RoomPointCreateWithoutFloorPlanInput[] | RoomPointUncheckedCreateWithoutFloorPlanInput[]
-    connectOrCreate?: RoomPointCreateOrConnectWithoutFloorPlanInput | RoomPointCreateOrConnectWithoutFloorPlanInput[]
-    createMany?: RoomPointCreateManyFloorPlanInputEnvelope
-    connect?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type ZoneUpdateOneRequiredWithoutFloorPlansNestedInput = {
-    create?: XOR<ZoneCreateWithoutFloorPlansInput, ZoneUncheckedCreateWithoutFloorPlansInput>
-    connectOrCreate?: ZoneCreateOrConnectWithoutFloorPlansInput
-    upsert?: ZoneUpsertWithoutFloorPlansInput
-    connect?: ZoneWhereUniqueInput
-    update?: XOR<XOR<ZoneUpdateToOneWithWhereWithoutFloorPlansInput, ZoneUpdateWithoutFloorPlansInput>, ZoneUncheckedUpdateWithoutFloorPlansInput>
-  }
-
-  export type RoomPointUpdateManyWithoutFloorPlanNestedInput = {
-    create?: XOR<RoomPointCreateWithoutFloorPlanInput, RoomPointUncheckedCreateWithoutFloorPlanInput> | RoomPointCreateWithoutFloorPlanInput[] | RoomPointUncheckedCreateWithoutFloorPlanInput[]
-    connectOrCreate?: RoomPointCreateOrConnectWithoutFloorPlanInput | RoomPointCreateOrConnectWithoutFloorPlanInput[]
-    upsert?: RoomPointUpsertWithWhereUniqueWithoutFloorPlanInput | RoomPointUpsertWithWhereUniqueWithoutFloorPlanInput[]
-    createMany?: RoomPointCreateManyFloorPlanInputEnvelope
-    set?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    disconnect?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    delete?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    connect?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    update?: RoomPointUpdateWithWhereUniqueWithoutFloorPlanInput | RoomPointUpdateWithWhereUniqueWithoutFloorPlanInput[]
-    updateMany?: RoomPointUpdateManyWithWhereWithoutFloorPlanInput | RoomPointUpdateManyWithWhereWithoutFloorPlanInput[]
-    deleteMany?: RoomPointScalarWhereInput | RoomPointScalarWhereInput[]
-  }
-
-  export type RoomPointUncheckedUpdateManyWithoutFloorPlanNestedInput = {
-    create?: XOR<RoomPointCreateWithoutFloorPlanInput, RoomPointUncheckedCreateWithoutFloorPlanInput> | RoomPointCreateWithoutFloorPlanInput[] | RoomPointUncheckedCreateWithoutFloorPlanInput[]
-    connectOrCreate?: RoomPointCreateOrConnectWithoutFloorPlanInput | RoomPointCreateOrConnectWithoutFloorPlanInput[]
-    upsert?: RoomPointUpsertWithWhereUniqueWithoutFloorPlanInput | RoomPointUpsertWithWhereUniqueWithoutFloorPlanInput[]
-    createMany?: RoomPointCreateManyFloorPlanInputEnvelope
-    set?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    disconnect?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    delete?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    connect?: RoomPointWhereUniqueInput | RoomPointWhereUniqueInput[]
-    update?: RoomPointUpdateWithWhereUniqueWithoutFloorPlanInput | RoomPointUpdateWithWhereUniqueWithoutFloorPlanInput[]
-    updateMany?: RoomPointUpdateManyWithWhereWithoutFloorPlanInput | RoomPointUpdateManyWithWhereWithoutFloorPlanInput[]
-    deleteMany?: RoomPointScalarWhereInput | RoomPointScalarWhereInput[]
-  }
-
-  export type FloorPlanCreateNestedOneWithoutRoomPointsInput = {
-    create?: XOR<FloorPlanCreateWithoutRoomPointsInput, FloorPlanUncheckedCreateWithoutRoomPointsInput>
-    connectOrCreate?: FloorPlanCreateOrConnectWithoutRoomPointsInput
-    connect?: FloorPlanWhereUniqueInput
-  }
-
-  export type FloorPlanUpdateOneRequiredWithoutRoomPointsNestedInput = {
-    create?: XOR<FloorPlanCreateWithoutRoomPointsInput, FloorPlanUncheckedCreateWithoutRoomPointsInput>
-    connectOrCreate?: FloorPlanCreateOrConnectWithoutRoomPointsInput
-    upsert?: FloorPlanUpsertWithoutRoomPointsInput
-    connect?: FloorPlanWhereUniqueInput
-    update?: XOR<XOR<FloorPlanUpdateToOneWithWhereWithoutRoomPointsInput, FloorPlanUpdateWithoutRoomPointsInput>, FloorPlanUncheckedUpdateWithoutRoomPointsInput>
+  export type FacilityUpdateOneRequiredWithoutUnitTypesNestedInput = {
+    create?: XOR<FacilityCreateWithoutUnitTypesInput, FacilityUncheckedCreateWithoutUnitTypesInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutUnitTypesInput
+    upsert?: FacilityUpsertWithoutUnitTypesInput
+    connect?: FacilityWhereUniqueInput
+    update?: XOR<XOR<FacilityUpdateToOneWithWhereWithoutUnitTypesInput, FacilityUpdateWithoutUnitTypesInput>, FacilityUncheckedUpdateWithoutUnitTypesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11080,6 +9805,49 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type ZoneCreateWithoutTowerInput = {
     id?: string
     categoryName: string
@@ -11087,7 +9855,6 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     facilities?: FacilityCreateNestedManyWithoutZoneInput
-    floorPlans?: FloorPlanCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUncheckedCreateWithoutTowerInput = {
@@ -11097,7 +9864,6 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     facilities?: FacilityUncheckedCreateNestedManyWithoutZoneInput
-    floorPlans?: FloorPlanUncheckedCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneCreateOrConnectWithoutTowerInput = {
@@ -11161,6 +9927,7 @@ export namespace Prisma {
     category: string
     description?: string | null
     images?: FacilityImageCreateNestedManyWithoutFacilityInput
+    unitTypes?: UnitTypeCreateNestedManyWithoutFacilityInput
   }
 
   export type FacilityUncheckedCreateWithoutZoneInput = {
@@ -11169,6 +9936,7 @@ export namespace Prisma {
     category: string
     description?: string | null
     images?: FacilityImageUncheckedCreateNestedManyWithoutFacilityInput
+    unitTypes?: UnitTypeUncheckedCreateNestedManyWithoutFacilityInput
   }
 
   export type FacilityCreateOrConnectWithoutZoneInput = {
@@ -11178,32 +9946,6 @@ export namespace Prisma {
 
   export type FacilityCreateManyZoneInputEnvelope = {
     data: FacilityCreateManyZoneInput | FacilityCreateManyZoneInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type FloorPlanCreateWithoutZoneInput = {
-    id?: string
-    title: string
-    imageUrl: string
-    description?: string | null
-    roomPoints?: RoomPointCreateNestedManyWithoutFloorPlanInput
-  }
-
-  export type FloorPlanUncheckedCreateWithoutZoneInput = {
-    id?: string
-    title: string
-    imageUrl: string
-    description?: string | null
-    roomPoints?: RoomPointUncheckedCreateNestedManyWithoutFloorPlanInput
-  }
-
-  export type FloorPlanCreateOrConnectWithoutZoneInput = {
-    where: FloorPlanWhereUniqueInput
-    create: XOR<FloorPlanCreateWithoutZoneInput, FloorPlanUncheckedCreateWithoutZoneInput>
-  }
-
-  export type FloorPlanCreateManyZoneInputEnvelope = {
-    data: FloorPlanCreateManyZoneInput | FloorPlanCreateManyZoneInput[]
     skipDuplicates?: boolean
   }
 
@@ -11257,33 +9999,6 @@ export namespace Prisma {
     description?: StringNullableFilter<"Facility"> | string | null
   }
 
-  export type FloorPlanUpsertWithWhereUniqueWithoutZoneInput = {
-    where: FloorPlanWhereUniqueInput
-    update: XOR<FloorPlanUpdateWithoutZoneInput, FloorPlanUncheckedUpdateWithoutZoneInput>
-    create: XOR<FloorPlanCreateWithoutZoneInput, FloorPlanUncheckedCreateWithoutZoneInput>
-  }
-
-  export type FloorPlanUpdateWithWhereUniqueWithoutZoneInput = {
-    where: FloorPlanWhereUniqueInput
-    data: XOR<FloorPlanUpdateWithoutZoneInput, FloorPlanUncheckedUpdateWithoutZoneInput>
-  }
-
-  export type FloorPlanUpdateManyWithWhereWithoutZoneInput = {
-    where: FloorPlanScalarWhereInput
-    data: XOR<FloorPlanUpdateManyMutationInput, FloorPlanUncheckedUpdateManyWithoutZoneInput>
-  }
-
-  export type FloorPlanScalarWhereInput = {
-    AND?: FloorPlanScalarWhereInput | FloorPlanScalarWhereInput[]
-    OR?: FloorPlanScalarWhereInput[]
-    NOT?: FloorPlanScalarWhereInput | FloorPlanScalarWhereInput[]
-    id?: StringFilter<"FloorPlan"> | string
-    zoneId?: StringFilter<"FloorPlan"> | string
-    title?: StringFilter<"FloorPlan"> | string
-    imageUrl?: StringFilter<"FloorPlan"> | string
-    description?: StringNullableFilter<"FloorPlan"> | string | null
-  }
-
   export type ZoneCreateWithoutFacilitiesInput = {
     id?: string
     categoryName: string
@@ -11291,7 +10006,6 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     tower: TowerCreateNestedOneWithoutZonesInput
-    floorPlans?: FloorPlanCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUncheckedCreateWithoutFacilitiesInput = {
@@ -11301,7 +10015,6 @@ export namespace Prisma {
     floorsRange: string
     points?: string | null
     imageUrl?: string | null
-    floorPlans?: FloorPlanUncheckedCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneCreateOrConnectWithoutFacilitiesInput = {
@@ -11333,6 +10046,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UnitTypeCreateWithoutFacilityInput = {
+    id?: string
+    name: string
+    category: string
+    totalUnits?: number | null
+    areaSGA?: number | null
+    description?: string | null
+    imageUrl?: string | null
+  }
+
+  export type UnitTypeUncheckedCreateWithoutFacilityInput = {
+    id?: string
+    name: string
+    category: string
+    totalUnits?: number | null
+    areaSGA?: number | null
+    description?: string | null
+    imageUrl?: string | null
+  }
+
+  export type UnitTypeCreateOrConnectWithoutFacilityInput = {
+    where: UnitTypeWhereUniqueInput
+    create: XOR<UnitTypeCreateWithoutFacilityInput, UnitTypeUncheckedCreateWithoutFacilityInput>
+  }
+
+  export type UnitTypeCreateManyFacilityInputEnvelope = {
+    data: UnitTypeCreateManyFacilityInput | UnitTypeCreateManyFacilityInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ZoneUpsertWithoutFacilitiesInput = {
     update: XOR<ZoneUpdateWithoutFacilitiesInput, ZoneUncheckedUpdateWithoutFacilitiesInput>
     create: XOR<ZoneCreateWithoutFacilitiesInput, ZoneUncheckedCreateWithoutFacilitiesInput>
@@ -11351,7 +10094,6 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tower?: TowerUpdateOneRequiredWithoutZonesNestedInput
-    floorPlans?: FloorPlanUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateWithoutFacilitiesInput = {
@@ -11361,7 +10103,6 @@ export namespace Prisma {
     floorsRange?: StringFieldUpdateOperationsInput | string
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    floorPlans?: FloorPlanUncheckedUpdateManyWithoutZoneNestedInput
   }
 
   export type FacilityImageUpsertWithWhereUniqueWithoutFacilityInput = {
@@ -11391,12 +10132,43 @@ export namespace Prisma {
     sortOrder?: IntFilter<"FacilityImage"> | number
   }
 
+  export type UnitTypeUpsertWithWhereUniqueWithoutFacilityInput = {
+    where: UnitTypeWhereUniqueInput
+    update: XOR<UnitTypeUpdateWithoutFacilityInput, UnitTypeUncheckedUpdateWithoutFacilityInput>
+    create: XOR<UnitTypeCreateWithoutFacilityInput, UnitTypeUncheckedCreateWithoutFacilityInput>
+  }
+
+  export type UnitTypeUpdateWithWhereUniqueWithoutFacilityInput = {
+    where: UnitTypeWhereUniqueInput
+    data: XOR<UnitTypeUpdateWithoutFacilityInput, UnitTypeUncheckedUpdateWithoutFacilityInput>
+  }
+
+  export type UnitTypeUpdateManyWithWhereWithoutFacilityInput = {
+    where: UnitTypeScalarWhereInput
+    data: XOR<UnitTypeUpdateManyMutationInput, UnitTypeUncheckedUpdateManyWithoutFacilityInput>
+  }
+
+  export type UnitTypeScalarWhereInput = {
+    AND?: UnitTypeScalarWhereInput | UnitTypeScalarWhereInput[]
+    OR?: UnitTypeScalarWhereInput[]
+    NOT?: UnitTypeScalarWhereInput | UnitTypeScalarWhereInput[]
+    id?: StringFilter<"UnitType"> | string
+    facilityId?: StringFilter<"UnitType"> | string
+    name?: StringFilter<"UnitType"> | string
+    category?: StringFilter<"UnitType"> | string
+    totalUnits?: IntNullableFilter<"UnitType"> | number | null
+    areaSGA?: FloatNullableFilter<"UnitType"> | number | null
+    description?: StringNullableFilter<"UnitType"> | string | null
+    imageUrl?: StringNullableFilter<"UnitType"> | string | null
+  }
+
   export type FacilityCreateWithoutImagesInput = {
     id?: string
     title: string
     category: string
     description?: string | null
     zone: ZoneCreateNestedOneWithoutFacilitiesInput
+    unitTypes?: UnitTypeCreateNestedManyWithoutFacilityInput
   }
 
   export type FacilityUncheckedCreateWithoutImagesInput = {
@@ -11405,6 +10177,7 @@ export namespace Prisma {
     title: string
     category: string
     description?: string | null
+    unitTypes?: UnitTypeUncheckedCreateNestedManyWithoutFacilityInput
   }
 
   export type FacilityCreateOrConnectWithoutImagesInput = {
@@ -11429,6 +10202,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     zone?: ZoneUpdateOneRequiredWithoutFacilitiesNestedInput
+    unitTypes?: UnitTypeUpdateManyWithoutFacilityNestedInput
   }
 
   export type FacilityUncheckedUpdateWithoutImagesInput = {
@@ -11437,161 +10211,59 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    unitTypes?: UnitTypeUncheckedUpdateManyWithoutFacilityNestedInput
   }
 
-  export type ZoneCreateWithoutFloorPlansInput = {
-    id?: string
-    categoryName: string
-    floorsRange: string
-    points?: string | null
-    imageUrl?: string | null
-    tower: TowerCreateNestedOneWithoutZonesInput
-    facilities?: FacilityCreateNestedManyWithoutZoneInput
-  }
-
-  export type ZoneUncheckedCreateWithoutFloorPlansInput = {
-    id?: string
-    towerId: string
-    categoryName: string
-    floorsRange: string
-    points?: string | null
-    imageUrl?: string | null
-    facilities?: FacilityUncheckedCreateNestedManyWithoutZoneInput
-  }
-
-  export type ZoneCreateOrConnectWithoutFloorPlansInput = {
-    where: ZoneWhereUniqueInput
-    create: XOR<ZoneCreateWithoutFloorPlansInput, ZoneUncheckedCreateWithoutFloorPlansInput>
-  }
-
-  export type RoomPointCreateWithoutFloorPlanInput = {
-    id?: string
-    number: number
-    label: string
-    coordinates?: string | null
-  }
-
-  export type RoomPointUncheckedCreateWithoutFloorPlanInput = {
-    id?: string
-    number: number
-    label: string
-    coordinates?: string | null
-  }
-
-  export type RoomPointCreateOrConnectWithoutFloorPlanInput = {
-    where: RoomPointWhereUniqueInput
-    create: XOR<RoomPointCreateWithoutFloorPlanInput, RoomPointUncheckedCreateWithoutFloorPlanInput>
-  }
-
-  export type RoomPointCreateManyFloorPlanInputEnvelope = {
-    data: RoomPointCreateManyFloorPlanInput | RoomPointCreateManyFloorPlanInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ZoneUpsertWithoutFloorPlansInput = {
-    update: XOR<ZoneUpdateWithoutFloorPlansInput, ZoneUncheckedUpdateWithoutFloorPlansInput>
-    create: XOR<ZoneCreateWithoutFloorPlansInput, ZoneUncheckedCreateWithoutFloorPlansInput>
-    where?: ZoneWhereInput
-  }
-
-  export type ZoneUpdateToOneWithWhereWithoutFloorPlansInput = {
-    where?: ZoneWhereInput
-    data: XOR<ZoneUpdateWithoutFloorPlansInput, ZoneUncheckedUpdateWithoutFloorPlansInput>
-  }
-
-  export type ZoneUpdateWithoutFloorPlansInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    categoryName?: StringFieldUpdateOperationsInput | string
-    floorsRange?: StringFieldUpdateOperationsInput | string
-    points?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    tower?: TowerUpdateOneRequiredWithoutZonesNestedInput
-    facilities?: FacilityUpdateManyWithoutZoneNestedInput
-  }
-
-  export type ZoneUncheckedUpdateWithoutFloorPlansInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    towerId?: StringFieldUpdateOperationsInput | string
-    categoryName?: StringFieldUpdateOperationsInput | string
-    floorsRange?: StringFieldUpdateOperationsInput | string
-    points?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    facilities?: FacilityUncheckedUpdateManyWithoutZoneNestedInput
-  }
-
-  export type RoomPointUpsertWithWhereUniqueWithoutFloorPlanInput = {
-    where: RoomPointWhereUniqueInput
-    update: XOR<RoomPointUpdateWithoutFloorPlanInput, RoomPointUncheckedUpdateWithoutFloorPlanInput>
-    create: XOR<RoomPointCreateWithoutFloorPlanInput, RoomPointUncheckedCreateWithoutFloorPlanInput>
-  }
-
-  export type RoomPointUpdateWithWhereUniqueWithoutFloorPlanInput = {
-    where: RoomPointWhereUniqueInput
-    data: XOR<RoomPointUpdateWithoutFloorPlanInput, RoomPointUncheckedUpdateWithoutFloorPlanInput>
-  }
-
-  export type RoomPointUpdateManyWithWhereWithoutFloorPlanInput = {
-    where: RoomPointScalarWhereInput
-    data: XOR<RoomPointUpdateManyMutationInput, RoomPointUncheckedUpdateManyWithoutFloorPlanInput>
-  }
-
-  export type RoomPointScalarWhereInput = {
-    AND?: RoomPointScalarWhereInput | RoomPointScalarWhereInput[]
-    OR?: RoomPointScalarWhereInput[]
-    NOT?: RoomPointScalarWhereInput | RoomPointScalarWhereInput[]
-    id?: StringFilter<"RoomPoint"> | string
-    floorPlanId?: StringFilter<"RoomPoint"> | string
-    number?: IntFilter<"RoomPoint"> | number
-    label?: StringFilter<"RoomPoint"> | string
-    coordinates?: StringNullableFilter<"RoomPoint"> | string | null
-  }
-
-  export type FloorPlanCreateWithoutRoomPointsInput = {
+  export type FacilityCreateWithoutUnitTypesInput = {
     id?: string
     title: string
-    imageUrl: string
+    category: string
     description?: string | null
-    zone: ZoneCreateNestedOneWithoutFloorPlansInput
+    zone: ZoneCreateNestedOneWithoutFacilitiesInput
+    images?: FacilityImageCreateNestedManyWithoutFacilityInput
   }
 
-  export type FloorPlanUncheckedCreateWithoutRoomPointsInput = {
+  export type FacilityUncheckedCreateWithoutUnitTypesInput = {
     id?: string
     zoneId: string
     title: string
-    imageUrl: string
+    category: string
     description?: string | null
+    images?: FacilityImageUncheckedCreateNestedManyWithoutFacilityInput
   }
 
-  export type FloorPlanCreateOrConnectWithoutRoomPointsInput = {
-    where: FloorPlanWhereUniqueInput
-    create: XOR<FloorPlanCreateWithoutRoomPointsInput, FloorPlanUncheckedCreateWithoutRoomPointsInput>
+  export type FacilityCreateOrConnectWithoutUnitTypesInput = {
+    where: FacilityWhereUniqueInput
+    create: XOR<FacilityCreateWithoutUnitTypesInput, FacilityUncheckedCreateWithoutUnitTypesInput>
   }
 
-  export type FloorPlanUpsertWithoutRoomPointsInput = {
-    update: XOR<FloorPlanUpdateWithoutRoomPointsInput, FloorPlanUncheckedUpdateWithoutRoomPointsInput>
-    create: XOR<FloorPlanCreateWithoutRoomPointsInput, FloorPlanUncheckedCreateWithoutRoomPointsInput>
-    where?: FloorPlanWhereInput
+  export type FacilityUpsertWithoutUnitTypesInput = {
+    update: XOR<FacilityUpdateWithoutUnitTypesInput, FacilityUncheckedUpdateWithoutUnitTypesInput>
+    create: XOR<FacilityCreateWithoutUnitTypesInput, FacilityUncheckedCreateWithoutUnitTypesInput>
+    where?: FacilityWhereInput
   }
 
-  export type FloorPlanUpdateToOneWithWhereWithoutRoomPointsInput = {
-    where?: FloorPlanWhereInput
-    data: XOR<FloorPlanUpdateWithoutRoomPointsInput, FloorPlanUncheckedUpdateWithoutRoomPointsInput>
+  export type FacilityUpdateToOneWithWhereWithoutUnitTypesInput = {
+    where?: FacilityWhereInput
+    data: XOR<FacilityUpdateWithoutUnitTypesInput, FacilityUncheckedUpdateWithoutUnitTypesInput>
   }
 
-  export type FloorPlanUpdateWithoutRoomPointsInput = {
+  export type FacilityUpdateWithoutUnitTypesInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    zone?: ZoneUpdateOneRequiredWithoutFloorPlansNestedInput
+    zone?: ZoneUpdateOneRequiredWithoutFacilitiesNestedInput
+    images?: FacilityImageUpdateManyWithoutFacilityNestedInput
   }
 
-  export type FloorPlanUncheckedUpdateWithoutRoomPointsInput = {
+  export type FacilityUncheckedUpdateWithoutUnitTypesInput = {
     id?: StringFieldUpdateOperationsInput | string
     zoneId?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: FacilityImageUncheckedUpdateManyWithoutFacilityNestedInput
   }
 
   export type ZoneCreateManyTowerInput = {
@@ -11609,7 +10281,6 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     facilities?: FacilityUpdateManyWithoutZoneNestedInput
-    floorPlans?: FloorPlanUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateWithoutTowerInput = {
@@ -11619,7 +10290,6 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     facilities?: FacilityUncheckedUpdateManyWithoutZoneNestedInput
-    floorPlans?: FloorPlanUncheckedUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateManyWithoutTowerInput = {
@@ -11637,19 +10307,13 @@ export namespace Prisma {
     description?: string | null
   }
 
-  export type FloorPlanCreateManyZoneInput = {
-    id?: string
-    title: string
-    imageUrl: string
-    description?: string | null
-  }
-
   export type FacilityUpdateWithoutZoneInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     images?: FacilityImageUpdateManyWithoutFacilityNestedInput
+    unitTypes?: UnitTypeUpdateManyWithoutFacilityNestedInput
   }
 
   export type FacilityUncheckedUpdateWithoutZoneInput = {
@@ -11658,6 +10322,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     images?: FacilityImageUncheckedUpdateManyWithoutFacilityNestedInput
+    unitTypes?: UnitTypeUncheckedUpdateManyWithoutFacilityNestedInput
   }
 
   export type FacilityUncheckedUpdateManyWithoutZoneInput = {
@@ -11667,34 +10332,21 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type FloorPlanUpdateWithoutZoneInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    roomPoints?: RoomPointUpdateManyWithoutFloorPlanNestedInput
-  }
-
-  export type FloorPlanUncheckedUpdateWithoutZoneInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    roomPoints?: RoomPointUncheckedUpdateManyWithoutFloorPlanNestedInput
-  }
-
-  export type FloorPlanUncheckedUpdateManyWithoutZoneInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    imageUrl?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type FacilityImageCreateManyFacilityInput = {
     id?: string
     imageUrl: string
     isPrimary?: boolean
     sortOrder?: number
+  }
+
+  export type UnitTypeCreateManyFacilityInput = {
+    id?: string
+    name: string
+    category: string
+    totalUnits?: number | null
+    areaSGA?: number | null
+    description?: string | null
+    imageUrl?: string | null
   }
 
   export type FacilityImageUpdateWithoutFacilityInput = {
@@ -11718,32 +10370,34 @@ export namespace Prisma {
     sortOrder?: IntFieldUpdateOperationsInput | number
   }
 
-  export type RoomPointCreateManyFloorPlanInput = {
-    id?: string
-    number: number
-    label: string
-    coordinates?: string | null
+  export type UnitTypeUpdateWithoutFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RoomPointUpdateWithoutFloorPlanInput = {
+  export type UnitTypeUncheckedUpdateWithoutFacilityInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type RoomPointUncheckedUpdateWithoutFloorPlanInput = {
+  export type UnitTypeUncheckedUpdateManyWithoutFacilityInput = {
     id?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type RoomPointUncheckedUpdateManyWithoutFloorPlanInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    number?: IntFieldUpdateOperationsInput | number
-    label?: StringFieldUpdateOperationsInput | string
-    coordinates?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
+    areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

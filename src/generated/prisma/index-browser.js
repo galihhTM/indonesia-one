@@ -161,20 +161,15 @@ exports.Prisma.FacilityImageScalarFieldEnum = {
   sortOrder: 'sortOrder'
 };
 
-exports.Prisma.FloorPlanScalarFieldEnum = {
+exports.Prisma.UnitTypeScalarFieldEnum = {
   id: 'id',
-  zoneId: 'zoneId',
-  title: 'title',
-  imageUrl: 'imageUrl',
-  description: 'description'
-};
-
-exports.Prisma.RoomPointScalarFieldEnum = {
-  id: 'id',
-  floorPlanId: 'floorPlanId',
-  number: 'number',
-  label: 'label',
-  coordinates: 'coordinates'
+  facilityId: 'facilityId',
+  name: 'name',
+  category: 'category',
+  totalUnits: 'totalUnits',
+  areaSGA: 'areaSGA',
+  description: 'description',
+  imageUrl: 'imageUrl'
 };
 
 exports.Prisma.SortOrder = {
@@ -202,8 +197,7 @@ exports.Prisma.ModelName = {
   Zone: 'Zone',
   Facility: 'Facility',
   FacilityImage: 'FacilityImage',
-  FloorPlan: 'FloorPlan',
-  RoomPoint: 'RoomPoint'
+  UnitType: 'UnitType'
 };
 
 /**
