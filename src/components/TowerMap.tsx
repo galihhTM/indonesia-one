@@ -25,6 +25,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
   const [hoveredZone, setHoveredZone] = useState<Zone | null>(null);
   
   const container = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   const allZones = towers.flatMap((tower) => tower.zones);
@@ -32,12 +33,15 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
   // Menentukan zona mana yang sedang aktif (prioritas: yang diklik)
   const activeZone = selectedZone || hoveredZone;
 
-  // Menentukan apakah card harus muncul di kiri atau kanan
-  const isNorthTower = activeZone?.tower?.name.toLowerCase().includes("north");
-  
-  const desktopCardPosition = isNorthTower 
-    ? "lg:right-90 lg:mr-10 lg:left-auto" 
-    : "lg:left-90 lg:ml-10 lg:right-auto";
+  const desktopCardPosition = "lg:left-64 lg:right-auto";
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el && window.innerWidth < 768) {
+      const targetX = el.scrollWidth * 0.67 - el.clientWidth / 2;
+      el.scrollTo({ left: Math.max(0, targetX), behavior: "instant" });
+    }
+  }, []);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -48,7 +52,6 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
   }, [selectedZone]);
 
   const handleZoneClick = (zone: Zone) => {
-    // Jika zona yang sama diklik lagi, maka batalkan pilihan (toggle)
     if (selectedZone?.id === zone.id) {
       setSelectedZone(null);
     } else {
@@ -69,7 +72,7 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
       if (activeZone && cardRef.current) {
         gsap.fromTo(
           cardRef.current,
-          { opacity: 0, scale: 0.95, x: isNorthTower ? 20 : -20 }, // Efek geser dari arah gedung
+          { opacity: 0, scale: 0.95, x: -20 },
           { 
             opacity: 1, 
             scale: 1, 
@@ -87,67 +90,77 @@ export default function TowerMap({ towers }: { towers: Tower[] }) {
   return (
     <div
       ref={container}
-      className="w-full min-h-dvh bg-[#1a1c3b] flex justify-center items-center relative overflow-hidden"
+      className="w-full h-dvh bg-[#1a1c3b] relative overflow-hidden"
     >
-      <div className="relative w-full h-dvh lg:h-dvh lg:w-auto lg:aspect-2729/3859 bg-gray-800">
-        
-        {/* LOGO */}
-        <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50 w-25 md:w-35 lg:w-45 pointer-events-none">
-          <Image
-            src="/images/logo.png"
-            alt="Logo"
-            width={200}
-            height={80}
-            className="w-full h-auto object-contain"
-          />
-        </div>
+      <div 
+        aria-hidden="true"
+        className="absolute top-0 left-0 w-72 h-44 bg-linear-to-br from-black/40 via-black/15 to-transparent z-30 pointer-events-none"
+      />
 
-        {/* BACKGROUND HOME */}
+      {/* LOGO */}
+      <div className="absolute top-6 left-6 md:top-10 md:left-10 z-50 w-25 md:w-35 lg:w-45 pointer-events-none">
         <Image
-          src="/images/towers/tower.jpg"
-          alt="Twin Towers"
-          fill
-          className="object-cover"
-          priority
+          src="/images/logo.png"
+          alt="Logo"
+          width={200}
+          height={80}
+          className="w-full h-auto object-contain brightness-0 invert drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
         />
-
-        {/* SVG OVERLAY */}
-        <svg
-          className="absolute inset-0 w-full h-full z-20"
-          viewBox="0 0 2729 3859"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          {allZones.map((zone) => {
-            const isActive = activeZone?.id === zone.id;
-
-            return (
-              <path
-                key={zone.id}
-                d={zone.points || ""}
-                pointerEvents="all"
-                fill={isActive ? "rgba(59, 130, 246, 0.6)" : "transparent"}
-                stroke={isActive ? "#3b82f6" : "transparent"}
-                strokeWidth="5"
-                className="cursor-pointer transition-all duration-300 hover:fill-blue-500/40 hover:stroke-blue-500"
-                onMouseEnter={() => setHoveredZone(zone)}
-                onMouseLeave={() => setHoveredZone(null)}
-                onClick={() => handleZoneClick(zone)}
-              />
-            );
-          })}
-        </svg>
-
-        {/* FLOATING CARD */}
-        {activeZone && (
-          <div
-            ref={cardRef}
-            className={`fixed lg:absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-100 lg:w-95 lg:max-w-none
-                        lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 ${desktopCardPosition}`}
-          >
-            <ZoneCard zone={activeZone} onClose={handleClose} />
-          </div>
-        )}
       </div>
+
+      {/* WRAPPER */}
+      <div
+        ref={scrollRef}
+        className="w-full h-dvh overflow-x-auto overflow-y-hidden md:overflow-hidden"
+      >
+        <div className="relative h-dvh aspect-1449/1086 shrink-0 md:w-full md:aspect-auto">
+          {/* BACKGROUND HOME */}
+          <Image
+            src="/images/towers/tower-home.jpg"
+            alt="Twin Towers"
+            fill
+            className="object-cover"
+            priority
+          />
+
+          {/* SVG OVERLAY */}
+          <svg
+            className="absolute inset-0 w-full h-full z-20"
+            viewBox="0 0 1449 1086"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            {allZones.map((zone) => {
+              const isActive = activeZone?.id === zone.id;
+
+              return (
+                <path
+                  key={zone.id}
+                  d={zone.points || ""}
+                  pointerEvents="all"
+                  fill={isActive ? "rgba(59, 130, 246, 0.6)" : "transparent"}
+                  stroke={isActive ? "#3b82f6" : "transparent"}
+                  strokeWidth="5"
+                  className="cursor-pointer transition-all duration-300 hover:fill-blue-500/40 hover:stroke-blue-500"
+                  onMouseEnter={() => setHoveredZone(zone)}
+                  onMouseLeave={() => setHoveredZone(null)}
+                  onClick={() => handleZoneClick(zone)}
+                />
+              );
+            })}
+          </svg>
+        </div>
+      </div>
+
+      {/* FLOATING CARD */}
+      {activeZone && (
+        <div
+          ref={cardRef}
+          className={`fixed lg:absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-100 lg:w-95 lg:max-w-none
+                      lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-0 ${desktopCardPosition}`}
+        >
+          <ZoneCard zone={activeZone} onClose={handleClose} />
+        </div>
+      )}
 
       {selectedZone && (
         <div

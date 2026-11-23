@@ -20,7 +20,7 @@ export default async function AdminLayout({ children,}: {
             height={100}
             className="h-17 w-auto object-contain"
           />
-          <span>Admin Manajemen</span>
+         
         </div>
         <nav className="flex-1 p-4 space-y-2">
           <Link
