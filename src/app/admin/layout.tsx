@@ -12,7 +12,7 @@ export default async function AdminLayout({ children,}: {
   return (
     <div className="min-h-screen bg-gray-100 flex">
       <aside className="w-64 bg-[#1a1c3b] text-white flex flex-col shadow-xl z-50">
-        <div className="flex items-center gap-3 p-6 text-xl font-serif tracking-widest border-b border-white/10">
+        <div className="flex items-center justify-center gap-3 p-6 text-xl font-serif tracking-widest border-b border-white/10">
           <Image
             src="/images/logo.png"
             alt="Logo"
@@ -20,7 +20,7 @@ export default async function AdminLayout({ children,}: {
             height={100}
             className="h-17 w-auto object-contain"
           />
-          <span>Admin Manajemen</span>
+         
         </div>
         <nav className="flex-1 p-4 space-y-2">
           <Link

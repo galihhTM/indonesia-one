@@ -59,6 +59,12 @@ export default async function ZoneFacilitiesPage({ params }: { params: Promise<{
     
     <div className="flex items-center gap-2">
         <Link 
+            href={`/admin/facilities/${facility.id}/edit`}
+            className="text-xs font-medium bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1.5 rounded-lg transition"
+        >
+            Edit
+        </Link>
+        <Link 
         href={`/admin/facilities/${facility.id}/images`}
         className="text-xs font-medium bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1.5 rounded-lg transition"
         >

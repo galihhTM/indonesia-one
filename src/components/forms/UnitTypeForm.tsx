@@ -6,7 +6,7 @@ import { z } from "zod";
 import { unitTypeSchema, UnitTypeFormData } from "@/lib/schemas/unitType";
 import { createUnitType } from "@/app/actions/unitType";
 import { useState } from "react";
-import { UploadCloud, CheckCircle2, Plus } from "lucide-react";
+import { UploadCloud, Plus, X } from "lucide-react";
 import Image from "next/image";
 import { useUploadThing } from "@/lib/uploadthing";
 import { toast } from "sonner";
@@ -15,10 +15,10 @@ type UnitTypeFormInput = z.input<typeof unitTypeSchema>;
 
 export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [isUploadingGallery, setIsUploadingGallery] = useState(false);
   
-  // Menggunakan route "zoneImage" yang sudah kita buat sebelumnya
-  const { startUpload, isUploading } = useUploadThing("zoneImage");
+  const { startUpload } = useUploadThing("zoneImage");
 
   const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<
     UnitTypeFormInput,
@@ -26,37 +26,64 @@ export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
     UnitTypeFormData
   >({
     resolver: zodResolver(unitTypeSchema),
+    defaultValues: {
+      images: [], // Inisialisasi array kosong
+    }
   });
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
     
-    setImagePreview(URL.createObjectURL(file));
-    const res = await startUpload([file]);
-    
-    if (res && res[0]) {
-      setValue("imageUrl", res[0].ufsUrl, { shouldValidate: true });
-      toast.success("Gambar berhasil diunggah!");
+    setIsUploadingGallery(true);
+    try {
+      const res = await startUpload(files);
+      if (res) {
+        const newUrls = res.map((r) => r?.ufsUrl).filter((url): url is string => !!url);
+        if (newUrls.length > 0) {
+          const updatedGallery = [...galleryImages, ...newUrls];
+          setGalleryImages(updatedGallery);
+          setValue("images", updatedGallery, { shouldValidate: true });
+          toast.success(`${newUrls.length} gambar berhasil diunggah!`);
+        }
+      }
+    } catch (error) {
+      toast.error("Gagal mengunggah gambar.");
+    } finally {
+      setIsUploadingGallery(false);
+      e.target.value = ""; // Reset input
     }
   };
 
+  const removeImage = (index: number) => {
+    const updated = galleryImages.filter((_, i) => i !== index);
+    setGalleryImages(updated);
+    setValue("images", updated, { shouldValidate: true });
+  };
+
   const onSubmit = async (data: UnitTypeFormData) => {
+    console.log("Form disubmit:", data);
     setIsLoading(true);
     const result = await createUnitType(facilityId, data);
     
     if (result.success) {
       toast.success("Tipe unit berhasil ditambahkan!");
-      reset(); // Kosongkan form
-      setImagePreview(null); // Hapus preview
+      reset();
+      setGalleryImages([]);
     } else {
       toast.error(result.error);
     }
     setIsLoading(false);
   };
 
+  // Detektor jika ada isian yang tidak valid
+  const onInvalid = (errors: any) => {
+    console.log("VALIDASI GAGAL:", errors);
+    toast.error("Gagal menyimpan. Pastikan gambar sudah diunggah dan isian benar.");
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 space-y-4">
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="bg-white p-5 rounded-xl shadow-sm border border-gray-200 space-y-4">
       <h3 className="font-semibold text-gray-800 border-b pb-2 mb-4">Tambah Tipe Unit Baru</h3>
       
       <div className="grid grid-cols-2 gap-4">
@@ -88,34 +115,41 @@ export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
         <textarea {...register("description")} rows={2} placeholder="Deskripsi singkat unit..." className="w-full p-2.5 rounded-lg border border-gray-300 text-sm text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
       </div>
 
-      <div>
-        <label className="block text-xs font-medium text-gray-600 mb-1">Gambar Denah / Unit</label>
-        <div className="flex items-center gap-4">
-          <label className="flex-1 cursor-pointer bg-gray-50 border-2 border-dashed border-gray-300 hover:border-blue-500 rounded-lg p-4 flex flex-col items-center justify-center transition-colors">
-            <input type="file" accept="image/*" className="hidden" onChange={handleImageUpload} disabled={isUploading} />
-            {isUploading ? (
-              <span className="text-blue-600 text-xs font-medium animate-pulse">Mengunggah...</span>
-            ) : (
-              <>
-                <UploadCloud className="w-5 h-5 text-gray-400 mb-1" />
-                <span className="text-xs text-gray-500">Pilih Gambar</span>
-              </>
-            )}
-          </label>
-          {imagePreview && (
-            <div className="relative w-16 h-16 rounded-lg overflow-hidden border border-gray-200 shrink-0">
-              <Image src={imagePreview} alt="Preview" fill className="object-cover" />
-              <div className="absolute top-1 right-1 bg-green-500 rounded-full p-0.5">
-                <CheckCircle2 className="w-3 h-3 text-white" />
-              </div>
+      {/* SECTION GAMBAR */}
+      <div className="pt-4 border-t border-gray-200">
+        <label className="block text-xs font-medium text-gray-600 mb-2">Gambar Denah / Unit (Bisa lebih dari 1)</label>
+        
+        <div className="flex flex-wrap gap-3 mb-3">
+          {galleryImages.map((url, idx) => (
+            <div key={idx} className="relative w-20 h-20 rounded-lg overflow-hidden border border-gray-200 group">
+              <Image src={url} alt="Preview" fill className="object-cover" />
+              <button 
+                type="button" 
+                onClick={() => removeImage(idx)}
+                className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <X className="w-3 h-3" />
+              </button>
             </div>
-          )}
+          ))}
         </div>
-        <input type="hidden" {...register("imageUrl")} />
-        {errors.imageUrl && <p className="text-red-500 text-xs mt-1">{errors.imageUrl.message}</p>}
+
+        <label className="flex flex-col items-center justify-center w-full h-24 bg-gray-50 border-2 border-dashed border-gray-300 hover:border-blue-500 rounded-lg cursor-pointer transition-colors">
+          <input type="file" multiple accept="image/*" className="hidden" onChange={handleImageUpload} disabled={isUploadingGallery} />
+          {isUploadingGallery ? (
+            <span className="text-blue-600 text-sm font-medium animate-pulse">Mengunggah...</span>
+          ) : (
+            <>
+              <UploadCloud className="w-6 h-6 text-gray-400 mb-2" />
+              <span className="text-xs text-gray-500">Pilih satu atau beberapa gambar</span>
+            </>
+          )}
+        </label>
+        
+        {errors.images && <p className="text-red-500 text-xs mt-1">{errors.images.message}</p>}
       </div>
 
-      <button type="submit" disabled={isLoading || isUploading} className="w-full flex justify-center items-center gap-2 bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 font-medium mt-4">
+      <button type="submit" disabled={isLoading || isUploadingGallery} className="w-full flex justify-center items-center gap-2 bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 font-medium mt-4">
         <Plus className="w-4 h-4" /> {isLoading ? "Menyimpan..." : "Tambah Unit"}
       </button>
     </form>

@@ -66,6 +66,28 @@ export async function addFacilityImage(facilityId: string, imageUrl: string, isP
   }
 }
 
+export async function updateFacility(id: string, data: FacilityFormData) {
+  try {
+    const validatedData = facilitySchema.parse(data);
+
+    await prisma.facility.update({
+      where: { id },
+      data: {
+        title: validatedData.title,
+        category: validatedData.category,
+        description: validatedData.description,
+      },
+    });
+
+    revalidatePath("/admin/zones");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Gagal memperbarui fasilitas." };
+  }
+}
+
 export async function deleteFacilityImage(id: string, facilityId: string) {
   try {
     await prisma.facilityImage.delete({ where: { id } });

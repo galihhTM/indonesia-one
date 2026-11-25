@@ -29,6 +29,11 @@ export type Tower = $Result.DefaultSelection<Prisma.$TowerPayload>
  */
 export type Zone = $Result.DefaultSelection<Prisma.$ZonePayload>
 /**
+ * Model ZoneImage
+ * 
+ */
+export type ZoneImage = $Result.DefaultSelection<Prisma.$ZoneImagePayload>
+/**
  * Model Facility
  * 
  */
@@ -211,6 +216,16 @@ export class PrismaClient<
     * ```
     */
   get zone(): Prisma.ZoneDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.zoneImage`: Exposes CRUD operations for the **ZoneImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ZoneImages
+    * const zoneImages = await prisma.zoneImage.findMany()
+    * ```
+    */
+  get zoneImage(): Prisma.ZoneImageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.facility`: Exposes CRUD operations for the **Facility** model.
@@ -691,6 +706,7 @@ export namespace Prisma {
     User: 'User',
     Tower: 'Tower',
     Zone: 'Zone',
+    ZoneImage: 'ZoneImage',
     Facility: 'Facility',
     FacilityImage: 'FacilityImage',
     UnitType: 'UnitType'
@@ -709,7 +725,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "tower" | "zone" | "facility" | "facilityImage" | "unitType"
+      modelProps: "user" | "tower" | "zone" | "zoneImage" | "facility" | "facilityImage" | "unitType"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -932,6 +948,80 @@ export namespace Prisma {
           count: {
             args: Prisma.ZoneCountArgs<ExtArgs>
             result: $Utils.Optional<ZoneCountAggregateOutputType> | number
+          }
+        }
+      }
+      ZoneImage: {
+        payload: Prisma.$ZoneImagePayload<ExtArgs>
+        fields: Prisma.ZoneImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ZoneImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ZoneImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>
+          }
+          findFirst: {
+            args: Prisma.ZoneImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ZoneImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>
+          }
+          findMany: {
+            args: Prisma.ZoneImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>[]
+          }
+          create: {
+            args: Prisma.ZoneImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>
+          }
+          createMany: {
+            args: Prisma.ZoneImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ZoneImageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>[]
+          }
+          delete: {
+            args: Prisma.ZoneImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>
+          }
+          update: {
+            args: Prisma.ZoneImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ZoneImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ZoneImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ZoneImageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>[]
+          }
+          upsert: {
+            args: Prisma.ZoneImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ZoneImagePayload>
+          }
+          aggregate: {
+            args: Prisma.ZoneImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateZoneImage>
+          }
+          groupBy: {
+            args: Prisma.ZoneImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ZoneImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ZoneImageCountArgs<ExtArgs>
+            result: $Utils.Optional<ZoneImageCountAggregateOutputType> | number
           }
         }
       }
@@ -1283,6 +1373,7 @@ export namespace Prisma {
     user?: UserOmit
     tower?: TowerOmit
     zone?: ZoneOmit
+    zoneImage?: ZoneImageOmit
     facility?: FacilityOmit
     facilityImage?: FacilityImageOmit
     unitType?: UnitTypeOmit
@@ -1398,10 +1489,12 @@ export namespace Prisma {
 
   export type ZoneCountOutputType = {
     facilities: number
+    images: number
   }
 
   export type ZoneCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     facilities?: boolean | ZoneCountOutputTypeCountFacilitiesArgs
+    images?: boolean | ZoneCountOutputTypeCountImagesArgs
   }
 
   // Custom InputTypes
@@ -1420,6 +1513,13 @@ export namespace Prisma {
    */
   export type ZoneCountOutputTypeCountFacilitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: FacilityWhereInput
+  }
+
+  /**
+   * ZoneCountOutputType without action
+   */
+  export type ZoneCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ZoneImageWhereInput
   }
 
 
@@ -3716,6 +3816,7 @@ export namespace Prisma {
     imageUrl?: boolean
     tower?: boolean | TowerDefaultArgs<ExtArgs>
     facilities?: boolean | Zone$facilitiesArgs<ExtArgs>
+    images?: boolean | Zone$imagesArgs<ExtArgs>
     _count?: boolean | ZoneCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["zone"]>
 
@@ -3752,6 +3853,7 @@ export namespace Prisma {
   export type ZoneInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tower?: boolean | TowerDefaultArgs<ExtArgs>
     facilities?: boolean | Zone$facilitiesArgs<ExtArgs>
+    images?: boolean | Zone$imagesArgs<ExtArgs>
     _count?: boolean | ZoneCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ZoneIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3766,6 +3868,7 @@ export namespace Prisma {
     objects: {
       tower: Prisma.$TowerPayload<ExtArgs>
       facilities: Prisma.$FacilityPayload<ExtArgs>[]
+      images: Prisma.$ZoneImagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4170,6 +4273,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tower<T extends TowerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TowerDefaultArgs<ExtArgs>>): Prisma__TowerClient<$Result.GetResult<Prisma.$TowerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     facilities<T extends Zone$facilitiesArgs<ExtArgs> = {}>(args?: Subset<T, Zone$facilitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    images<T extends Zone$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Zone$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4630,6 +4734,30 @@ export namespace Prisma {
   }
 
   /**
+   * Zone.images
+   */
+  export type Zone$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    where?: ZoneImageWhereInput
+    orderBy?: ZoneImageOrderByWithRelationInput | ZoneImageOrderByWithRelationInput[]
+    cursor?: ZoneImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ZoneImageScalarFieldEnum | ZoneImageScalarFieldEnum[]
+  }
+
+  /**
    * Zone without action
    */
   export type ZoneDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4645,6 +4773,1090 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ZoneInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ZoneImage
+   */
+
+  export type AggregateZoneImage = {
+    _count: ZoneImageCountAggregateOutputType | null
+    _avg: ZoneImageAvgAggregateOutputType | null
+    _sum: ZoneImageSumAggregateOutputType | null
+    _min: ZoneImageMinAggregateOutputType | null
+    _max: ZoneImageMaxAggregateOutputType | null
+  }
+
+  export type ZoneImageAvgAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type ZoneImageSumAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type ZoneImageMinAggregateOutputType = {
+    id: string | null
+    zoneId: string | null
+    imageUrl: string | null
+    sortOrder: number | null
+  }
+
+  export type ZoneImageMaxAggregateOutputType = {
+    id: string | null
+    zoneId: string | null
+    imageUrl: string | null
+    sortOrder: number | null
+  }
+
+  export type ZoneImageCountAggregateOutputType = {
+    id: number
+    zoneId: number
+    imageUrl: number
+    sortOrder: number
+    _all: number
+  }
+
+
+  export type ZoneImageAvgAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type ZoneImageSumAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type ZoneImageMinAggregateInputType = {
+    id?: true
+    zoneId?: true
+    imageUrl?: true
+    sortOrder?: true
+  }
+
+  export type ZoneImageMaxAggregateInputType = {
+    id?: true
+    zoneId?: true
+    imageUrl?: true
+    sortOrder?: true
+  }
+
+  export type ZoneImageCountAggregateInputType = {
+    id?: true
+    zoneId?: true
+    imageUrl?: true
+    sortOrder?: true
+    _all?: true
+  }
+
+  export type ZoneImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ZoneImage to aggregate.
+     */
+    where?: ZoneImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZoneImages to fetch.
+     */
+    orderBy?: ZoneImageOrderByWithRelationInput | ZoneImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ZoneImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZoneImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZoneImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ZoneImages
+    **/
+    _count?: true | ZoneImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ZoneImageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ZoneImageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ZoneImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ZoneImageMaxAggregateInputType
+  }
+
+  export type GetZoneImageAggregateType<T extends ZoneImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateZoneImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateZoneImage[P]>
+      : GetScalarType<T[P], AggregateZoneImage[P]>
+  }
+
+
+
+
+  export type ZoneImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ZoneImageWhereInput
+    orderBy?: ZoneImageOrderByWithAggregationInput | ZoneImageOrderByWithAggregationInput[]
+    by: ZoneImageScalarFieldEnum[] | ZoneImageScalarFieldEnum
+    having?: ZoneImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ZoneImageCountAggregateInputType | true
+    _avg?: ZoneImageAvgAggregateInputType
+    _sum?: ZoneImageSumAggregateInputType
+    _min?: ZoneImageMinAggregateInputType
+    _max?: ZoneImageMaxAggregateInputType
+  }
+
+  export type ZoneImageGroupByOutputType = {
+    id: string
+    zoneId: string
+    imageUrl: string
+    sortOrder: number
+    _count: ZoneImageCountAggregateOutputType | null
+    _avg: ZoneImageAvgAggregateOutputType | null
+    _sum: ZoneImageSumAggregateOutputType | null
+    _min: ZoneImageMinAggregateOutputType | null
+    _max: ZoneImageMaxAggregateOutputType | null
+  }
+
+  type GetZoneImageGroupByPayload<T extends ZoneImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ZoneImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ZoneImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ZoneImageGroupByOutputType[P]>
+            : GetScalarType<T[P], ZoneImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ZoneImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    zoneId?: boolean
+    imageUrl?: boolean
+    sortOrder?: boolean
+    zone?: boolean | ZoneDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["zoneImage"]>
+
+  export type ZoneImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    zoneId?: boolean
+    imageUrl?: boolean
+    sortOrder?: boolean
+    zone?: boolean | ZoneDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["zoneImage"]>
+
+  export type ZoneImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    zoneId?: boolean
+    imageUrl?: boolean
+    sortOrder?: boolean
+    zone?: boolean | ZoneDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["zoneImage"]>
+
+  export type ZoneImageSelectScalar = {
+    id?: boolean
+    zoneId?: boolean
+    imageUrl?: boolean
+    sortOrder?: boolean
+  }
+
+  export type ZoneImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "zoneId" | "imageUrl" | "sortOrder", ExtArgs["result"]["zoneImage"]>
+  export type ZoneImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    zone?: boolean | ZoneDefaultArgs<ExtArgs>
+  }
+  export type ZoneImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    zone?: boolean | ZoneDefaultArgs<ExtArgs>
+  }
+  export type ZoneImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    zone?: boolean | ZoneDefaultArgs<ExtArgs>
+  }
+
+  export type $ZoneImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ZoneImage"
+    objects: {
+      zone: Prisma.$ZonePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      zoneId: string
+      imageUrl: string
+      sortOrder: number
+    }, ExtArgs["result"]["zoneImage"]>
+    composites: {}
+  }
+
+  type ZoneImageGetPayload<S extends boolean | null | undefined | ZoneImageDefaultArgs> = $Result.GetResult<Prisma.$ZoneImagePayload, S>
+
+  type ZoneImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ZoneImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ZoneImageCountAggregateInputType | true
+    }
+
+  export interface ZoneImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ZoneImage'], meta: { name: 'ZoneImage' } }
+    /**
+     * Find zero or one ZoneImage that matches the filter.
+     * @param {ZoneImageFindUniqueArgs} args - Arguments to find a ZoneImage
+     * @example
+     * // Get one ZoneImage
+     * const zoneImage = await prisma.zoneImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ZoneImageFindUniqueArgs>(args: SelectSubset<T, ZoneImageFindUniqueArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ZoneImage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ZoneImageFindUniqueOrThrowArgs} args - Arguments to find a ZoneImage
+     * @example
+     * // Get one ZoneImage
+     * const zoneImage = await prisma.zoneImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ZoneImageFindUniqueOrThrowArgs>(args: SelectSubset<T, ZoneImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ZoneImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZoneImageFindFirstArgs} args - Arguments to find a ZoneImage
+     * @example
+     * // Get one ZoneImage
+     * const zoneImage = await prisma.zoneImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ZoneImageFindFirstArgs>(args?: SelectSubset<T, ZoneImageFindFirstArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ZoneImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZoneImageFindFirstOrThrowArgs} args - Arguments to find a ZoneImage
+     * @example
+     * // Get one ZoneImage
+     * const zoneImage = await prisma.zoneImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ZoneImageFindFirstOrThrowArgs>(args?: SelectSubset<T, ZoneImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ZoneImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZoneImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ZoneImages
+     * const zoneImages = await prisma.zoneImage.findMany()
+     * 
+     * // Get first 10 ZoneImages
+     * const zoneImages = await prisma.zoneImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const zoneImageWithIdOnly = await prisma.zoneImage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ZoneImageFindManyArgs>(args?: SelectSubset<T, ZoneImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ZoneImage.
+     * @param {ZoneImageCreateArgs} args - Arguments to create a ZoneImage.
+     * @example
+     * // Create one ZoneImage
+     * const ZoneImage = await prisma.zoneImage.create({
+     *   data: {
+     *     // ... data to create a ZoneImage
+     *   }
+     * })
+     * 
+     */
+    create<T extends ZoneImageCreateArgs>(args: SelectSubset<T, ZoneImageCreateArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ZoneImages.
+     * @param {ZoneImageCreateManyArgs} args - Arguments to create many ZoneImages.
+     * @example
+     * // Create many ZoneImages
+     * const zoneImage = await prisma.zoneImage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ZoneImageCreateManyArgs>(args?: SelectSubset<T, ZoneImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ZoneImages and returns the data saved in the database.
+     * @param {ZoneImageCreateManyAndReturnArgs} args - Arguments to create many ZoneImages.
+     * @example
+     * // Create many ZoneImages
+     * const zoneImage = await prisma.zoneImage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ZoneImages and only return the `id`
+     * const zoneImageWithIdOnly = await prisma.zoneImage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ZoneImageCreateManyAndReturnArgs>(args?: SelectSubset<T, ZoneImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ZoneImage.
+     * @param {ZoneImageDeleteArgs} args - Arguments to delete one ZoneImage.
+     * @example
+     * // Delete one ZoneImage
+     * const ZoneImage = await prisma.zoneImage.delete({
+     *   where: {
+     *     // ... filter to delete one ZoneImage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ZoneImageDeleteArgs>(args: SelectSubset<T, ZoneImageDeleteArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ZoneImage.
+     * @param {ZoneImageUpdateArgs} args - Arguments to update one ZoneImage.
+     * @example
+     * // Update one ZoneImage
+     * const zoneImage = await prisma.zoneImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ZoneImageUpdateArgs>(args: SelectSubset<T, ZoneImageUpdateArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ZoneImages.
+     * @param {ZoneImageDeleteManyArgs} args - Arguments to filter ZoneImages to delete.
+     * @example
+     * // Delete a few ZoneImages
+     * const { count } = await prisma.zoneImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ZoneImageDeleteManyArgs>(args?: SelectSubset<T, ZoneImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ZoneImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZoneImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ZoneImages
+     * const zoneImage = await prisma.zoneImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ZoneImageUpdateManyArgs>(args: SelectSubset<T, ZoneImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ZoneImages and returns the data updated in the database.
+     * @param {ZoneImageUpdateManyAndReturnArgs} args - Arguments to update many ZoneImages.
+     * @example
+     * // Update many ZoneImages
+     * const zoneImage = await prisma.zoneImage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ZoneImages and only return the `id`
+     * const zoneImageWithIdOnly = await prisma.zoneImage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ZoneImageUpdateManyAndReturnArgs>(args: SelectSubset<T, ZoneImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ZoneImage.
+     * @param {ZoneImageUpsertArgs} args - Arguments to update or create a ZoneImage.
+     * @example
+     * // Update or create a ZoneImage
+     * const zoneImage = await prisma.zoneImage.upsert({
+     *   create: {
+     *     // ... data to create a ZoneImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ZoneImage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ZoneImageUpsertArgs>(args: SelectSubset<T, ZoneImageUpsertArgs<ExtArgs>>): Prisma__ZoneImageClient<$Result.GetResult<Prisma.$ZoneImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ZoneImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZoneImageCountArgs} args - Arguments to filter ZoneImages to count.
+     * @example
+     * // Count the number of ZoneImages
+     * const count = await prisma.zoneImage.count({
+     *   where: {
+     *     // ... the filter for the ZoneImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends ZoneImageCountArgs>(
+      args?: Subset<T, ZoneImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ZoneImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ZoneImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZoneImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ZoneImageAggregateArgs>(args: Subset<T, ZoneImageAggregateArgs>): Prisma.PrismaPromise<GetZoneImageAggregateType<T>>
+
+    /**
+     * Group by ZoneImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ZoneImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ZoneImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ZoneImageGroupByArgs['orderBy'] }
+        : { orderBy?: ZoneImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ZoneImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetZoneImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ZoneImage model
+   */
+  readonly fields: ZoneImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ZoneImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ZoneImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    zone<T extends ZoneDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ZoneDefaultArgs<ExtArgs>>): Prisma__ZoneClient<$Result.GetResult<Prisma.$ZonePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ZoneImage model
+   */
+  interface ZoneImageFieldRefs {
+    readonly id: FieldRef<"ZoneImage", 'String'>
+    readonly zoneId: FieldRef<"ZoneImage", 'String'>
+    readonly imageUrl: FieldRef<"ZoneImage", 'String'>
+    readonly sortOrder: FieldRef<"ZoneImage", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ZoneImage findUnique
+   */
+  export type ZoneImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ZoneImage to fetch.
+     */
+    where: ZoneImageWhereUniqueInput
+  }
+
+  /**
+   * ZoneImage findUniqueOrThrow
+   */
+  export type ZoneImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ZoneImage to fetch.
+     */
+    where: ZoneImageWhereUniqueInput
+  }
+
+  /**
+   * ZoneImage findFirst
+   */
+  export type ZoneImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ZoneImage to fetch.
+     */
+    where?: ZoneImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZoneImages to fetch.
+     */
+    orderBy?: ZoneImageOrderByWithRelationInput | ZoneImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ZoneImages.
+     */
+    cursor?: ZoneImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZoneImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZoneImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ZoneImages.
+     */
+    distinct?: ZoneImageScalarFieldEnum | ZoneImageScalarFieldEnum[]
+  }
+
+  /**
+   * ZoneImage findFirstOrThrow
+   */
+  export type ZoneImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ZoneImage to fetch.
+     */
+    where?: ZoneImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZoneImages to fetch.
+     */
+    orderBy?: ZoneImageOrderByWithRelationInput | ZoneImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ZoneImages.
+     */
+    cursor?: ZoneImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZoneImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZoneImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ZoneImages.
+     */
+    distinct?: ZoneImageScalarFieldEnum | ZoneImageScalarFieldEnum[]
+  }
+
+  /**
+   * ZoneImage findMany
+   */
+  export type ZoneImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * Filter, which ZoneImages to fetch.
+     */
+    where?: ZoneImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ZoneImages to fetch.
+     */
+    orderBy?: ZoneImageOrderByWithRelationInput | ZoneImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ZoneImages.
+     */
+    cursor?: ZoneImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ZoneImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ZoneImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ZoneImages.
+     */
+    distinct?: ZoneImageScalarFieldEnum | ZoneImageScalarFieldEnum[]
+  }
+
+  /**
+   * ZoneImage create
+   */
+  export type ZoneImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ZoneImage.
+     */
+    data: XOR<ZoneImageCreateInput, ZoneImageUncheckedCreateInput>
+  }
+
+  /**
+   * ZoneImage createMany
+   */
+  export type ZoneImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ZoneImages.
+     */
+    data: ZoneImageCreateManyInput | ZoneImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ZoneImage createManyAndReturn
+   */
+  export type ZoneImageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * The data used to create many ZoneImages.
+     */
+    data: ZoneImageCreateManyInput | ZoneImageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ZoneImage update
+   */
+  export type ZoneImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ZoneImage.
+     */
+    data: XOR<ZoneImageUpdateInput, ZoneImageUncheckedUpdateInput>
+    /**
+     * Choose, which ZoneImage to update.
+     */
+    where: ZoneImageWhereUniqueInput
+  }
+
+  /**
+   * ZoneImage updateMany
+   */
+  export type ZoneImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ZoneImages.
+     */
+    data: XOR<ZoneImageUpdateManyMutationInput, ZoneImageUncheckedUpdateManyInput>
+    /**
+     * Filter which ZoneImages to update
+     */
+    where?: ZoneImageWhereInput
+    /**
+     * Limit how many ZoneImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ZoneImage updateManyAndReturn
+   */
+  export type ZoneImageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * The data used to update ZoneImages.
+     */
+    data: XOR<ZoneImageUpdateManyMutationInput, ZoneImageUncheckedUpdateManyInput>
+    /**
+     * Filter which ZoneImages to update
+     */
+    where?: ZoneImageWhereInput
+    /**
+     * Limit how many ZoneImages to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ZoneImage upsert
+   */
+  export type ZoneImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ZoneImage to update in case it exists.
+     */
+    where: ZoneImageWhereUniqueInput
+    /**
+     * In case the ZoneImage found by the `where` argument doesn't exist, create a new ZoneImage with this data.
+     */
+    create: XOR<ZoneImageCreateInput, ZoneImageUncheckedCreateInput>
+    /**
+     * In case the ZoneImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ZoneImageUpdateInput, ZoneImageUncheckedUpdateInput>
+  }
+
+  /**
+   * ZoneImage delete
+   */
+  export type ZoneImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
+    /**
+     * Filter which ZoneImage to delete.
+     */
+    where: ZoneImageWhereUniqueInput
+  }
+
+  /**
+   * ZoneImage deleteMany
+   */
+  export type ZoneImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ZoneImages to delete
+     */
+    where?: ZoneImageWhereInput
+    /**
+     * Limit how many ZoneImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ZoneImage without action
+   */
+  export type ZoneImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ZoneImage
+     */
+    select?: ZoneImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ZoneImage
+     */
+    omit?: ZoneImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ZoneImageInclude<ExtArgs> | null
   }
 
 
@@ -6896,7 +8108,6 @@ export namespace Prisma {
     totalUnits: number | null
     areaSGA: number | null
     description: string | null
-    imageUrl: string | null
   }
 
   export type UnitTypeMaxAggregateOutputType = {
@@ -6907,7 +8118,6 @@ export namespace Prisma {
     totalUnits: number | null
     areaSGA: number | null
     description: string | null
-    imageUrl: string | null
   }
 
   export type UnitTypeCountAggregateOutputType = {
@@ -6918,7 +8128,7 @@ export namespace Prisma {
     totalUnits: number
     areaSGA: number
     description: number
-    imageUrl: number
+    images: number
     _all: number
   }
 
@@ -6941,7 +8151,6 @@ export namespace Prisma {
     totalUnits?: true
     areaSGA?: true
     description?: true
-    imageUrl?: true
   }
 
   export type UnitTypeMaxAggregateInputType = {
@@ -6952,7 +8161,6 @@ export namespace Prisma {
     totalUnits?: true
     areaSGA?: true
     description?: true
-    imageUrl?: true
   }
 
   export type UnitTypeCountAggregateInputType = {
@@ -6963,7 +8171,7 @@ export namespace Prisma {
     totalUnits?: true
     areaSGA?: true
     description?: true
-    imageUrl?: true
+    images?: true
     _all?: true
   }
 
@@ -7061,7 +8269,7 @@ export namespace Prisma {
     totalUnits: number | null
     areaSGA: number | null
     description: string | null
-    imageUrl: string | null
+    images: string[]
     _count: UnitTypeCountAggregateOutputType | null
     _avg: UnitTypeAvgAggregateOutputType | null
     _sum: UnitTypeSumAggregateOutputType | null
@@ -7091,7 +8299,7 @@ export namespace Prisma {
     totalUnits?: boolean
     areaSGA?: boolean
     description?: boolean
-    imageUrl?: boolean
+    images?: boolean
     facility?: boolean | FacilityDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["unitType"]>
 
@@ -7103,7 +8311,7 @@ export namespace Prisma {
     totalUnits?: boolean
     areaSGA?: boolean
     description?: boolean
-    imageUrl?: boolean
+    images?: boolean
     facility?: boolean | FacilityDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["unitType"]>
 
@@ -7115,7 +8323,7 @@ export namespace Prisma {
     totalUnits?: boolean
     areaSGA?: boolean
     description?: boolean
-    imageUrl?: boolean
+    images?: boolean
     facility?: boolean | FacilityDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["unitType"]>
 
@@ -7127,10 +8335,10 @@ export namespace Prisma {
     totalUnits?: boolean
     areaSGA?: boolean
     description?: boolean
-    imageUrl?: boolean
+    images?: boolean
   }
 
-  export type UnitTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "facilityId" | "name" | "category" | "totalUnits" | "areaSGA" | "description" | "imageUrl", ExtArgs["result"]["unitType"]>
+  export type UnitTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "facilityId" | "name" | "category" | "totalUnits" | "areaSGA" | "description" | "images", ExtArgs["result"]["unitType"]>
   export type UnitTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     facility?: boolean | FacilityDefaultArgs<ExtArgs>
   }
@@ -7154,7 +8362,7 @@ export namespace Prisma {
       totalUnits: number | null
       areaSGA: number | null
       description: string | null
-      imageUrl: string | null
+      images: string[]
     }, ExtArgs["result"]["unitType"]>
     composites: {}
   }
@@ -7586,7 +8794,7 @@ export namespace Prisma {
     readonly totalUnits: FieldRef<"UnitType", 'Int'>
     readonly areaSGA: FieldRef<"UnitType", 'Float'>
     readonly description: FieldRef<"UnitType", 'String'>
-    readonly imageUrl: FieldRef<"UnitType", 'String'>
+    readonly images: FieldRef<"UnitType", 'String[]'>
   }
     
 
@@ -8054,6 +9262,16 @@ export namespace Prisma {
   export type ZoneScalarFieldEnum = (typeof ZoneScalarFieldEnum)[keyof typeof ZoneScalarFieldEnum]
 
 
+  export const ZoneImageScalarFieldEnum: {
+    id: 'id',
+    zoneId: 'zoneId',
+    imageUrl: 'imageUrl',
+    sortOrder: 'sortOrder'
+  };
+
+  export type ZoneImageScalarFieldEnum = (typeof ZoneImageScalarFieldEnum)[keyof typeof ZoneImageScalarFieldEnum]
+
+
   export const FacilityScalarFieldEnum: {
     id: 'id',
     zoneId: 'zoneId',
@@ -8084,7 +9302,7 @@ export namespace Prisma {
     totalUnits: 'totalUnits',
     areaSGA: 'areaSGA',
     description: 'description',
-    imageUrl: 'imageUrl'
+    images: 'images'
   };
 
   export type UnitTypeScalarFieldEnum = (typeof UnitTypeScalarFieldEnum)[keyof typeof UnitTypeScalarFieldEnum]
@@ -8162,13 +9380,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -8179,6 +9390,13 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -8318,6 +9536,7 @@ export namespace Prisma {
     imageUrl?: StringNullableFilter<"Zone"> | string | null
     tower?: XOR<TowerScalarRelationFilter, TowerWhereInput>
     facilities?: FacilityListRelationFilter
+    images?: ZoneImageListRelationFilter
   }
 
   export type ZoneOrderByWithRelationInput = {
@@ -8329,6 +9548,7 @@ export namespace Prisma {
     imageUrl?: SortOrderInput | SortOrder
     tower?: TowerOrderByWithRelationInput
     facilities?: FacilityOrderByRelationAggregateInput
+    images?: ZoneImageOrderByRelationAggregateInput
   }
 
   export type ZoneWhereUniqueInput = Prisma.AtLeast<{
@@ -8343,6 +9563,7 @@ export namespace Prisma {
     imageUrl?: StringNullableFilter<"Zone"> | string | null
     tower?: XOR<TowerScalarRelationFilter, TowerWhereInput>
     facilities?: FacilityListRelationFilter
+    images?: ZoneImageListRelationFilter
   }, "id">
 
   export type ZoneOrderByWithAggregationInput = {
@@ -8367,6 +9588,58 @@ export namespace Prisma {
     floorsRange?: StringWithAggregatesFilter<"Zone"> | string
     points?: StringNullableWithAggregatesFilter<"Zone"> | string | null
     imageUrl?: StringNullableWithAggregatesFilter<"Zone"> | string | null
+  }
+
+  export type ZoneImageWhereInput = {
+    AND?: ZoneImageWhereInput | ZoneImageWhereInput[]
+    OR?: ZoneImageWhereInput[]
+    NOT?: ZoneImageWhereInput | ZoneImageWhereInput[]
+    id?: StringFilter<"ZoneImage"> | string
+    zoneId?: StringFilter<"ZoneImage"> | string
+    imageUrl?: StringFilter<"ZoneImage"> | string
+    sortOrder?: IntFilter<"ZoneImage"> | number
+    zone?: XOR<ZoneScalarRelationFilter, ZoneWhereInput>
+  }
+
+  export type ZoneImageOrderByWithRelationInput = {
+    id?: SortOrder
+    zoneId?: SortOrder
+    imageUrl?: SortOrder
+    sortOrder?: SortOrder
+    zone?: ZoneOrderByWithRelationInput
+  }
+
+  export type ZoneImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ZoneImageWhereInput | ZoneImageWhereInput[]
+    OR?: ZoneImageWhereInput[]
+    NOT?: ZoneImageWhereInput | ZoneImageWhereInput[]
+    zoneId?: StringFilter<"ZoneImage"> | string
+    imageUrl?: StringFilter<"ZoneImage"> | string
+    sortOrder?: IntFilter<"ZoneImage"> | number
+    zone?: XOR<ZoneScalarRelationFilter, ZoneWhereInput>
+  }, "id">
+
+  export type ZoneImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    zoneId?: SortOrder
+    imageUrl?: SortOrder
+    sortOrder?: SortOrder
+    _count?: ZoneImageCountOrderByAggregateInput
+    _avg?: ZoneImageAvgOrderByAggregateInput
+    _max?: ZoneImageMaxOrderByAggregateInput
+    _min?: ZoneImageMinOrderByAggregateInput
+    _sum?: ZoneImageSumOrderByAggregateInput
+  }
+
+  export type ZoneImageScalarWhereWithAggregatesInput = {
+    AND?: ZoneImageScalarWhereWithAggregatesInput | ZoneImageScalarWhereWithAggregatesInput[]
+    OR?: ZoneImageScalarWhereWithAggregatesInput[]
+    NOT?: ZoneImageScalarWhereWithAggregatesInput | ZoneImageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ZoneImage"> | string
+    zoneId?: StringWithAggregatesFilter<"ZoneImage"> | string
+    imageUrl?: StringWithAggregatesFilter<"ZoneImage"> | string
+    sortOrder?: IntWithAggregatesFilter<"ZoneImage"> | number
   }
 
   export type FacilityWhereInput = {
@@ -8498,7 +9771,7 @@ export namespace Prisma {
     totalUnits?: IntNullableFilter<"UnitType"> | number | null
     areaSGA?: FloatNullableFilter<"UnitType"> | number | null
     description?: StringNullableFilter<"UnitType"> | string | null
-    imageUrl?: StringNullableFilter<"UnitType"> | string | null
+    images?: StringNullableListFilter<"UnitType">
     facility?: XOR<FacilityScalarRelationFilter, FacilityWhereInput>
   }
 
@@ -8510,7 +9783,7 @@ export namespace Prisma {
     totalUnits?: SortOrderInput | SortOrder
     areaSGA?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    imageUrl?: SortOrderInput | SortOrder
+    images?: SortOrder
     facility?: FacilityOrderByWithRelationInput
   }
 
@@ -8525,7 +9798,7 @@ export namespace Prisma {
     totalUnits?: IntNullableFilter<"UnitType"> | number | null
     areaSGA?: FloatNullableFilter<"UnitType"> | number | null
     description?: StringNullableFilter<"UnitType"> | string | null
-    imageUrl?: StringNullableFilter<"UnitType"> | string | null
+    images?: StringNullableListFilter<"UnitType">
     facility?: XOR<FacilityScalarRelationFilter, FacilityWhereInput>
   }, "id">
 
@@ -8537,7 +9810,7 @@ export namespace Prisma {
     totalUnits?: SortOrderInput | SortOrder
     areaSGA?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
-    imageUrl?: SortOrderInput | SortOrder
+    images?: SortOrder
     _count?: UnitTypeCountOrderByAggregateInput
     _avg?: UnitTypeAvgOrderByAggregateInput
     _max?: UnitTypeMaxOrderByAggregateInput
@@ -8556,7 +9829,7 @@ export namespace Prisma {
     totalUnits?: IntNullableWithAggregatesFilter<"UnitType"> | number | null
     areaSGA?: FloatNullableWithAggregatesFilter<"UnitType"> | number | null
     description?: StringNullableWithAggregatesFilter<"UnitType"> | string | null
-    imageUrl?: StringNullableWithAggregatesFilter<"UnitType"> | string | null
+    images?: StringNullableListFilter<"UnitType">
   }
 
   export type UserCreateInput = {
@@ -8683,6 +9956,7 @@ export namespace Prisma {
     imageUrl?: string | null
     tower: TowerCreateNestedOneWithoutZonesInput
     facilities?: FacilityCreateNestedManyWithoutZoneInput
+    images?: ZoneImageCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUncheckedCreateInput = {
@@ -8693,6 +9967,7 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     facilities?: FacilityUncheckedCreateNestedManyWithoutZoneInput
+    images?: ZoneImageUncheckedCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUpdateInput = {
@@ -8703,6 +9978,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tower?: TowerUpdateOneRequiredWithoutZonesNestedInput
     facilities?: FacilityUpdateManyWithoutZoneNestedInput
+    images?: ZoneImageUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateInput = {
@@ -8713,6 +9989,7 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     facilities?: FacilityUncheckedUpdateManyWithoutZoneNestedInput
+    images?: ZoneImageUncheckedUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneCreateManyInput = {
@@ -8739,6 +10016,54 @@ export namespace Prisma {
     floorsRange?: StringFieldUpdateOperationsInput | string
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ZoneImageCreateInput = {
+    id?: string
+    imageUrl: string
+    sortOrder?: number
+    zone: ZoneCreateNestedOneWithoutImagesInput
+  }
+
+  export type ZoneImageUncheckedCreateInput = {
+    id?: string
+    zoneId: string
+    imageUrl: string
+    sortOrder?: number
+  }
+
+  export type ZoneImageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    zone?: ZoneUpdateOneRequiredWithoutImagesNestedInput
+  }
+
+  export type ZoneImageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    zoneId?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ZoneImageCreateManyInput = {
+    id?: string
+    zoneId: string
+    imageUrl: string
+    sortOrder?: number
+  }
+
+  export type ZoneImageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ZoneImageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    zoneId?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
   }
 
   export type FacilityCreateInput = {
@@ -8866,7 +10191,7 @@ export namespace Prisma {
     totalUnits?: number | null
     areaSGA?: number | null
     description?: string | null
-    imageUrl?: string | null
+    images?: UnitTypeCreateimagesInput | string[]
     facility: FacilityCreateNestedOneWithoutUnitTypesInput
   }
 
@@ -8878,7 +10203,7 @@ export namespace Prisma {
     totalUnits?: number | null
     areaSGA?: number | null
     description?: string | null
-    imageUrl?: string | null
+    images?: UnitTypeCreateimagesInput | string[]
   }
 
   export type UnitTypeUpdateInput = {
@@ -8888,7 +10213,7 @@ export namespace Prisma {
     totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
     areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: UnitTypeUpdateimagesInput | string[]
     facility?: FacilityUpdateOneRequiredWithoutUnitTypesNestedInput
   }
 
@@ -8900,7 +10225,7 @@ export namespace Prisma {
     totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
     areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: UnitTypeUpdateimagesInput | string[]
   }
 
   export type UnitTypeCreateManyInput = {
@@ -8911,7 +10236,7 @@ export namespace Prisma {
     totalUnits?: number | null
     areaSGA?: number | null
     description?: string | null
-    imageUrl?: string | null
+    images?: UnitTypeCreateimagesInput | string[]
   }
 
   export type UnitTypeUpdateManyMutationInput = {
@@ -8921,7 +10246,7 @@ export namespace Prisma {
     totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
     areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: UnitTypeUpdateimagesInput | string[]
   }
 
   export type UnitTypeUncheckedUpdateManyInput = {
@@ -8932,7 +10257,7 @@ export namespace Prisma {
     totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
     areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: UnitTypeUpdateimagesInput | string[]
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -9094,12 +10419,22 @@ export namespace Prisma {
     none?: FacilityWhereInput
   }
 
+  export type ZoneImageListRelationFilter = {
+    every?: ZoneImageWhereInput
+    some?: ZoneImageWhereInput
+    none?: ZoneImageWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type FacilityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ZoneImageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9148,9 +10483,65 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type ZoneScalarRelationFilter = {
     is?: ZoneWhereInput
     isNot?: ZoneWhereInput
+  }
+
+  export type ZoneImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    zoneId?: SortOrder
+    imageUrl?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type ZoneImageAvgOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type ZoneImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    zoneId?: SortOrder
+    imageUrl?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type ZoneImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    zoneId?: SortOrder
+    imageUrl?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type ZoneImageSumOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type FacilityImageListRelationFilter = {
@@ -9202,17 +10593,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type FacilityScalarRelationFilter = {
     is?: FacilityWhereInput
     isNot?: FacilityWhereInput
@@ -9258,22 +10638,6 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -9296,6 +10660,14 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type UnitTypeCountOrderByAggregateInput = {
     id?: SortOrder
     facilityId?: SortOrder
@@ -9304,7 +10676,7 @@ export namespace Prisma {
     totalUnits?: SortOrder
     areaSGA?: SortOrder
     description?: SortOrder
-    imageUrl?: SortOrder
+    images?: SortOrder
   }
 
   export type UnitTypeAvgOrderByAggregateInput = {
@@ -9320,7 +10692,6 @@ export namespace Prisma {
     totalUnits?: SortOrder
     areaSGA?: SortOrder
     description?: SortOrder
-    imageUrl?: SortOrder
   }
 
   export type UnitTypeMinOrderByAggregateInput = {
@@ -9331,7 +10702,6 @@ export namespace Prisma {
     totalUnits?: SortOrder
     areaSGA?: SortOrder
     description?: SortOrder
-    imageUrl?: SortOrder
   }
 
   export type UnitTypeSumOrderByAggregateInput = {
@@ -9438,11 +10808,25 @@ export namespace Prisma {
     connect?: FacilityWhereUniqueInput | FacilityWhereUniqueInput[]
   }
 
+  export type ZoneImageCreateNestedManyWithoutZoneInput = {
+    create?: XOR<ZoneImageCreateWithoutZoneInput, ZoneImageUncheckedCreateWithoutZoneInput> | ZoneImageCreateWithoutZoneInput[] | ZoneImageUncheckedCreateWithoutZoneInput[]
+    connectOrCreate?: ZoneImageCreateOrConnectWithoutZoneInput | ZoneImageCreateOrConnectWithoutZoneInput[]
+    createMany?: ZoneImageCreateManyZoneInputEnvelope
+    connect?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+  }
+
   export type FacilityUncheckedCreateNestedManyWithoutZoneInput = {
     create?: XOR<FacilityCreateWithoutZoneInput, FacilityUncheckedCreateWithoutZoneInput> | FacilityCreateWithoutZoneInput[] | FacilityUncheckedCreateWithoutZoneInput[]
     connectOrCreate?: FacilityCreateOrConnectWithoutZoneInput | FacilityCreateOrConnectWithoutZoneInput[]
     createMany?: FacilityCreateManyZoneInputEnvelope
     connect?: FacilityWhereUniqueInput | FacilityWhereUniqueInput[]
+  }
+
+  export type ZoneImageUncheckedCreateNestedManyWithoutZoneInput = {
+    create?: XOR<ZoneImageCreateWithoutZoneInput, ZoneImageUncheckedCreateWithoutZoneInput> | ZoneImageCreateWithoutZoneInput[] | ZoneImageUncheckedCreateWithoutZoneInput[]
+    connectOrCreate?: ZoneImageCreateOrConnectWithoutZoneInput | ZoneImageCreateOrConnectWithoutZoneInput[]
+    createMany?: ZoneImageCreateManyZoneInputEnvelope
+    connect?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -9471,6 +10855,20 @@ export namespace Prisma {
     deleteMany?: FacilityScalarWhereInput | FacilityScalarWhereInput[]
   }
 
+  export type ZoneImageUpdateManyWithoutZoneNestedInput = {
+    create?: XOR<ZoneImageCreateWithoutZoneInput, ZoneImageUncheckedCreateWithoutZoneInput> | ZoneImageCreateWithoutZoneInput[] | ZoneImageUncheckedCreateWithoutZoneInput[]
+    connectOrCreate?: ZoneImageCreateOrConnectWithoutZoneInput | ZoneImageCreateOrConnectWithoutZoneInput[]
+    upsert?: ZoneImageUpsertWithWhereUniqueWithoutZoneInput | ZoneImageUpsertWithWhereUniqueWithoutZoneInput[]
+    createMany?: ZoneImageCreateManyZoneInputEnvelope
+    set?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    disconnect?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    delete?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    connect?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    update?: ZoneImageUpdateWithWhereUniqueWithoutZoneInput | ZoneImageUpdateWithWhereUniqueWithoutZoneInput[]
+    updateMany?: ZoneImageUpdateManyWithWhereWithoutZoneInput | ZoneImageUpdateManyWithWhereWithoutZoneInput[]
+    deleteMany?: ZoneImageScalarWhereInput | ZoneImageScalarWhereInput[]
+  }
+
   export type FacilityUncheckedUpdateManyWithoutZoneNestedInput = {
     create?: XOR<FacilityCreateWithoutZoneInput, FacilityUncheckedCreateWithoutZoneInput> | FacilityCreateWithoutZoneInput[] | FacilityUncheckedCreateWithoutZoneInput[]
     connectOrCreate?: FacilityCreateOrConnectWithoutZoneInput | FacilityCreateOrConnectWithoutZoneInput[]
@@ -9483,6 +10881,42 @@ export namespace Prisma {
     update?: FacilityUpdateWithWhereUniqueWithoutZoneInput | FacilityUpdateWithWhereUniqueWithoutZoneInput[]
     updateMany?: FacilityUpdateManyWithWhereWithoutZoneInput | FacilityUpdateManyWithWhereWithoutZoneInput[]
     deleteMany?: FacilityScalarWhereInput | FacilityScalarWhereInput[]
+  }
+
+  export type ZoneImageUncheckedUpdateManyWithoutZoneNestedInput = {
+    create?: XOR<ZoneImageCreateWithoutZoneInput, ZoneImageUncheckedCreateWithoutZoneInput> | ZoneImageCreateWithoutZoneInput[] | ZoneImageUncheckedCreateWithoutZoneInput[]
+    connectOrCreate?: ZoneImageCreateOrConnectWithoutZoneInput | ZoneImageCreateOrConnectWithoutZoneInput[]
+    upsert?: ZoneImageUpsertWithWhereUniqueWithoutZoneInput | ZoneImageUpsertWithWhereUniqueWithoutZoneInput[]
+    createMany?: ZoneImageCreateManyZoneInputEnvelope
+    set?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    disconnect?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    delete?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    connect?: ZoneImageWhereUniqueInput | ZoneImageWhereUniqueInput[]
+    update?: ZoneImageUpdateWithWhereUniqueWithoutZoneInput | ZoneImageUpdateWithWhereUniqueWithoutZoneInput[]
+    updateMany?: ZoneImageUpdateManyWithWhereWithoutZoneInput | ZoneImageUpdateManyWithWhereWithoutZoneInput[]
+    deleteMany?: ZoneImageScalarWhereInput | ZoneImageScalarWhereInput[]
+  }
+
+  export type ZoneCreateNestedOneWithoutImagesInput = {
+    create?: XOR<ZoneCreateWithoutImagesInput, ZoneUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: ZoneCreateOrConnectWithoutImagesInput
+    connect?: ZoneWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ZoneUpdateOneRequiredWithoutImagesNestedInput = {
+    create?: XOR<ZoneCreateWithoutImagesInput, ZoneUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: ZoneCreateOrConnectWithoutImagesInput
+    upsert?: ZoneUpsertWithoutImagesInput
+    connect?: ZoneWhereUniqueInput
+    update?: XOR<XOR<ZoneUpdateToOneWithWhereWithoutImagesInput, ZoneUpdateWithoutImagesInput>, ZoneUncheckedUpdateWithoutImagesInput>
   }
 
   export type ZoneCreateNestedOneWithoutFacilitiesInput = {
@@ -9593,20 +11027,16 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type FacilityUpdateOneRequiredWithoutImagesNestedInput = {
     create?: XOR<FacilityCreateWithoutImagesInput, FacilityUncheckedCreateWithoutImagesInput>
     connectOrCreate?: FacilityCreateOrConnectWithoutImagesInput
     upsert?: FacilityUpsertWithoutImagesInput
     connect?: FacilityWhereUniqueInput
     update?: XOR<XOR<FacilityUpdateToOneWithWhereWithoutImagesInput, FacilityUpdateWithoutImagesInput>, FacilityUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type UnitTypeCreateimagesInput = {
+    set: string[]
   }
 
   export type FacilityCreateNestedOneWithoutUnitTypesInput = {
@@ -9629,6 +11059,11 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UnitTypeUpdateimagesInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type FacilityUpdateOneRequiredWithoutUnitTypesNestedInput = {
@@ -9765,19 +11200,6 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9803,6 +11225,19 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
@@ -9855,6 +11290,7 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     facilities?: FacilityCreateNestedManyWithoutZoneInput
+    images?: ZoneImageCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUncheckedCreateWithoutTowerInput = {
@@ -9864,6 +11300,7 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     facilities?: FacilityUncheckedCreateNestedManyWithoutZoneInput
+    images?: ZoneImageUncheckedCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneCreateOrConnectWithoutTowerInput = {
@@ -9949,6 +11386,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ZoneImageCreateWithoutZoneInput = {
+    id?: string
+    imageUrl: string
+    sortOrder?: number
+  }
+
+  export type ZoneImageUncheckedCreateWithoutZoneInput = {
+    id?: string
+    imageUrl: string
+    sortOrder?: number
+  }
+
+  export type ZoneImageCreateOrConnectWithoutZoneInput = {
+    where: ZoneImageWhereUniqueInput
+    create: XOR<ZoneImageCreateWithoutZoneInput, ZoneImageUncheckedCreateWithoutZoneInput>
+  }
+
+  export type ZoneImageCreateManyZoneInputEnvelope = {
+    data: ZoneImageCreateManyZoneInput | ZoneImageCreateManyZoneInput[]
+    skipDuplicates?: boolean
+  }
+
   export type TowerUpsertWithoutZonesInput = {
     update: XOR<TowerUpdateWithoutZonesInput, TowerUncheckedUpdateWithoutZonesInput>
     create: XOR<TowerCreateWithoutZonesInput, TowerUncheckedCreateWithoutZonesInput>
@@ -9999,6 +11458,88 @@ export namespace Prisma {
     description?: StringNullableFilter<"Facility"> | string | null
   }
 
+  export type ZoneImageUpsertWithWhereUniqueWithoutZoneInput = {
+    where: ZoneImageWhereUniqueInput
+    update: XOR<ZoneImageUpdateWithoutZoneInput, ZoneImageUncheckedUpdateWithoutZoneInput>
+    create: XOR<ZoneImageCreateWithoutZoneInput, ZoneImageUncheckedCreateWithoutZoneInput>
+  }
+
+  export type ZoneImageUpdateWithWhereUniqueWithoutZoneInput = {
+    where: ZoneImageWhereUniqueInput
+    data: XOR<ZoneImageUpdateWithoutZoneInput, ZoneImageUncheckedUpdateWithoutZoneInput>
+  }
+
+  export type ZoneImageUpdateManyWithWhereWithoutZoneInput = {
+    where: ZoneImageScalarWhereInput
+    data: XOR<ZoneImageUpdateManyMutationInput, ZoneImageUncheckedUpdateManyWithoutZoneInput>
+  }
+
+  export type ZoneImageScalarWhereInput = {
+    AND?: ZoneImageScalarWhereInput | ZoneImageScalarWhereInput[]
+    OR?: ZoneImageScalarWhereInput[]
+    NOT?: ZoneImageScalarWhereInput | ZoneImageScalarWhereInput[]
+    id?: StringFilter<"ZoneImage"> | string
+    zoneId?: StringFilter<"ZoneImage"> | string
+    imageUrl?: StringFilter<"ZoneImage"> | string
+    sortOrder?: IntFilter<"ZoneImage"> | number
+  }
+
+  export type ZoneCreateWithoutImagesInput = {
+    id?: string
+    categoryName: string
+    floorsRange: string
+    points?: string | null
+    imageUrl?: string | null
+    tower: TowerCreateNestedOneWithoutZonesInput
+    facilities?: FacilityCreateNestedManyWithoutZoneInput
+  }
+
+  export type ZoneUncheckedCreateWithoutImagesInput = {
+    id?: string
+    towerId: string
+    categoryName: string
+    floorsRange: string
+    points?: string | null
+    imageUrl?: string | null
+    facilities?: FacilityUncheckedCreateNestedManyWithoutZoneInput
+  }
+
+  export type ZoneCreateOrConnectWithoutImagesInput = {
+    where: ZoneWhereUniqueInput
+    create: XOR<ZoneCreateWithoutImagesInput, ZoneUncheckedCreateWithoutImagesInput>
+  }
+
+  export type ZoneUpsertWithoutImagesInput = {
+    update: XOR<ZoneUpdateWithoutImagesInput, ZoneUncheckedUpdateWithoutImagesInput>
+    create: XOR<ZoneCreateWithoutImagesInput, ZoneUncheckedCreateWithoutImagesInput>
+    where?: ZoneWhereInput
+  }
+
+  export type ZoneUpdateToOneWithWhereWithoutImagesInput = {
+    where?: ZoneWhereInput
+    data: XOR<ZoneUpdateWithoutImagesInput, ZoneUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type ZoneUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    categoryName?: StringFieldUpdateOperationsInput | string
+    floorsRange?: StringFieldUpdateOperationsInput | string
+    points?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tower?: TowerUpdateOneRequiredWithoutZonesNestedInput
+    facilities?: FacilityUpdateManyWithoutZoneNestedInput
+  }
+
+  export type ZoneUncheckedUpdateWithoutImagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    towerId?: StringFieldUpdateOperationsInput | string
+    categoryName?: StringFieldUpdateOperationsInput | string
+    floorsRange?: StringFieldUpdateOperationsInput | string
+    points?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    facilities?: FacilityUncheckedUpdateManyWithoutZoneNestedInput
+  }
+
   export type ZoneCreateWithoutFacilitiesInput = {
     id?: string
     categoryName: string
@@ -10006,6 +11547,7 @@ export namespace Prisma {
     points?: string | null
     imageUrl?: string | null
     tower: TowerCreateNestedOneWithoutZonesInput
+    images?: ZoneImageCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneUncheckedCreateWithoutFacilitiesInput = {
@@ -10015,6 +11557,7 @@ export namespace Prisma {
     floorsRange: string
     points?: string | null
     imageUrl?: string | null
+    images?: ZoneImageUncheckedCreateNestedManyWithoutZoneInput
   }
 
   export type ZoneCreateOrConnectWithoutFacilitiesInput = {
@@ -10053,7 +11596,7 @@ export namespace Prisma {
     totalUnits?: number | null
     areaSGA?: number | null
     description?: string | null
-    imageUrl?: string | null
+    images?: UnitTypeCreateimagesInput | string[]
   }
 
   export type UnitTypeUncheckedCreateWithoutFacilityInput = {
@@ -10063,7 +11606,7 @@ export namespace Prisma {
     totalUnits?: number | null
     areaSGA?: number | null
     description?: string | null
-    imageUrl?: string | null
+    images?: UnitTypeCreateimagesInput | string[]
   }
 
   export type UnitTypeCreateOrConnectWithoutFacilityInput = {
@@ -10094,6 +11637,7 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     tower?: TowerUpdateOneRequiredWithoutZonesNestedInput
+    images?: ZoneImageUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateWithoutFacilitiesInput = {
@@ -10103,6 +11647,7 @@ export namespace Prisma {
     floorsRange?: StringFieldUpdateOperationsInput | string
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: ZoneImageUncheckedUpdateManyWithoutZoneNestedInput
   }
 
   export type FacilityImageUpsertWithWhereUniqueWithoutFacilityInput = {
@@ -10159,7 +11704,7 @@ export namespace Prisma {
     totalUnits?: IntNullableFilter<"UnitType"> | number | null
     areaSGA?: FloatNullableFilter<"UnitType"> | number | null
     description?: StringNullableFilter<"UnitType"> | string | null
-    imageUrl?: StringNullableFilter<"UnitType"> | string | null
+    images?: StringNullableListFilter<"UnitType">
   }
 
   export type FacilityCreateWithoutImagesInput = {
@@ -10281,6 +11826,7 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     facilities?: FacilityUpdateManyWithoutZoneNestedInput
+    images?: ZoneImageUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateWithoutTowerInput = {
@@ -10290,6 +11836,7 @@ export namespace Prisma {
     points?: NullableStringFieldUpdateOperationsInput | string | null
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     facilities?: FacilityUncheckedUpdateManyWithoutZoneNestedInput
+    images?: ZoneImageUncheckedUpdateManyWithoutZoneNestedInput
   }
 
   export type ZoneUncheckedUpdateManyWithoutTowerInput = {
@@ -10305,6 +11852,12 @@ export namespace Prisma {
     title: string
     category: string
     description?: string | null
+  }
+
+  export type ZoneImageCreateManyZoneInput = {
+    id?: string
+    imageUrl: string
+    sortOrder?: number
   }
 
   export type FacilityUpdateWithoutZoneInput = {
@@ -10332,6 +11885,24 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type ZoneImageUpdateWithoutZoneInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ZoneImageUncheckedUpdateWithoutZoneInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ZoneImageUncheckedUpdateManyWithoutZoneInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+  }
+
   export type FacilityImageCreateManyFacilityInput = {
     id?: string
     imageUrl: string
@@ -10346,7 +11917,7 @@ export namespace Prisma {
     totalUnits?: number | null
     areaSGA?: number | null
     description?: string | null
-    imageUrl?: string | null
+    images?: UnitTypeCreateimagesInput | string[]
   }
 
   export type FacilityImageUpdateWithoutFacilityInput = {
@@ -10377,7 +11948,7 @@ export namespace Prisma {
     totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
     areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: UnitTypeUpdateimagesInput | string[]
   }
 
   export type UnitTypeUncheckedUpdateWithoutFacilityInput = {
@@ -10387,7 +11958,7 @@ export namespace Prisma {
     totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
     areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: UnitTypeUpdateimagesInput | string[]
   }
 
   export type UnitTypeUncheckedUpdateManyWithoutFacilityInput = {
@@ -10397,7 +11968,7 @@ export namespace Prisma {
     totalUnits?: NullableIntFieldUpdateOperationsInput | number | null
     areaSGA?: NullableFloatFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: UnitTypeUpdateimagesInput | string[]
   }
 
 

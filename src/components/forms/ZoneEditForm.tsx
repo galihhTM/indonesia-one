@@ -6,7 +6,7 @@ import { zoneSchema, ZoneFormData } from "@/lib/schemas/zone";
 import { updateZone } from "@/app/actions/zone";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Save, ArrowLeft, Code, UploadCloud, CheckCircle2 } from "lucide-react";
+import { Save, ArrowLeft, Code, UploadCloud, CheckCircle2, X } from "lucide-react";
 import { useUploadThing } from "@/lib/uploadthing";
 import { toast } from "sonner"; 
 import Link from "next/link";
@@ -18,6 +18,9 @@ export default function ZoneEditForm({ initialData }: { initialData: any }) {
   
   const [imagePreview, setImagePreview] = useState<string | null>(initialData?.imageUrl || null);
   const { startUpload, isUploading } = useUploadThing("zoneImage");
+
+  const [galleryImages, setGalleryImages] = useState<string[]>(initialData?.image?.map((img: any) => img.imageUrl) || []);
+  const [isUploadingGallery, setIsUploadingGallery] = useState(false);  
 
   const {
     register,
@@ -66,6 +69,28 @@ export default function ZoneEditForm({ initialData }: { initialData: any }) {
       setIsLoading(false);
     }
   };
+
+  const handleGalleryUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const files = Array.from(e.target.files || []);
+  if (files.length === 0) return;
+
+  setIsUploadingGallery(true);
+  const res = await startUpload(files);
+  if (res) {
+    const newUrls = res.map((r) => r.ufsUrl);
+    const updatedGallery = [...galleryImages, ...newUrls];
+    setGalleryImages(updatedGallery);
+    setValue("image", updatedGallery, { shouldValidate: true });
+  }
+  setIsUploadingGallery(false);
+};
+
+  const removeGalleryImage = (index: number) => {
+  const updated = galleryImages.filter((_, i) => i !== index);
+  setGalleryImages(updated);
+  setValue("image", updated, { shouldValidate: true });
+};
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
@@ -122,6 +147,37 @@ export default function ZoneEditForm({ initialData }: { initialData: any }) {
         </div>
         <input type="hidden" {...register("imageUrl")} />
         {errors.imageUrl && <p className="text-red-500 text-sm mt-1">{errors.imageUrl.message}</p>}
+      </div>
+
+      {/* --- GALERI SLIDER ZONE CARD --- */}
+      <div className="pt-4 border-t border-gray-200">
+        <label className="block text-sm font-medium text-gray-700 mb-1">Galeri Foto (Slider)</label>
+        <p className="text-xs text-gray-500 mb-3">Unggah beberapa foto untuk ditampilkan bergantian di Card.</p>
+        
+        <div className="flex flex-wrap gap-4 mb-4">
+          {galleryImages.map((url, idx) => (
+            <div key={idx} className="relative w-24 h-24 rounded-lg overflow-hidden border">
+              <Image src={url} alt={`Gallery ${idx}`} fill className="object-cover" sizes="(max-width: 768px) 50vw, 33vw" unoptimized={true} />
+              <button 
+                type="button" 
+                onClick={() => removeGalleryImage(idx)}
+                className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            </div>
+          ))}
+          
+          {/* Tombol Tambah Galeri */}
+          <label className="flex flex-col items-center justify-center w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+            <input type="file" multiple accept="image/*" className="hidden" onChange={handleGalleryUpload} disabled={isUploadingGallery} />
+            {isUploadingGallery ? (
+               <span className="text-xs text-blue-600 animate-pulse text-center">Upload...</span>
+            ) : (
+               <><UploadCloud className="w-5 h-5 text-gray-400" /><span className="text-xs text-gray-500 mt-1">Tambah</span></>
+            )}
+          </label>
+        </div>
       </div>
 
       <div>

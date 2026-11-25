@@ -42,6 +42,18 @@ export default async function FacilityUnitsPage({ params }: { params: Promise<{ 
                     <p className="font-semibold text-gray-800">{unit.name}</p>
                     <p className="text-xs text-gray-500">{unit.areaSGA} m²</p>
                   </div>
+                  <Link 
+                    href={`/admin/units/${unit.id}/images`}
+                    className="text-xs font-medium bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1.5 rounded-lg transition"
+                  >
+                    Kelola Gambar
+                  </Link>
+                   <Link 
+                    href={`/admin/units/${unit.id}/edit`}
+                    className="text-xs font-medium bg-blue-100 hover:bg-blue-200 text-blue-700 px-3 py-1.5 rounded-lg transition"
+                  >
+                    Edit
+                  </Link>
                   <DeleteUnitTypeButton id={unit.id} facilityId={facility.id} />
                 </li>
               ))}

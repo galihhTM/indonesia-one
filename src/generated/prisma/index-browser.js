@@ -145,6 +145,13 @@ exports.Prisma.ZoneScalarFieldEnum = {
   imageUrl: 'imageUrl'
 };
 
+exports.Prisma.ZoneImageScalarFieldEnum = {
+  id: 'id',
+  zoneId: 'zoneId',
+  imageUrl: 'imageUrl',
+  sortOrder: 'sortOrder'
+};
+
 exports.Prisma.FacilityScalarFieldEnum = {
   id: 'id',
   zoneId: 'zoneId',
@@ -169,7 +176,7 @@ exports.Prisma.UnitTypeScalarFieldEnum = {
   totalUnits: 'totalUnits',
   areaSGA: 'areaSGA',
   description: 'description',
-  imageUrl: 'imageUrl'
+  images: 'images'
 };
 
 exports.Prisma.SortOrder = {
@@ -195,6 +202,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Tower: 'Tower',
   Zone: 'Zone',
+  ZoneImage: 'ZoneImage',
   Facility: 'Facility',
   FacilityImage: 'FacilityImage',
   UnitType: 'UnitType'

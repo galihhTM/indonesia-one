@@ -39,6 +39,15 @@ model Zone {
   imageUrl     String?
   
   facilities   Facility[]
+  images      ZoneImage[]
+}
+
+model ZoneImage {
+  id          String  @id @default(cuid())
+  zoneId      String
+  zone        Zone    @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  imageUrl    String
+  sortOrder   Int     @default(0)
 }
 
 model Facility {
@@ -75,5 +84,5 @@ model UnitType {
   areaSGA       Float?   
   
   description   String?  
-  imageUrl      String?  
+  images        String[]
 }

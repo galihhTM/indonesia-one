@@ -7,19 +7,60 @@ import { revalidatePath } from "next/cache";
 export async function createUnitType(facilityId: string, data: UnitTypeFormData) {
   try {
     const validatedData = unitTypeSchema.parse(data);
+
     await prisma.unitType.create({
       data: {
         facilityId,
-        ...validatedData,
+        ...validatedData, 
       },
     });
-    revalidatePath(`/admin/facilities/${facilityId}/units`);
-    revalidatePath("/admin/units");
+    return { success: true };
+  } catch (error) {
+    // ...
+  }
+}
+
+export async function updateUnitTypeImages(id: string, images: string[]) {
+  try {
+    await prisma.unitType.update({
+      where: { id },
+      data: { images },
+    });
+
+    revalidatePath(`/admin/units/${id}/images`);
+    revalidatePath(`/admin/facilities/${id}/units`); // Refresh halaman list
     revalidatePath("/");
     return { success: true };
   } catch (error) {
     console.error(error);
-    return { success: false, error: "Gagal menambahkan tipe unit." };
+    return { success: false, error: "Gagal memperbarui gambar unit." };
+  }
+}
+
+export async function updateUnitType(id: string, facilityId: string, data: UnitTypeFormData) {
+  try {
+    const validatedData = unitTypeSchema.parse(data);
+
+    await prisma.unitType.update({
+      where: { id },
+      data: {
+        name: validatedData.name,
+        category: validatedData.category,
+        totalUnits: validatedData.totalUnits,
+        areaSGA: validatedData.areaSGA,
+        description: validatedData.description,
+        images: validatedData.images, 
+      },
+    });
+
+    revalidatePath(`/admin/facilities/${facilityId}/units`);
+    revalidatePath(`/admin/units`);
+    revalidatePath("/");
+    
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return { success: false, error: "Gagal memperbarui tipe unit." };
   }
 }
 

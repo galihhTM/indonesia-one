@@ -8,6 +8,7 @@ export default async function Home() {
         include: {
           tower: true,
           facilities: true,
+          images: true,
         },
       },
     },
