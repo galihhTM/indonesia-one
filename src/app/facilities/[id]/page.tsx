@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import FacilityHeroImage from "@/components/FacilityHeroImage";
+import ImageGallery from "@/components/ImageGallery";
 import { Building2, MapPin, LayoutGrid, Maximize } from "lucide-react";
 
 function getArcStyle(
@@ -199,23 +200,10 @@ export default async function DetailPage({
                   <h2 className="text-2xl font-semibold mb-6 border-b border-white/10 pb-2">
                     Galery
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {galleryImages.map((img) => (
-                      <div
-                        key={img.id}
-                        className="relative aspect-square rounded-2xl overflow-hidden group"
-                      >
-                        <Image
-                          src={img.imageUrl}
-                          alt="Galeri"
-                          fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-500"
-                          sizes="(max-width: 768px) 50vw, 33vw"
-                          unoptimized={true}
-                        />
-                      </div>
-                    ))}
-                  </div>
+                    <ImageGallery 
+                      images={galleryImages.map((img) => img.imageUrl)} 
+                      title={facility.title} 
+                    />
                 </div>
               )}
             </div>
@@ -380,22 +368,12 @@ export default async function DetailPage({
             {galleryImages.length > 0 && (
               <div>
                 <h2 className="text-2xl font-semibold mb-6 border-b border-white/10 pb-2">
-                  Galeri Foto
+                  Galery
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {galleryImages.map((imgUrl, idx) => (
-                    <div key={idx} className="relative aspect-square rounded-2xl overflow-hidden group">
-                      <Image
-                        src={imgUrl}
-                        alt={`Galeri ${unit.name} ${idx + 1}`}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        sizes="(max-width: 768px) 50vw, 33vw"
-                        unoptimized={true}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <ImageGallery 
+                  images={galleryImages} 
+                  title={unit.name} 
+                />
               </div>
             )}
           </div>
