@@ -4,19 +4,27 @@ import { prisma } from "@/lib/prisma";
 import { unitTypeSchema, UnitTypeFormData } from "@/lib/schemas/unitType";
 import { revalidatePath } from "next/cache";
 
-export async function createUnitType(facilityId: string, data: UnitTypeFormData) {
+export async function createUnitType(
+  facilityId: string, 
+  data: UnitTypeFormData
+): Promise<{ success: boolean; error?: string }> {
   try {
     const validatedData = unitTypeSchema.parse(data);
 
     await prisma.unitType.create({
       data: {
         facilityId,
-        ...validatedData, 
+        ...validatedData,
       },
     });
+
+    revalidatePath(`/admin/facilities/${facilityId}/units`);
+    revalidatePath("/admin/units");
+    revalidatePath("/");
     return { success: true };
   } catch (error) {
-    // ...
+    console.error(error);
+    return { success: false, error: "Gagal menambahkan tipe unit." };
   }
 }
 

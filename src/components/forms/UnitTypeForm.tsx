@@ -61,17 +61,19 @@ export default function UnitTypeForm({ facilityId }: { facilityId: string }) {
     setValue("images", updated, { shouldValidate: true });
   };
 
-  const onSubmit = async (data: UnitTypeFormData) => {
+    const onSubmit = async (data: UnitTypeFormData) => {
     console.log("Form disubmit:", data);
     setIsLoading(true);
     const result = await createUnitType(facilityId, data);
     
-    if (result.success) {
+    // Gunakan optional chaining (?.) untuk berjaga-jaga jika result undefined
+    if (result?.success) {
       toast.success("Tipe unit berhasil ditambahkan!");
       reset();
       setGalleryImages([]);
     } else {
-      toast.error(result.error);
+      // Berikan fallback string jika result.error undefined
+      toast.error(result?.error || "Gagal menambahkan unit.");
     }
     setIsLoading(false);
   };

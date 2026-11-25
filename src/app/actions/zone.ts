@@ -38,7 +38,7 @@ export async function updateZone(id: string, data: ZoneFormData) {
       where: { id },
       data: {
         ...zoneData,
-        // Hapus gambar lama, lalu buat yang baru (metode paling mudah untuk update galeri)
+        // Hapus gambar lama, lalu buat yang baru 
         images: {
           deleteMany: {},
           create: image?.map((url) => ({ imageUrl: url })) || [],
@@ -55,6 +55,15 @@ export async function updateZone(id: string, data: ZoneFormData) {
   }
 }
 
-export async function deleteZone(id: string) {
-  // ... (biarkan fungsi deleteZone yang sudah ada)
+export async function deleteZone(id: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    await prisma.zone.delete({ where: { id } });
+    revalidatePath("/admin/zones");
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    // mengembalikan objek dengan error string
+    return { success: false, error: "Gagal menghapus zona." };
+  }
 }
